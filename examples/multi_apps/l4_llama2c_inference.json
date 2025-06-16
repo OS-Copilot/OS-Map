@@ -1,0 +1,41 @@
+{
+  "id": "l4_llama2c_inference",
+  "snapshot": "chrome",
+  "instruction": "Find his repository llama2.c and then follow the instructions in the README to download the tiniest llama2 model with 15M parameters. Use the model to continue writing this story \"Once upon a time, there was a man\". Save the result to ~/.local/Documents/story.docx. Remember to set 42 as the seed.",
+  "source": "test_task_0",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": ["https://github.com/karpathy?tab=followers"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome", "terminal"],
+  "evaluator": {
+    "func": "compare_docx_files_and_ignore_new_lines",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/.local/Documents/story.docx.",
+      "dest": "story.docx"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://drive.usercontent.google.com/download?id=1k-DP2yAWY2DUbku2JAgURZY3LOP-_4Ha&export=download",
+      "dest": "story_gt.docx"
+    }
+  }
+}

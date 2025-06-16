@@ -1,0 +1,125 @@
+{
+  "id": "l1_thunderbird_local_folder",
+  "level": "l1",
+  "snapshot": "thunderbird",
+  "instruction": "Create two local folders in Thunderbird for me: COMPANY and UNIVERSITY. The steps are as follows: 1. right click on mail account name in folder Pane; 2. Select 'New Folder'; 3.Click the \"Name\" box;4. Type 'COMPANY' into the box; 4. Repeat steps 1-4 for the folder'UNIVERSITY'.",
+  "source": "2ad9387a-65d8-4e33-ad5b-7580065a27ca",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1EHLRWzBCOsyERkSMUnTF2pnsR0n6ZvtR&export=download&authuser=0&confirm=t&uuid=de09bd5e-bef8-499a-b599-c642af190e10&at=APZUnTXqOsQkxl0zMSX6R1Sgp_v3:1704362491712",
+            "path": "/home/user/thunderbird-profile.tar.gz"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "tar",
+          "-xzv",
+          "--recursive-unlink",
+          "-f",
+          "/home/user/thunderbird-profile.tar.gz",
+          "-C",
+          "/home/user/"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["/usr/bin/thunderbird"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/2ad9387a-65d8-4e33-ad5b-7580065a27ca",
+  "related_apps": ["thunderbird"],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "ls",
+            "-R",
+            "/home/user/.thunderbird/t5q2a5hp.default-release/Mail/Local Folders"
+          ],
+          "stdout": "thunder-local-folder.ls"
+        }
+      }
+    ],
+    "func": ["check_list", "check_step_actions"],
+    "result": [
+      {
+        "type": "cache_file",
+        "path": "thunder-local-folder.ls"
+      },
+      {
+        "type": "step_actions"
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "expect": [
+            "\\bCOMPANY\\.msf\\b",
+            "\\bCOMPANY/?(?!\\.msf)",
+            "\\bUNIVERSITY\\.msf\\b",
+            "\\bUNIVERSITY/?(?!\\.msf)"
+          ]
+        }
+      },
+      {
+        "type": "rule",
+        "action": [
+          {
+            "action_type": "RIGHT_CLICK",
+            "parameters": { "bbox": [119, 155, 373, 183] }
+          },
+          {
+            "action_type": "CLICK",
+            "parameters": { "bbox": [179, 317, 372, 352] }
+          },
+          {
+            "action_type": "CLICK",
+            "parameters": { "bbox": [870, 508, 1118, 533] }
+          },
+          {
+            "action_type": "TYPING",
+            "parameters": { "text": "COMPANY" }
+          },
+          {
+            "action_type": "CLICK",
+            "parameters": { "bbox": [1006, 623, 1118, 648] }
+          },
+          {
+            "action_type": "RIGHT_CLICK",
+            "parameters": { "bbox": [119, 155, 373, 183] }
+          },
+          {
+            "action_type": "CLICK",
+            "parameters": { "bbox": [179, 317, 372, 352] }
+          },
+          {
+            "action_type": "CLICK",
+            "parameters": { "bbox": [870, 508, 1118, 533] }
+          },
+          {
+            "action_type": "TYPING",
+            "parameters": { "text": "UNIVERSITY" }
+          },
+          {
+            "action_type": "CLICK",
+            "parameters": { "bbox": [1006, 623, 1118, 648] }
+          }
+        ]
+      }
+    ]
+  }
+}

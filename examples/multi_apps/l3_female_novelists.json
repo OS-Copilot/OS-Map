@@ -1,0 +1,107 @@
+{
+  "id": "l3_female_novelists",
+  "snapshot": "Xmind",
+  "instruction": "I am researching several famous female novelists and have drawn a mind map, collecting several of their works. Please fill in the mind map with the works in foliate according to the author.",
+  "source": "",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1kmjnbFPUH2-s5mswws37NoQrTBsctECm&export=download",
+            "path": "/home/user/Documents/Female_novelists.xmind"
+          },
+          {
+            "url": "https://drive.usercontent.google.com/download?id=12TM-JDGBfl3pSzeuESMa_cVsozVEOxjr&export=download",
+            "path": "/home/user/Downloads/female_novelists.zip"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "cd Downloads && unzip female_novelists.zip && rm female_novelists.zip",
+        "shell": true
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "timeout 10s flatpak run --filesystem=host com.github.johnfactotum.Foliate /home/user/Downloads/*",
+        "shell": true
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Documents/Female_novelists.xmind"
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": "flatpak run --filesystem=host com.github.johnfactotum.Foliate",
+        "shell": true
+      }
+    },
+    {
+      "type": "sleep",
+      "parameters": {
+        "seconds": 3
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["Xmind"],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "Xmind"
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 2
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": "unzip -o /home/user/Documents/Female_novelists.xmind -d /home/user/Documents/Female_novelists",
+          "shell": true
+        }
+      }
+    ],
+    "func": "check_direct_json_object",
+    "result": {
+      "type": "vm_command_line",
+      "command": "jq -c '[.[].rootTopic.children.attached[] | select(.title | contains(\"Brontë\")) | {(.title): [.children.attached[].title]}] | add' /home/user/Documents/Female_novelists/content.json",
+      "shell": "true"
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": {
+          "Charlotte Brontë": ["Jane Eyre"],
+          "Emily Brontë": ["Wuthering Heights"],
+          "Anne Brontë": ["The Tenant of Wildfell Hall"]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "id": "l2_w3schools_r_code",
+  "snapshot": "chrome",
+  "instruction": "I want to run a statistical modeling code lm.r located on my desktop, but there is no R environment on my machine. Could you please help me run it on the online R interpreter on W3School?",
+  "source": "authors",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1iS6EXIFBXT2xITpy0MvMJzVP3imkwRyb&export=download",
+            "path": "/home/user/Desktop/lm.r"
+          }
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": ["https://www.w3schools.com/"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/415ef462-bed3-493a-ac36-ca8c6d23bf1b",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": "check_json_contains",
+    "result": {
+      "type": "active_tab_html_parse",
+      "goto_prefix": "https://www.",
+      "category": "iframe-xpath",
+      "xpathObject": {
+        "iframe": "#iframeResult",
+        "/html/body/pre": "output"
+      }
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": { "output": "21.25171 15.90724 10.56277" }
+      }
+    }
+  }
+}

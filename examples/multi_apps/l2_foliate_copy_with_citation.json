@@ -1,0 +1,59 @@
+{
+  "id": "l2_foliate_copy_with_citation",
+  "instruction": "I really like the first five lines spoken by Romeo in Act 5, Scene 1. Copy them in citation format (in the right-click menu) and add them to \"notes.docx\". The document already contains some excerpts —- please maintain consistent formatting.",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=17EVuPUUJFLOCtpFBfBG-lxeSLaJOuncl&export=download",
+            "path": "/home/user/Desktop/notes.docx"
+          },
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1F9-LMAoAMH8Gy-h_GEibUpMEDwYWsp8-&export=download",
+            "path": "/home/user/Documents/Romeo_and_Juliet.equb"
+          }
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": "flatpak run --filesystem=host com.github.johnfactotum.Foliate /home/user/Documents/Romeo_and_Juliet.equb",
+        "shell": true
+      }
+    },
+    {
+      "type": "sleep",
+      "parameters": {
+        "seconds": 3
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "python",
+          "-c",
+          "import pyautogui, time; [pyautogui.press('right') or time.sleep(0.5) for _ in range(5)]"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["foliate", "LibreOffice Writer"],
+  "evaluator": {
+    "func": "compare_docx_exactly",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/notes.docx",
+      "dest": "notes.docx"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://drive.usercontent.google.com/download?id=1I6fYuZ0h7RxyQ1-xJxjfXfDoL7C_OE6a&export=download",
+      "dest": "notes_gt.docx"
+    }
+  }
+}

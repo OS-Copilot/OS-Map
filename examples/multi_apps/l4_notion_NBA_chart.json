@@ -1,0 +1,76 @@
+{
+  "id": "l4_notion_NBA_chart",
+  "snapshot": "Notion Desktop",
+  "instruction": "Collect Stephen Curry's average points per game for each of the five years from 2019 to 2024 and save it to the file ~/Desktop/Curry.csv. Then import it in a newly created Notion database, and draw a line chart of the average points per game changing with the year. Export the chart as ~/Desktop/Curry.png with white background and axis names, but without legends.",
+  "source": "",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1qoYrEpg1LrpaOQsrUDO2_JAONCflbZ2B&export=download",
+            "path": "/home/user/Desktop/Curry.csv"
+          }
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": [
+          "https://www.espn.com/nba/stats/_/season/2024/seasontype/2"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["notion-desktop"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["Chrome", "Notion Desktop", "Files"],
+  "evaluator": {
+    "func": ["file_contains", "compare_images"],
+    "result": [
+      {
+        "type": "vm_file",
+        "path": "/home/user/Desktop/Curry.csv",
+        "dest": "Curry.csv"
+      },
+      {
+        "type": "vm_file",
+        "path": "/home/user/Desktop/Curry.png",
+        "dest": "Curry.png"
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "expected": "Year,PTS\n2019-20,20.8\n2020-21,32\n2021-22,25.5\n2022-23,29.4\n2023-24,26.4"
+        }
+      },
+      {
+        "type": "cloud_file",
+        "path": "https://drive.google.com/uc?id=1ttpSFwCxpIJmmwzx9CQGqdDNLJsD5HdK&export=download",
+        "dest": "Curry_gt.png"
+      }
+    ],
+    "options": [{}, { "binary": true }]
+  }
+}

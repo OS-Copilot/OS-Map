@@ -1,0 +1,65 @@
+{
+  "id": "l4_geogebra_problem",
+  "snapshot": "chrome",
+  "spec_snapshot": "_login_Shirley",
+  "instruction": "Log in to Rocket.Chat and check the message from Derek. Follow his request and complete the task accordingly. Once finished, send him the result.",
+  "source": "test_task_geogebra",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["rocketchat-desktop"]
+      }
+    },
+    {
+      "type": "rocket_send_messages",
+      "parameters": {
+        "from_name": "Derek",
+        "to_type": "user",
+        "to_name": "Shirley",
+        "message": "Hey Shirley, I have a math problem described in Chinese: https://drive.usercontent.google.com/download?id=1jOac2_hdZBKp9bJbXKJXX1qOdxpdZqou&export=view. Can you translate the problem into English using Google Image Translate and send it to me? Please translate the problem accurately and do not modify the translation result. Furthermore, can you help me find the answer? I know a website: https://www.geogebra.org/calculator, which can perform geometric construction and measure geometric quantities such as length, area, angle, etc., maybe it can help you."
+      }
+    },
+    {
+      "type": "sleep",
+      "parameters": {
+        "seconds": 3
+      }
+    }
+  ],
+  "trajectory": "trajectories/415ef462-bed3-493a-ac36-ca8c6d23bf1b",
+  "related_apps": ["chrome", "rocket.chat"],
+  "evaluator": {
+    "func": ["check_one_of_include", "check_one_of_include"],
+    "result": [
+      {
+        "type": "rocketchat_message_content_in_mongodb",
+        "users": ["Shirley", "Derek"]
+      },
+      {
+        "type": "rocketchat_message_content_in_mongodb",
+        "users": ["Shirley", "Derek"]
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "expected": [
+            "The parabola y=-x^2+3x-4 intersects",
+            "C(3,a)",
+            "D(-0.4, b)",
+            "are points on the parabola.",
+            "angle ∠CBD"
+          ]
+        }
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "expected": "45"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "id": "l3_jupyter_lr_modeling",
+  "snapshot": "multi_apps",
+  "instruction": "I am learning logistic regression and wrote a script using the Breast Cancer Wisconsin dataset. Please go to kaggle to download the dataset, then run the current notebook and save the final scatter plot to your desktop. There are some bugs in my code, please fix them yourself and run the code successfully.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.google.com/uc?id=1fQhMwsTgAan8Y-msFZg-FN1Oh8qPv7LO&export=download",
+            "path": "/home/user/breast_cancer_lr.ipynb"
+          }
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": [
+          "https://translate.google.com/?hl=en&tab=TT&sl=auto&tl=en&op=translate",
+          "https://arxiv.org/archive/astro-ph",
+          "https://www.kaggle.com/"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": "/home/user/.local/bin/jupyter notebook breast_cancer_lr.ipynb",
+        "shell": true
+      }
+    },
+    {
+      "type": "sleep",
+      "parameters": {
+        "seconds": 2
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["nautilus", "/home/user/.config/google-chrome/Default"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["code", "."]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["gnome-terminal"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/415ef462-bed3-493a-ac36-ca8c6d23bf1b",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": "compare_images",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/scatter.png",
+      "dest": "scatter.png"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://drive.google.com/uc?id=1wVzeOp53_dlg30vcSSy9wLUpWM3zahG-&export=download",
+      "dest": "scatter_gt.png"
+    }
+  }
+}

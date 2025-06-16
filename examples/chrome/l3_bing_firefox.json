@@ -1,0 +1,35 @@
+{
+  "id": "l3_bing_firefox",
+  "snapshot": "chrome",
+  "instruction": "Can you help me set Bing as the default search engine for my Chrome browser? I have already opened the browser's settings page, please complete the rest.",
+  "source": "https://support.google.com/chrome/answer/95426?sjid=16867045591165135686-AP",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["firefox", "about:preferences#general"]
+      }
+    },
+    {
+      "type": "activate_window",
+      "parameters": {
+        "window_name": "Firefox Web Browser"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": "exact_match",
+    "conj": "and",
+    "result": {
+      "type": "default_search_engine"
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": "Bing"
+      }
+    }
+  }
+}

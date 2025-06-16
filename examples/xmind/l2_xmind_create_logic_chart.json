@@ -1,0 +1,55 @@
+{
+  "id": "l2_xmind_create_logic_chart",
+  "snapshot": "Xmind",
+  "instruction": "Create a logic chart with the central topic 'Improving_Work_Efficiency' and five main topics. Then save it in the Documents folder.",
+  "source": "",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["xmind"]
+      }
+    },
+    {
+      "type": "activate_window",
+      "parameters": {
+        "window_name": "Xmind"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["Xmind"],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "Xmind"
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": "unzip -o /home/user/Documents/Improving_Work_Efficiency.xmind -d /home/user/Documents/Improving_Work_Efficiency_unzipped",
+          "shell": true
+        }
+      }
+    ],
+    "func": "check_direct_json_object",
+    "result": {
+      "type": "vm_command_line",
+      "command": "jq '.[].rootTopic | {structureClass, title, childCount: ( .children.attached | length )}' /home/user/Documents/Improving_Work_Efficiency_unzipped/content.json",
+      "shell": true
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": {
+          "structureClass": "org.xmind.ui.logic.right",
+          "title": "Improving_Work_Efficiency",
+          "childCount": 5
+        }
+      }
+    }
+  }
+}

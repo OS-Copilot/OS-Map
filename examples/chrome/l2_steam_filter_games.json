@@ -1,0 +1,73 @@
+{
+  "id": "l2_steam_filter_games",
+  "snapshot": "chrome",
+  "instruction": "Here is a collection of Stream ARPG games. I'm looking for soul-like games that can be played on macOS, please add the top-ranked game in the list below to my cart.",
+  "source": "",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": ["https://store.steampowered.com/category/rpg_action/"]
+      }
+    },
+    {
+      "type": "chrome_execute_script",
+      "parameters": {
+        "tab_url": "https://store.steampowered.com/category/rpg_action/",
+        "script": "ChangeLanguage('english')"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "chrome_activate_tab",
+        "parameters": {
+          "tab_url": "https://store.steampowered.com/category/rpg_action/?facets13268=2%3A38%2C9%3A2"
+        }
+      }
+    ],
+    "func": ["is_expected_active_tab", "webpage_contains"],
+    "result": [
+      {
+        "type": "active_url_from_accessTree",
+        "goto_prefix": "https://"
+      },
+      {
+        "type": "page_info",
+        "url": "https://store.steampowered.com/cart/"
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "type": "url",
+          "url": "https://store.steampowered.com/category/rpg_action/?facets13268=2%3A38%2C9%3A2"
+        }
+      },
+      {
+        "type": "active_tab_html_parse",
+        "goto_prefix": "https://",
+        "category": "xpath",
+        "xpathObject": {
+          "/html/body/div[1]/div[7]/div[6]/div[4]/div/div/div/div/div[2]/div[2]/div[11]/div[2]/div[2]/div[2]/div/div[2]/div[1]/div/div/div/div[2]/div[2]/a/div": "expected"
+        }
+      }
+    ]
+  }
+}

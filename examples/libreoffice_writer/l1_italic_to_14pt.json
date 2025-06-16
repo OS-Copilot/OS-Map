@@ -1,0 +1,127 @@
+{
+  "id": "l1_ltalic_to_14pt",
+  "snapshot": "libreoffice_writer",
+  "instruction": "Change the font size of italicized words to 14 to make it more discernible. The steps are as follows: 1. Click the \"Search\" logo in the toolbar; 2. Click the \"Format...\", choose the \"Italic\" and click \"OK\"; 3. Click the input box of \"Replace\"; 4. Click the \"Format...\", choose the \"Italic\" and \"14pt\" and click \"OK\"; 5. Click \"Replace All\", then click \"Close\"; 6. Click the \"Save\" button.",
+  "source": "e246f6d8-78d7-44ac-b668-fcf47946cb50",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.google.com/uc?id=1b8mPpEDlBrTLcOpf0ZcjdUV4vLAwxH1r&export=download",
+            "path": "/home/user/Desktop/Y22-2119-assign4.docx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/Y22-2119-assign4.docx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["libreoffice_writer"],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "Y22-2119-assign4.docx - LibreOffice Writer",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; import time; pyautogui.hotkey('ctrl', 's'); time.sleep(0.5); "
+          ]
+        }
+      }
+    ],
+    "func": ["check_italic_font_size_14", "check_step_actions"],
+    "expected": [
+      {
+        "type": "cloud_file",
+        "path": "https://drive.google.com/uc?id=1GTZ-DkMxpdYx38z_s0ab85Ejgxv3qfEp&export=download",
+        "dest": "Y22-2119-assign4.docx_Gold.docx"
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "expected": [
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [570, 82, 606, 119] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [940, 737, 1063, 771] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [932, 427, 1157, 450] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [1295, 834, 1379, 867] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [736, 478, 1298, 511] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [938, 758, 1063, 792] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [935, 439, 1156, 463] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [1173, 623, 1374, 648] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [1295, 846, 1381, 878] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [1205, 556, 1328, 588] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [1254, 824, 1340, 855] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [165, 93, 195, 126] }
+            }
+          ]
+        }
+      }
+    ],
+    "result": [
+      {
+        "type": "vm_file",
+        "path": "/home/user/Desktop/Y22-2119-assign4.docx",
+        "dest": "Y22-2119-assign4.docx"
+      },
+      {
+        "type": "step_actions"
+      }
+    ]
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "id": "l4_decathlon_fill_table",
+  "snapshot": "multi_apps",
+  "spec_snapshot": "_login_Derek",
+  "instruction": "Log in to Rocket.Chat, merge the three xlsx files on the desktop into one BuyList.xlsx file, search for information on the decathlon official website to complete the content (without discount) as needed, and then record the information of the items in your decathlon shopping cart into the file in the same way, and sent it to Mark finally.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["rocketchat-desktop"]
+      }
+    },
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1lDBGhUG31Tv9fc4or7l8XnGTyvQeKGiz&export=download",
+            "path": "/home/user/Desktop/BuyList.zip"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "cd Desktop && unzip BuyList.zip && rm BuyList.zip",
+        "shell": true
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": [
+          "https://www.decathlon.com/",
+          "https://www.decathlon.com/products/quechua-mens-mh500-waterproof-mid-hiking-shoes-330874?variant=40794921664574",
+          "https://www.decathlon.com/products/wedze-firstheat-beanie-ski-hat-165131?variant=40155584692286"
+        ]
+      }
+    },
+    {
+      "type": "chrome_execute_script",
+      "parameters": {
+        "tab_url": "https://www.decathlon.com/products/quechua-mens-mh500-waterproof-mid-hiking-shoes-330874?variant=40794921664574",
+        "wait_for": "#AddToCart",
+        "reload": false,
+        "script": "document.querySelector('#AddToCart').click();"
+      }
+    },
+    {
+      "type": "chrome_execute_script",
+      "parameters": {
+        "tab_url": "https://www.decathlon.com/products/wedze-firstheat-beanie-ski-hat-165131?variant=40155584692286",
+        "wait_for": "#AddToCart",
+        "reload": false,
+        "script": "document.querySelector('#AddToCart').click();"
+      }
+    },
+    {
+      "type": "chrome_close_tabs",
+      "parameters": {
+        "urls_to_close": [
+          "https://www.decathlon.com/products/quechua-mens-mh500-waterproof-mid-hiking-shoes-330874?variant=40794921664574",
+          "https://www.decathlon.com/products/wedze-firstheat-beanie-ski-hat-165131?variant=40155584692286"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/415ef462-bed3-493a-ac36-ca8c6d23bf2b",
+  "related_apps": ["os", "chrome", "rocket.chat"],
+  "evaluator": {
+    "func": "compare_table",
+    "result": {
+      "type": "rocketchat_message_file_in_mongodb",
+      "users": ["Derek", "Mark"],
+      "fname": "BuyList.xlsx",
+      "dest": "BuyList.xlsx"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://drive.google.com/uc?id=1aEkR7-qqr0GWJxZE5iPPjHGkpunxdkPN&export=download",
+      "dest": "BuyList_Golden.xlsx"
+    },
+    "options": {
+      "rules": [
+        {
+          "type": "sheet_data",
+          "sheet_idx0": 0,
+          "sheet_idx1": "EI0"
+        }
+      ]
+    }
+  }
+}

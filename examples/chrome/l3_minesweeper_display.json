@@ -1,0 +1,65 @@
+{
+  "id": "l3_minesweeper_display",
+  "snapshot": "chrome",
+  "instruction": "Change the display mode of the board to theater mode. And then change the zoom size from 24 to 58.",
+  "source": "",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": ["https://minesweeper.online/new-game"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": ["check_direct_json_object", "check_direct_json_object"],
+    "result": [
+      {
+        "type": "active_tab_html_parse",
+        "goto_prefix": "https://",
+        "category": "xpath",
+        "xpathObject": {
+          "//*[@id='game']": { "name": "game_class", "attribute": "class" }
+        }
+      },
+      {
+        "type": "active_tab_html_parse",
+        "goto_prefix": "https://",
+        "category": "input",
+        "inputObject": {
+          "//*[@id='zoom_select']": "zoom"
+        }
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "expected": {
+            "game_class": "wrapper noselect zoomable theatre-mode skin_hd wrapper-light theatre-on"
+          }
+        }
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "expected": { "zoom": "58" }
+        }
+      }
+    ]
+  }
+}

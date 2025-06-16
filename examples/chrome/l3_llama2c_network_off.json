@@ -1,0 +1,66 @@
+{
+  "id": "l3_llama2c_network_off",
+  "snapshot": "chrome",
+  "instruction": "Navigate to Andrej Karpathy's famous GitHub repository llama2_c (probably named this) and then follow the instructions in the README to download his tiniest llama2 model with 15M parameters in desktop.",
+  "source": "test_task_0",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1zxsrgjTcDaZqll8xnmlfh6UhcSI2EIC1&export=download",
+            "path": "/home/user/Downloads/listenAndTriggerExt.zip"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "/bin/bash",
+          "-c",
+          "cd /home/user/Downloads && unzip -q listenAndTriggerExt.zip"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "google-chrome",
+          "--remote-debugging-port=1337",
+          "--load-extension=/home/user/Downloads/listenAndTriggerExt"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "activate_window",
+      "parameters": {
+        "window_name": "Google Chrome"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome", "terminal"],
+  "evaluator": {
+    "func": "compare_files_exactly",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/stories15M.bin",
+      "dest": "stories15M.bin"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/karpathy/tinyllamas/resolve/main/stories15M.bin",
+      "dest": "stories15M_gt.bin"
+    }
+  }
+}

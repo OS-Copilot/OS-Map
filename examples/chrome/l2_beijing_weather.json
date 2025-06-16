@@ -1,0 +1,45 @@
+{
+  "id": "l2_beijing_weather",
+  "snapshot": "chrome",
+  "instruction": "I want to check the weather in Beijing for the next week.",
+  "source": "",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": [
+          "https://weather.com/en-US/weather/today/l/65d48fb411056d3afa6e116d9db113f7ded9bf324bfe1432aa91bcdb7270e5cc?unit=e"
+        ],
+        "wait_until": "commit"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": "is_expected_active_tab",
+    "result": {
+      "type": "active_url_from_accessTree",
+      "goto_prefix": "https://"
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "type": "url",
+        "url": "https://weather.com/weather/tenday/l/b2dc7b2de8f7cf0ab5593e383d375faba071dbb9d8131a6b4910b3f4ee6c51b7"
+      }
+    }
+  }
+}

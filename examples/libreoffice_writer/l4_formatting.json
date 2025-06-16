@@ -1,0 +1,88 @@
+{
+  "id": "l4_formatting",
+  "snapshot": "libreoffice_writer",
+  "instruction": "Refer to the paragraph formatting of the document Mars and format the document Jupiter. This includes fonts, font sizes, alignment, bold, italics, and all other styles, as well as the formatting of images. Ensure that each style applies to an entire paragraph, including leading spaces and trailing line breaks.",
+  "source": "",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1gyMTZ3DGI6PvpEy-Vp4OoIoy216cmd_t&export=download",
+            "path": "/home/user/Desktop/Mars.docx"
+          },
+          {
+            "url": "https://drive.usercontent.google.com/download?id=17hwWH7iggx2I1OxaguJMO6sKxvw2u7tV&export=download",
+            "path": "/home/user/Desktop/Jupiter.docx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/Mars.docx"
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/Jupiter.docx"
+      }
+    },
+    {
+      "type": "sleep",
+      "parameters": {
+        "seconds": 4
+      }
+    },
+    {
+      "type": "split_screen",
+      "parameters": {
+        "window_name1": "Mars.docx - LibreOffice Writer",
+        "window_name2": "Jupiter.docx - LibreOffice Writer"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["libreoffice_writer"],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "Jupiter.docx - LibreOffice Writer",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; import time; pyautogui.hotkey('ctrl', 's'); time.sleep(0.5); "
+          ]
+        }
+      }
+    ],
+    "func": "compare_docx_exactly",
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://drive.usercontent.google.com/download?id=1pYY0olU_SZXxTGoUz5tkrn8hWygaW0w5&export=download",
+      "dest": "Jupiter_gt.docx"
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/Jupiter.docx",
+      "dest": "Jupiter.docx"
+    }
+  }
+}

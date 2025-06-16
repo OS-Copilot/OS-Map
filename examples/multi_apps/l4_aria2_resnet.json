@@ -1,0 +1,22 @@
+{
+  "id": "l4_aria2_resnet",
+  "snapshot": "chrome",
+  "instruction": "Install aria2 1.37.0 to ~/.local, building from source.",
+  "source": "",
+  "config": [],
+  "trajectory": "",
+  "related_apps": ["chrome", "os"],
+  "evaluator": {
+    "func": "check_include_exclude",
+    "result": {
+      "type": "vm_command_line",
+      "command": ["/home/user/.local/bin/aria2c", "-v"]
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "include": ["aria2 version 1.37.0\n"]
+      }
+    }
+  }
+}

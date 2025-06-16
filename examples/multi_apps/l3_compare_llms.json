@@ -1,0 +1,79 @@
+{
+  "id": "l3_compare_llms",
+  "snapshot": "chrome",
+  "instruction": "I am collecting information about commonly used large language models and recording them in this table. Please find them on huggingface and fill in the unfinished parts of the table. Note that the clone command needs to be cloned through git instead of http. The two pictures that open indicate where you should look for the items to be filled in.",
+  "source": "",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1DFIcM953xnJvwbe3_cXqdIPDIjLdMe4Y&export=download",
+            "path": "/home/user/llms_compare.zip"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": ["unzip", "llms_compare.zip"]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "llms.xlsx"
+      }
+    },
+    {
+      "type": "sleep",
+      "parameters": {
+        "seconds": 2
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "ref1.jpg"
+      }
+    },
+    {
+      "type": "sleep",
+      "parameters": {
+        "seconds": 1
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "ref2.jpg"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome", "vscode"],
+  "evaluator": {
+    "func": "compare_table",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/llms.xlsx",
+      "dest": "llms.xlsx"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://drive.usercontent.google.com/download?id=1t3HGuj5PG87wtFUZIZCMkQQfFHob7_s0&export=download",
+      "dest": "llms_completed.xlsx"
+    },
+    "options": {
+      "rules": [
+        {
+          "type": "sheet_data",
+          "sheet_idx0": 0,
+          "sheet_idx1": "EI0"
+        }
+      ]
+    }
+  }
+}

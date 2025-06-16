@@ -1,0 +1,71 @@
+{
+  "id": "l1_vscode_dark_theme",
+  "snapshot": "vscode",
+  "instruction": "Please help me change the color theme of VS Code to Visual Studio Dark. The steps are as follows: 1. Click the settings icon in the bottom left corner of the VS code window; 2. Move the mouse to the \"Themes\" tab in the menu; 3. Click the \"Color Theme\" option in the submenu on the right; 4. Select the \"Dark (Visual Studio)\" option in the pop-up window.",
+  "source": "982d12a5-beab-424f-8d38-d2a48429e511",
+  "config": [
+    {
+      "type": "command",
+      "parameters": {
+        "command": "SETTINGS_PATH=\"$HOME/.config/Code/User/settings.json\"; [ ! -f \"$SETTINGS_PATH\" ] && echo '{\"workbench.colorTheme\": \"Red\"}' > \"$SETTINGS_PATH\" || (grep -q \"workbench.colorTheme\" \"$SETTINGS_PATH\" && sed -i 's/\"workbench.colorTheme\": \"[^\"]*\"/\"workbench.colorTheme\": \"Red\"/' \"$SETTINGS_PATH\" || jq '. + {\"workbench.colorTheme\": \"Red\"}' \"$SETTINGS_PATH\" > temp.json && mv temp.json \"$SETTINGS_PATH\")",
+        "shell": true
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["code"]
+      }
+    },
+    {
+      "type": "activate_window",
+      "parameters": {
+        "window_name": "Visual Studio Code"
+      }
+    }
+  ],
+  "trajectory": "trajectories/982d12a5-beab-424f-8d38-d2a48429e511",
+  "related_apps": ["vscode"],
+  "evaluator": {
+    "func": ["compare_config", "check_step_actions"],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "expected": "{\"workbench.colorTheme\": \"Visual Studio Dark\"}\n"
+        }
+      },
+      { "type": "step_actions" }
+    ],
+    "result": [
+      {
+        "type": "vm_file",
+        "path": "/home/user/.config/Code/User/settings.json",
+        "dest": "settings.json"
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "expected": [
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [449, 989, 496, 1036] }
+            },
+            {
+              "action_type": "MOVE_TO",
+              "parameters": { "bbox": [497, 936, 879, 960] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [880, 936, 1122, 960] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [665, 472, 1253, 493] }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

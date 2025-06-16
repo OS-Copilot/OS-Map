@@ -1,0 +1,152 @@
+{
+  "id": "l4_bing_wallpaper",
+  "snapshot": "chrome",
+  "instruction": "Download the Bing wallpaper for Italy from the latest 5 days in 4K resolution to ~/Pictures/wallpapers and name them 0.jpg (today's), 1.jpg, ..., add them to the wallpaper candidates, and set the today's one as the wallpaper. Next, configure a cron task to switch wallpapers in order at 00:00 every day. The required script change_wallpaper.sh is already provided on the desktop and can be used for cron tasks after only modifying the wallpaper directory.",
+  "source": "",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1p9UPk-TgbuoRX5jhTK8_fXh1FNigjjL4&export=download&confirm=t&uuid=e9374f73-79f5-401d-a33f-3c0f574fff82&at=AIrpjvPnn5KvSl5Cvu7b0jwAF1Pk:1738987395034",
+            "path": "/home/user/Desktop/change_wallpapers.sh"
+          }
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome"]
+      }
+    }
+  ],
+  "trajectory": "",
+  "related_apps": ["chrome", "os", "terminal", "files"],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "download",
+        "parameters": {
+          "files": [
+            {
+              "url": "https://drive.usercontent.google.com/download?id=1JpIiYi2mRsFIDd10yuw-n951Ubpqtr72&export=download&confirm=t&uuid=e9374f73-79f5-401d-a33f-3c0f574fff82&at=AIrpjvPnn5KvSl5Cvu7b0jwAF1Pk:1738987395034",
+              "path": "/home/user/Desktop/dl_bing_wallpaper.py"
+            }
+          ]
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": ["python", "/home/user/Desktop/dl_bing_wallpaper.py"]
+        }
+      },
+      {
+        "type": "download",
+        "parameters": {
+          "files": [
+            {
+              "url": "https://drive.usercontent.google.com/download?id=18Yl7Jf0fLodzE6agTFtT1TvOnMVOWX7G&export=download&confirm=t&uuid=7cdcf672-5a8f-4e9f-81fd-1186445f1d78&at=AIrpjvPEnFmFm-cEaaV283IqEVN9:1739000971668",
+              "path": "/home/user/get_path_in_change_wallpaper_script.sh"
+            }
+          ]
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "/bin/bash",
+            "/home/user/get_path_in_change_wallpaper_script.sh"
+          ],
+          "stdout": "wallpapers_path.txt"
+        }
+      },
+      {
+        "type": "download",
+        "parameters": {
+          "files": [
+            {
+              "url": "https://drive.usercontent.google.com/download?id=1kqDtwEm6u0WG0GmA7k4gGTMlNUrAEGAm&export=download&confirm=t&uuid=7cdcf672-5a8f-4e9f-81fd-1186445f1d78&at=AIrpjvPEnFmFm-cEaaV283IqEVN9:1739000971668",
+              "path": "/home/user/get_cron_tasks.sh"
+            }
+          ]
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": ["/bin/bash", "/home/user/get_cron_tasks.sh"],
+          "stdout": "cron_tasks.txt"
+        }
+      }
+    ],
+    "func": [
+      "compare_images_in_folder",
+      "literal_match",
+      "compare_images",
+      "file_contains",
+      "file_contains"
+    ],
+    "result": [
+      {
+        "type": "vm_dir",
+        "path": "/home/user/Pictures/wallpapers"
+      },
+      {
+        "type": "vm_dir_file_hashes",
+        "path": "/home/user/.local/share/backgrounds"
+      },
+      {
+        "type": "vm_wallpaper",
+        "dest": "_cur_wallpaper.jpg"
+      },
+      {
+        "type": "cache_file",
+        "path": "wallpapers_path.txt"
+      },
+      {
+        "type": "cache_file",
+        "path": "cron_tasks.txt"
+      }
+    ],
+    "expected": [
+      {
+        "type": "vm_dir",
+        "path": "/home/user/Downloads/_dl_bing_wallpapers_"
+      },
+      {
+        "type": "vm_dir_file_hashes",
+        "path": "/home/user/Pictures/wallpapers"
+      },
+      {
+        "type": "vm_file",
+        "path": "/home/user/Downloads/_dl_bing_wallpapers_/0.jpg",
+        "dest": "_target_wallpaper.jpg"
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "expected": "/home/user/Pictures/wallpapers"
+        }
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "expected": [
+            "0 0 * * * /usr/bin/bash /home/user/Desktop/change_wallpapers.sh"
+          ]
+        }
+      }
+    ],
+    "options": [
+      { "require_same_size": true, "binary": true },
+      { "type": "list" },
+      { "require_same_size": true, "binary": true },
+      {},
+      {}
+    ]
+  }
+}

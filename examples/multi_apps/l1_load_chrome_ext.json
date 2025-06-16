@@ -1,0 +1,96 @@
+{
+  "id": "l1_load_chrome_ext",
+  "snapshot": "multiapps",
+  "instruction": "I have developed a new Chrome extension myself in the desktop. Help me install it. You need to follow the following steps: 1. Click the three-dot button (New Chrome Available) in the top right corner; 2. Move the cursor to the \"Extentions\" tab in the menu; 3. Click \"Manage Extentions\" in the left submenu; 4. Click the \"Developer mode\" switch in the top right corner of the new webpage to turn it on; 5. Click the \"Load unpacked\" button in the top left corner; 6. Select Desktop in the list of common folders on the left side of the pop-up window; 7. Select the \"helloExtention\" folder; 8. Click the \"Open\" button in the top right corner of the pop-up window.",
+  "source": "osworld",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.google.com/uc?export=download&id=1fe-MuG57hf12cEi4qI4dEI3OYJOHYoY2",
+            "path": "/home/user/Desktop/helloExtension.zip"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "unzip /home/user/Desktop/helloExtension.zip -d /home/user/Desktop/ && rm /home/user/Desktop/helloExtension.zip",
+        "shell": true
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome", "os"],
+  "evaluator": {
+    "func": ["is_in_list", "check_step_actions"],
+    "result": [
+      {
+        "type": "find_unpacked_extension_path"
+      },
+      { "type": "step_actions" }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "expected": "/home/user/Desktop/helloExtension"
+        }
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "expected": [
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [1718, 74, 1914, 105] }
+            },
+            {
+              "action_type": "MOVE_TO",
+              "parameters": { "bbox": [1499, 442, 1917, 471] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [1255, 439, 1495, 470] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [1880, 133, 1910, 149] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [91, 179, 218, 213] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [395, 267, 554, 300] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [558, 256, 1568, 282] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [1514, 147, 1591, 178] }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

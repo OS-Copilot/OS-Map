@@ -1,0 +1,70 @@
+{
+  "id": "l2_w3schools_code_game",
+  "snapshot": "chrome",
+  "instruction": "I'm playing a programming game and I'm stuck at this level. Can you help me complete it? If you succeed, stop at the next level.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": ["https://www.w3schools.com/codegame/index.html"]
+      }
+    },
+    {
+      "type": "activate_window",
+      "parameters": {
+        "window_name": "Google Chrome"
+      }
+    },
+    {
+      "type": "chrome_execute_script",
+      "parameters": {
+        "tab_url": "https://www.w3schools.com/codegame/index.html",
+        "script": "[...['#codeGame-levelselector-open', '#codeGame-levelselector-scrollcontainer > div:nth-child(8) > div:nth-child(2)'], ...Array(3).fill('#codeGame-button-forward')].forEach(s => document.querySelector(s)?.click());"
+      }
+    },
+    {
+      "type": "chrome_check_inited",
+      "parameters": {
+        "tab_url": "https://www.w3schools.com/codegame/index.html",
+        "script": "document.querySelector('#codeGame-levelTitle')?.textContent === 'Level 17' && document.evaluate('/html/body/div[2]/div[2]/div[3]/div[2]/div[1]/div[2]/div[3]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.getAttribute('class') === 'button forward'"
+      }
+    }
+  ],
+  "trajectory": "trajectories/415ef462-bed3-493a-ac36-ca8c6d23bf1b",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": "check_direct_json_object",
+    "result": {
+      "type": "active_tab_html_parse",
+      "goto_prefix": "https://www.",
+      "category": "xpath",
+      "xpathObject": {
+        "//*[@id='codeGame-levelselector-scrollcontainer']/div[4]/div[2]": {
+          "name": "state",
+          "attribute": "class"
+        }
+      }
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": {
+          "state": "completed"
+        }
+      }
+    }
+  }
+}

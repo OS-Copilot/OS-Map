@@ -1,0 +1,33 @@
+{
+  "id": "l2_modify_favorites_apps",
+  "snapshot": "os",
+  "instruction": "I don't like so many third-party apps appearing in the Dock. Remove third-party apps for me, except Libreoffice and Chrome. Then add System Settings, Screenshot, Terminal, and Calendar.",
+  "source": "https://www.youtube.com/watch?v=D4WyNjt_hbQ&t=2s",
+  "config": [],
+  "trajectory": "trajectories/",
+  "related_apps": ["os"],
+  "evaluator": {
+    "func": "check_gnome_favorite_apps",
+    "result": {
+      "type": "vm_command_line",
+      "command": "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/1000/bus'\ngsettings get org.gnome.shell favorite-apps",
+      "shell": true
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": [
+          "google-chrome.desktop",
+          "libreoffice-writer.desktop",
+          "libreoffice-calc.desktop",
+          "libreoffice-impress.desktop",
+          "org.gnome.Nautilus.desktop",
+          "org.gnome.Terminal.desktop",
+          "gnome-control-center.desktop",
+          "org.gnome.Calendar.desktop",
+          "org.gnome.Screenshot.desktop"
+        ]
+      }
+    }
+  }
+}

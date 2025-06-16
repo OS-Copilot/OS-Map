@@ -1,0 +1,39 @@
+{
+  "id": "l2_download_csapp_labs",
+  "snapshot": "chrome",
+  "instruction": "I want to learn computer science by myself. I heard that Computer Systems: A Programmer's Perspective is a very good book, and there are many official materials on its websites. Can you help me download the first three labs (self-study version) of the book? Move the downloaded files to the corresponding directory of Documents/CSAPP, unzip them, and then delete the compressed files.",
+  "source": "",
+  "config": [
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "mkdir /home/user/Documents/CSAPP && cd /home/user/Documents/CSAPP && mkdir lab1 lab2 lab3",
+        "shell": true
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome", "files"],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "execute",
+        "parameters": {
+          "command": "cd Documents && zip -r CSAPP.zip CSAPP",
+          "shell": true
+        }
+      }
+    ],
+    "func": "compare_folders_exactly",
+    "result": {
+      "type": "file_unzipped",
+      "path": "/home/user/Documents/CSAPP.zip",
+      "dest": "CSAPP.zip"
+    },
+    "expected": {
+      "type": "file_unzipped",
+      "path": "https://drive.usercontent.google.com/download?id=1-lNh5pHB80HDZkC0sj6RIySrK5i3Y-bQ&export=download",
+      "dest": "CSAPP_gt.zip"
+    }
+  }
+}

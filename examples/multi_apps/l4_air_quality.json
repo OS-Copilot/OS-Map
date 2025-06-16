@@ -1,0 +1,65 @@
+{
+  "id": "l4_air_quality",
+  "snapshot": "Notion Downloads",
+  "instruction": "I am conducting a study on global air pollution. Please help me download the PM2.5 data values for New York and Paris, and Berlin in 2023 and draw a monthly line chart using the script on Downloads. Note that you need to average all the station-hourly data for New York to get the monthly mean for the entire city. A data preprocessing script template is provided, but needs to be supplemented with details. You should refer to the visualization script without modifying it. Name the generated figure result.png and save it to the desktop.",
+  "source": "",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1gDQ6OaF6Qx53LTSAZi8qpU066NP8sQtU&export=download&authuser=0&confirm=t&uuid=a8674a99-fb5f-4aeb-98ca-338197d73890&at=AEz70l5Iavqv1xNt6e_ZNsOmLgve:1742988398258",
+            "path": "/home/user/Downloads/preprocess.py"
+          },
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1UFhkc9pAw5ZV9ty5dbX7EbjFASBmPWRj&export=download&authuser=0&confirm=t&uuid=a8674a99-fb5f-4aeb-98ca-338197d73890&at=AEz70l7DkpZO8uTjge6zCV5y3dxb:1742988445600",
+            "path": "/home/user/Downloads/visualize.py"
+          }
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": [
+          "https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/realtime-air-quality/",
+          "https://eeadmz1-cws-wp-air02-dev.azurewebsites.net/focus-on-cities/"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["nautilus"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["Chrome", "Calc", "terminal", "files"],
+  "evaluator": {
+    "func": "compare_files_exactly",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Downloads/result.png",
+      "dest": "result.png"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://drive.google.com/uc?id=18hDcGjtONnq0ZrkJsyjeqn8bJrp4tvWR&export=download",
+      "dest": "result_gt.png"
+    }
+  }
+}

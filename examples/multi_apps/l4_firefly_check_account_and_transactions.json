@@ -1,0 +1,78 @@
+{
+  "id": "l4_firefly_check_account_and_transactions",
+  "snapshot": "chrome",
+  "instruction": "I am confused about my account balance and want to review my wallet account and all transactions for the two months starting from March 2025. Please stay on this page, download and parse the table of all transactions for these two months, save it to ~/Documents/accounting/transactions.csv and open it. You can use the Python script in another open page to parse the table, but remember to return to the table page eventually. If the page fails to load, refresh until it succeeds.",
+  "source": "",
+  "config": [
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "cd ~/docker/fireflyiii && docker compose up -d",
+        "shell": true
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "sleep",
+      "parameters": {
+        "seconds": 3
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": [
+          "https://drive.google.com/file/d/1x5sBDh1ZoMsr4rdPeAFx9DWOfZW6H6D-/view",
+          "http://localhost:8888/"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": ["is_expected_active_tab", "compare_csv", "is_not_empty"],
+    "result": [
+      {
+        "type": "active_url_from_accessTree",
+        "goto_prefix": "http://"
+      },
+      {
+        "type": "vm_file",
+        "path": "/home/user/Documents/accounting/transactions.csv",
+        "dest": "transactions.csv"
+      },
+      {
+        "type": "vm_command_line",
+        "command": "wmctrl -lG | grep \"transactions.csv - LibreOffice Calc\"",
+        "shell": true
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "type": "url",
+          "url": "http://localhost:8888/accounts/show/5/all"
+        }
+      },
+      {
+        "type": "cloud_file",
+        "path": "https://drive.usercontent.google.com/download?id=1QrITzMrlCDVz7M5c14jGwqYGitYrxRb0&export=download",
+        "dest": "transactions_gt.csv"
+      },
+      {}
+    ]
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "id": "l1_change_background",
+  "snapshot": "libreoffice_impress",
+  "instruction": "Move to slide 1 and give it a green background color. The steps are as follows: 1. Click \"Slide\" in the toolbar and click \"Slides Properties...\" in the pop-up menu; 2. Choose \"Background\" and \"Color\", then choose the \"green\" in the colors; 3. Press \"OK\"; 4.Press Ctrl+S to save the file.",
+  "source": "9cf05d24-6bd9-4dae-8967-f67d88f5d38a",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1z6dnLvOU-dvcygjd2w0pkpvKSSD1wQIb&export=download&authuser=0&confirm=t&uuid=d2410306-3b42-4727-89e4-622703cedfef&at=APZUnTXZeKIlIi0NAsvxsw_VIlLN:1708085675780",
+            "path": "/home/user/Desktop/214_9.pptx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/214_9.pptx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "libreoffice_impress"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "214_9.pptx - LibreOffice Impress",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; import time; pyautogui.hotkey('ctrl', 's'); time.sleep(0.5);"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      }
+    ],
+    "func": ["compare_pptx_files", "check_step_actions"],
+    "expected": [
+        {
+        "type": "cloud_file",
+        "path": "https://drive.usercontent.google.com/download?id=1esPimH6ECznuVn1mCsi6ykAGF9r0G3-R&export=download&authuser=0&confirm=t&uuid=ab8a6b9d-e6a3-4aa0-8d52-1c440bdd67df&at=APZUnTX6fqEXAYEOBRgPpnb7x_TJ:1708085642844",
+        "dest": "214_9_Gold.pptx"
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "expected": [
+            {
+              "action_type": "CLICK",
+              "parameters": {"bbox": [321, 63, 371, 89]}
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": {"bbox": [323, 267, 639, 289]}
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": {"bbox": [650, 276, 749, 311]}
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": {"bbox": [791, 322, 883, 356]}
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": {"bbox": [805, 451, 823, 465]}
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": {"bbox": [1330, 833, 1415, 867]}
+            },
+            {
+              "action_type": "HOTKEY",
+              "parameters": {"keys": ["ctrl", "s"]}
+            }
+          ]
+        }
+      }
+    ],
+    "result": [
+      {
+        "type": "vm_file",
+        "path": "/home/user/Desktop/214_9.pptx",
+        "dest": "214_9.pptx"
+      },
+      {
+        "type": "step_actions"
+      }
+    ]
+  }
+}

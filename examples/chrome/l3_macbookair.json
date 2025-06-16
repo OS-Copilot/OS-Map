@@ -1,0 +1,71 @@
+{
+  "id": "l3_macbookair",
+  "snapshot": "libreoffice_impress",
+  "instruction": "I am very interested in the product on the current webpage. Please help me open the its official website and add this item to my cart in the US Education Store. But I don't like the color sky blue, I like a dark one. Stop in the shopping cart and I will do a final verification.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": [
+          "https://arstechnica.com/apple/2025/03/apple-m4-macbook-air-review-i-have-no-notes/"
+        ]
+      }
+    },
+    {
+      "type": "chrome_execute_script",
+      "parameters": {
+        "tab_url": "https://arstechnica.com/apple/2025/03/apple-m4-macbook-air-review-i-have-no-notes/",
+        "script": "document.querySelector('#main > article > div:nth-child(5) > div.relative.lg\\\\:col-span-2 > div > p:nth-child(1)').scrollIntoView();"
+      }
+    }
+  ],
+  "trajectory": "trajectories/eb303e01-261e-4972-8c07-c9b4e7a4922a",
+  "related_apps": ["libreoffice_impress", "libreoffice_writer"],
+  "evaluator": {
+    "func": ["is_expected_active_tab", "check_direct_json_object"],
+    "result": [
+      {
+        "type": "active_url_from_accessTree",
+        "goto_prefix": "https://www."
+      },
+      {
+        "type": "active_tab_html_parse",
+        "goto_prefix": "https://www.",
+        "category": "xpath",
+        "xpathObject": {
+          "//*[@id='bag-content']/ol/li/div/div[2]/div[1]/div[1]/h2/a": "name"
+        }
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "type": "url",
+          "url": "https://www.apple.com/us-edu/shop/bag"
+        }
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "expected": {
+            "name": "13-inch MacBook Air - Midnight"
+          }
+        }
+      }
+    ]
+  }
+}

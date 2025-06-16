@@ -1,0 +1,54 @@
+{
+  "id": "l2_google_map_route_planning",
+  "snapshot": "chrome",
+  "instruction": "I am planning my trip to Paris. I will arrive at the Eiffel Tower tomorrow at noon and walk to the Esplanade des Invalides. Please help me plan a detailed walking route.",
+  "source": "",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": ["https://www.google.com/maps/"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": "check_direct_json_object",
+    "result": {
+      "type": "active_tab_html_parse",
+      "goto_prefix": "https://www.",
+      "category": "xpath",
+      "xpathObject": {
+        "//*[@id='QA0Szd']/div/div/div[1]/div[2]/div/div[1]/div/div/div[1]/span/div[1]/span": "from",
+        "//*[@id='QA0Szd']/div/div/div[1]/div[2]/div/div[1]/div/div/div[1]/span/div[2]/span": "to",
+        "//*[@id='omnibox-directions']/div/div[2]/div/div/div/div[4]/button": {
+          "name": "walking_mode",
+          "attribute": "aria-checked"
+        }
+      }
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": {
+          "from": "Eiffel Tower, Av. Gustave Eiffel, 75007 Paris, France",
+          "to": "Esplanade des Invalides, 1 Rue Fabert, 75007 Paris, France",
+          "walking_mode": "true"
+        }
+      }
+    }
+  }
+}

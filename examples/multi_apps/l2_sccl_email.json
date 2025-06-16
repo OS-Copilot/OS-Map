@@ -1,0 +1,61 @@
+{
+  "id": "l2_sccl_email",
+  "snapshot": "chrome",
+  "instruction": "I would like to contact the librarian to report a problem. Please find his/her email for me. Open the email window and fill in the recipient. I will fill in the content.",
+  "source": "",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": ["https://www.sclibrary.org/"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome", "thunderbird"],
+  "evaluator": {
+    "func": ["is_expected_active_tab", "check_email_match_href"],
+    "result": [
+      {
+        "type": "active_url_from_accessTree",
+        "goto_prefix": "https://www."
+      },
+      {
+        "type": "element_from_accessTree",
+        "selector": "label[name=\"To\"] + unknown[attr\\:tag=\"mail-address-pill\"] label"
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "type": "url",
+          "url": "https://www.sclibrary.org/about-us/administration"
+        }
+      },
+      {
+        "type": "active_tab_html_parse",
+        "goto_prefix": "https://www.",
+        "category": "xpath",
+        "xpathObject": {
+          "//a[starts-with(@href, 'mailto:')]": {
+            "name": "expected",
+            "attribute": "href"
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "id": "l1_code_install_python_ext",
+  "level": "l1",
+  "snapshot": "vscode",
+  "instruction": "Please help me install the extension Python in VS Code. The steps are as follows:1. Click the Extensions icon in the  left  of the VS code window; 2. Click  search box in the top of Extensions menu; 3. Type \"python\" in the search box; 4. CLICK the first \"Python\" option in the below window; 5. Click the \"Install\" button in the top of pop-up window.",
+  "source": "eabc805a-bfcf-4460-b250-ac92135819f6",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["code"]
+      }
+    },
+    {
+      "type": "activate_window",
+      "parameters": {
+        "window_name": "Visual Studio Code"
+      }
+    }
+  ],
+  "trajectory": "trajectories/eabc805a-bfcf-4460-b250-ac92135819f6",
+  "related_apps": ["vscode"],
+  "evaluator": {
+    "func": ["is_extension_installed", "check_step_actions"],
+    "result": [
+      {
+        "type": "vm_command_line",
+        "command": [
+          "code",
+          "--list-extensions",
+          "|",
+          "grep",
+          "ms-python.python"
+        ]
+      },
+      {
+        "type": "step_actions"
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "type": "contain",
+          "expected": "ms-python.python"
+        }
+      },
+      {
+        "type": "rule",
+        "action": [
+          {
+            "action_type": "CLICK",
+            "parameters": { "bbox": [72, 288, 110, 322] }
+          },
+          {
+            "action_type": "CLICK",
+            "parameters": { "bbox": [136, 128, 360, 156] }
+          },
+          {
+            "action_type": "TYPING",
+            "parameters": { "text": "python" }
+          },
+          {
+            "action_type": "CLICK",
+            "parameters": { "bbox": [126, 169, 369, 235] }
+          },
+          {
+            "action_type": "CLICK",
+            "parameters": { "bbox": [774, 242, 848, 263] }
+          }
+        ]
+      }
+    ]
+  }
+}

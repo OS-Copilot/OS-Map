@@ -1,0 +1,74 @@
+{
+  "id": "l4_zotero_download_and_categorization",
+  "instruction": "Please help me download the papers from the pages I opened and add them to the corresponding collections in Zotero: \"Common Model Architectures\", \"Object Detection Applications\", and \"Large Language Models\". If the web page fails to load, please try again. If the collection does not exist, create it first. Tips: Common model architectures include Residual and Attention, object detection includes DETR, and LLMs include GPT-3 and InstructGPT.",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": [
+          "https://openaccess.thecvf.com/content_cvpr_2016/html/He_Deep_Residual_Learning_CVPR_2016_paper.html",
+          "https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf",
+          "https://arxiv.org/pdf/2010.04159",
+          "https://storage.prod.researchhub.com/uploads/papers/2020/06/01/language-models.pdf",
+          "https://arxiv.org/",
+          "https://arxiv.org/abs/2203.02155",
+          "https://proceedings.neurips.cc/paper/2020/file/1457c0d6bfcb4967418bfb8ac142f64a-Paper.pdf"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["zotero"],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "download",
+        "parameters": {
+          "files": [
+            {
+              "url": "https://drive.usercontent.google.com/download?id=1MWdPtZs5OWMSjAgBeSbLaaJZ60dPxkZx&export=download",
+              "path": "/home/user/file_collection.sql"
+            }
+          ]
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": ["pkill", "zotero"]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 1
+        }
+      }
+    ],
+    "func": "exact_match",
+    "result": {
+      "type": "vm_command_line",
+      "command": "sqlite3 ~/snap/zotero-snap/common/Zotero/zotero.sqlite < file_collection.sql",
+      "shell": true
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": "Common Model Architectures|Attention is All you Need\nCommon Model Architectures|Deep Residual Learning for Image Recognition\nLarge Language Models|Language Models are Few-Shot Learners\nLarge Language Models|Language Models are Unsupervised Multitask Learners\nLarge Language Models|Training language models to follow instructions with human feedback\nObject Detection Applications|Deformable DETR: Deformable Transformers for End-to-End Object Detection\n"
+      }
+    }
+  }
+}

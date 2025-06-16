@@ -1,0 +1,95 @@
+{
+  "id": "l2_firefly_create_budget",
+  "snapshot": "chrome",
+  "instruction": "This is Firefly III, my financial management software. Help me create a budget, which set a fixed amount every period. Auto-budget amount is 500 euros and Auto-budget period is monthly, you should name this budget as Food. If the page fails to load, refresh until it succeeds.",
+  "source": "",
+  "config": [
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "cd ~/docker/fireflyiii && docker compose up -d",
+        "shell": true
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "sleep",
+      "parameters": {
+        "seconds": 3
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": ["http://localhost:8888/"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": [
+      "is_expected_active_tab",
+      "check_direct_json_object",
+      "check_direct_json_object"
+    ],
+    "result": [
+      {
+        "type": "active_url_from_accessTree",
+        "goto_prefix": "http://"
+      },
+      {
+        "type": "active_tab_html_parse",
+        "goto_prefix": "http://",
+        "category": "xpath",
+        "xpathObject": {
+          "//*[@id='budgetList']/tbody/tr/td[2]/a": "name"
+        }
+      },
+      {
+        "type": "active_tab_html_parse",
+        "goto_prefix": "http://",
+        "category": "input",
+        "inputObject": {
+          "//*[@id='budgetList']/tbody/tr/td[3]/div/input": "expect"
+        }
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "type": "url",
+          "url": "http://localhost:8888/budgets"
+        }
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "expected": {
+            "name": "Food"
+          }
+        }
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "expected": {
+            "expect": "500.00"
+          }
+        }
+      }
+    ]
+  }
+}

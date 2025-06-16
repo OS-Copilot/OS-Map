@@ -1,0 +1,93 @@
+{
+  "id": "l3_steam_compare_games",
+  "snapshot": "multi_apps",
+  "instruction": "I am considering purchasing the following games: ELDEN RING, Red Dead Redemption 2, Detroit: Become Human. Please gather information and help me fill out the comparison table on my desktop.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1cL0nnVqhKCmhu342l_zH8QmF8aQAoLZu&export=download",
+            "path": "/home/user/Desktop/games_comparison.xlsx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": ["https://store.steampowered.com/"]
+      }
+    },
+    {
+      "type": "chrome_execute_script",
+      "parameters": {
+        "tab_url": "https://store.steampowered.com/",
+        "script": "ChangeLanguage('english')"
+      }
+    }
+  ],
+  "trajectory": "trajectories/415ef462-bed3-493a-ac36-ca8c6d23bf1b",
+  "related_apps": ["chrome", "calc"],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "download",
+        "parameters": {
+          "files": [
+            {
+              "url": "https://drive.usercontent.google.com/download?id=1cL0nnVqhKCmhu342l_zH8QmF8aQAoLZu&export=download",
+              "path": "/home/user/Documents/games_comparison.xlsx"
+            },
+            {
+              "url": "https://drive.usercontent.google.com/download?id=1Bd9fq6iJuJ3xeK_N9pkkQxs9SAn6jkj5&export=download&uuid=bf69433d-a24e-4562-bb6e-3bc11ec931ea&at=AEz70l6ReUbMsvO1A-poOC6kqvRG:1742356145892&confirm=t",
+              "path": "/home/user/Documents/compare_games.py"
+            }
+          ]
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": "cd /home/user/Documents && python compare_games.py",
+          "shell": true
+        }
+      }
+    ],
+    "func": "compare_table",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/games_comparison.xlsx",
+      "dest": "games_comparison.xlsx"
+    },
+    "expected": {
+      "type": "vm_file",
+      "path": "/home/user/Documents/games_comparison.xlsx",
+      "dest": "games_comparison_gt.xlsx"
+    },
+    "options": {
+      "rules": [
+        {
+          "type": "sheet_data",
+          "sheet_idx0": 0,
+          "sheet_idx1": "EI0"
+        }
+      ]
+    }
+  }
+}

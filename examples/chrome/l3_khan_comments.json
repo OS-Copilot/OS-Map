@@ -1,0 +1,49 @@
+{
+  "id": "l3_khan_comments",
+  "snapshot": "chrome",
+  "instruction": "Take notes on this page: \"A line extends to infinity, and a line segment has two endpoints.\"",
+  "source": "https://www.khanacademy.org",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": [
+          "https://www.khanacademy.org/math/geometry/hs-geo-transformations/hs-geo-intro-euclid/e/geometric-definitions"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": "check_direct_json_object",
+    "result": {
+      "type": "active_tab_html_parse",
+      "goto_prefix": "https://www.",
+      "category": "js_code",
+      "jsObjects": {
+        "document.querySelector('#drawing-area-shapes-group > foreignObject > div > textarea').value": "comment"
+      }
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": {
+          "comment": "A line extends to infinity, and a line segment has two endpoints."
+        }
+      }
+    }
+  }
+}

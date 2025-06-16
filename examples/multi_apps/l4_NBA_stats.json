@@ -1,0 +1,61 @@
+{
+  "id": "l4_NBA_stats",
+  "snapshot": "Notion Desktop",
+  "instruction": "Following the format of the current table, retrieve the top five defensive (rebounding) players in the 2023-24 NBA regular season from ESPN, fill the information into Table 2 and draw a bar chart, and save the file in xlsx format. Note that the table meta information, format, chart title, file name, and save path must all remain consistent.",
+  "source": "",
+  "config": [
+    {
+      "type": "execute",
+      "parameters": {
+        "command": ["mkdir", "-p", "/home/user/Documents/NBA"]
+      }
+    },
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1cJJEICRb4D1POmQYmWZqV3UYJKRSiK8q&export=download",
+            "path": "/home/user/Documents/NBA/NBA23-24.ods"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Documents/NBA/NBA23-24.ods"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["Chrome", "Files", "LibreOffice Calc"],
+  "evaluator": {
+    "func": "compare_table",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Documents/NBA/NBA23-24.xlsx",
+      "dest": "NBA23-24.xlsx"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://drive.usercontent.google.com/download?id=1lloqDFMm0-_1oiodRy6edZKXxE2mi7b9&export=download",
+      "dest": "NBA23-24_gt.xlsx"
+    },
+    "options": {
+      "rules": [
+        {
+          "type": "sheet_data",
+          "sheet_idx0": 1,
+          "sheet_idx1": "EI1"
+        },
+        {
+          "type": "chart",
+          "sheet_idx0": 1,
+          "sheet_idx1": "EI1",
+          "chart_props": ["type", "title"]
+        }
+      ]
+    }
+  }
+}

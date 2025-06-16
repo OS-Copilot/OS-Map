@@ -1,0 +1,74 @@
+{
+  "id": "l4_create_meeting",
+  "snapshot": "chrome",
+  "instruction": "Please help me create a video conference named DerekWorkGroup on the Jitsi Meet web client. Join the meeting (login using my Google account if necessary) and change your name to Derek. Then copy the full meeting invitation, email it to user@localhost, and send it to Mark via Rocket Chat. My Rocket.Chat account information is recorded on the desktop.",
+  "source": "Mind2Web",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1OSGzdYsANxLkmYpzLzXfyHwepu0nNNoI&export=download",
+            "path": "/home/user/Desktop/RocketChat_account.txt"
+          }
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": [
+      "is_expected_active_tab",
+      "compare_mail_content",
+      "check_one_of_include"
+    ],
+    "result": [
+      {
+        "type": "active_url_from_accessTree",
+        "goto_prefix": "https://"
+      },
+      {
+        "type": "vm_first_mail_file_parsed"
+      },
+      {
+        "type": "rocketchat_message_content_in_mongodb",
+        "users": ["Derek", "Mark"]
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "type": "url",
+          "url": "https://meet.jit.si/DerekWorkGroup"
+        }
+      },
+      {
+        "type": "mail_attachments",
+        "to": "user@localhost",
+        "body": "Derek is inviting you to a meeting.\n\nJoin the meeting:\nhttps://meet.jit.si/DerekWorkGroup"
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "expected": "Derek is inviting you to a meeting.\n\nJoin the meeting:\nhttps://meet.jit.si/DerekWorkGroup"
+        }
+      }
+    ],
+    "options": [{}, { "body_type": "contains", "ignore_blanks": true }, {}]
+  }
+}

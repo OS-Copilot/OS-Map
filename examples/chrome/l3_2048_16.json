@@ -1,0 +1,42 @@
+{
+  "id": "l3_2048_16",
+  "snapshot": "chrome",
+  "instruction": "Play 2048 until you get a 16.",
+  "source": "",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": ["https://2048game.com"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": "check_2048_has_16",
+    "result": {
+      "type": "active_tab_html_parse",
+      "goto_prefix": "https://",
+      "category": "xpath",
+      "xpathObject": {
+        "/html/body/div[2]/div[3]/div[3]": {
+          "name": "tiles",
+          "attribute": "children's text"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "id": "l1_use_bing_as_default",
+  "snapshot": "chrome",
+  "instruction": "I would like to set Bing as my default search engine with your help. Now you see that Chrome is open and stuck on the new tab page Google Search. You should first click the three dots button in the upper right corner and then select \"Settings\" in the pop-up menu, which will take you to Chrome's settings page. Then click the \"Search Engine\" item in the left menu bar, click the drop-down box in the middle of the page that says \"Google\", and select the second item \"Bing\". Now you can see that the text in the drop-down box changes to \"Bing\", which indicates that you have completed this task.",
+  "source": "bb5e4c0d-f964-439c-97b6-bdb9747de3f4",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": ["exact_match", "check_step_actions"],
+    "conj": "and",
+    "result": [
+      {
+        "type": "default_search_engine"
+      },
+      { "type": "step_actions" }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "expected": "Bing"
+        }
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "expected": [
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [1507, 73, 1681, 103] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [1265, 802, 1671, 826] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [71, 379, 309, 414] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [1000, 243, 1198, 272] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [999, 292, 1197, 306] }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "id": "l3_zotero_categorization",
+  "instruction": "Please help me categorize the unfiled items into the pre-prepared collection.",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1d_74Zg8uXfiCgQN3YXVkTyR_HsMp8j1b&export=download",
+            "path": "/home/user/snap/zotero-snap/common/Zotero/storage.zip"
+          },
+          {
+            "url": "https://drive.usercontent.google.com/download?id=10tuqtaiiNUyGjcglwAXbRH8Dk3hJMajv&export=download",
+            "path": "/home/user/snap/zotero-snap/common/Zotero/zotero.sqlite"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "cd /home/user/snap/zotero-snap/common/Zotero && unzip storage.zip && rm storage.zip",
+        "shell": true
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": "snap run zotero-snap",
+        "shell": true
+      }
+    },
+    {
+      "type": "sleep",
+      "parameters": {
+        "seconds": 2
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["foliate"],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "download",
+        "parameters": {
+          "files": [
+            {
+              "url": "https://drive.usercontent.google.com/download?id=1MWdPtZs5OWMSjAgBeSbLaaJZ60dPxkZx&export=download",
+              "path": "/home/user/file_collection.sql"
+            }
+          ]
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": ["pkill", "zotero"]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 1
+        }
+      }
+    ],
+    "func": "exact_match",
+    "result": {
+      "type": "vm_command_line",
+      "command": "sqlite3 ~/snap/zotero-snap/common/Zotero/zotero.sqlite < file_collection.sql",
+      "shell": true
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": "Biology|Genome modification by <span style=\"font-variant:small-caps;\">CRISPR</span> /Cas9\nBiology|Neural stem cell therapies and hypoxic-ischemic brain injury\nComputer science|A Survey on Multimodal Large Language Models\nComputer science|MM-LLMs: Recent Advances in MultiModal Large Language Models\nEconomic|Does Inflation Targeting Reduce Economic Uncertainty? Evidence from Mexico\nEconomic|Market-Based Portfolio Selection\n"
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "id": "l2_ukgov_stuvisa",
+  "snapshot": "chrome",
+  "instruction": "I am going to the UK to attend a four-year university. Please help me find the appropriate visa online application and notes page. Please note, do not enter the form to fill in.",
+  "source": "",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": ["https://www.gov.uk/"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": "is_expected_active_tab",
+    "result": {
+      "type": "active_url_from_accessTree",
+      "goto_prefix": "https://"
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "type": "url",
+        "url": "https://www.gov.uk/student-visa/apply-online"
+      }
+    }
+  }
+}

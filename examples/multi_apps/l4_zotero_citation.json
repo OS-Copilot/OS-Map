@@ -1,0 +1,86 @@
+{
+  "id": "l4_zotero_citation",
+  "instruction": "I am writing my course paper and I need to cite a reference. I remember it in Zotero, but I can't remember which one it is. Please help me find this article and imitate the two IEEE formats above to complete the citation. Note that the font format must also be the same. Then download this article to the Documents/references folder and put it together with other cited papers.",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=11x-1-2QmOUrEdLUfyWEa6W067EU_BGtL&export=download",
+            "path": "/home/user/snap/zotero-snap/common/Zotero/zotero.sqlite"
+          },
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1c74xyv0ABLhLTFSkkUcHlTvwIq5MPOIn&export=download",
+            "path": "/home/user/snap/zotero-snap/common/Zotero/storage.zip"
+          },
+          {
+            "url": "https://drive.usercontent.google.com/download?id=10-O720igQWnT1bwYDT9zU5AbrvzB2lUe&export=download",
+            "path": "/home/user/Desktop/essay.docx"
+          },
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1iaMEKPWOcxO-7D0EO3DF_SDGZAM2ttmk&export=download",
+            "path": "/home/user/Documents/references.zip"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "cd /home/user/snap/zotero-snap/common/Zotero && unzip storage.zip && rm storage.zip && cd /home/user/Documents && unzip references.zip && rm references",
+        "shell": true
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": "snap run zotero-snap",
+        "shell": true
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/essay.docx"
+      }
+    },
+    {
+      "type": "sleep",
+      "parameters": {
+        "seconds": 1
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["zotero"],
+  "evaluator": {
+    "func": ["exact_match", "compare_docx_exactly"],
+    "conj": "and",
+    "result": [
+      {
+        "type": "vm_command_line",
+        "command": "ls ~/Documents/references",
+        "shell": true
+      },
+      {
+        "type": "vm_file",
+        "path": "/home/user/Desktop/essay.docx",
+        "dest": "essay.docx"
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "expected": "He et al. - 2024 - PC Agent While You Sleep, AI Works -- A Cognitive Journey into Digital World.pdf\nLarge Action Models From Inception to Implementation.pdf\nxLAM A Family of Large Action Models to.pdf\n"
+        }
+      },
+      {
+        "type": "cloud_file",
+        "path": "https://drive.usercontent.google.com/download?id=1FMc9K_f4_EJYenO-f1ri_IoWvG6we5DK&export=download",
+        "dest": "expected.docx"
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "id": "l3_edit_startup",
+  "snapshot": "os",
+  "instruction": "I've been enjoying reading with foliate lately. I've configured it to start up, but it doesn't start automatically. Can you help me fix this? By the way, my foliate seems to be installed via snap or flatpak.",
+  "config": [
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "echo '[Desktop Entry]\nType=Application\nExec=foliate\nHidden=false\nNoDisplay=false\nX-GNOME-Autostart-enabled=true\nName=Foliate\nComment=Launch foliate on login' > ~/.config/autostart/foliate.desktop",
+        "shell": true
+      }
+    },
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1OWRoaDWCW9-tZau_e_-xOejlHem7S9Sl&export=download",
+            "path": "/home/user/Documents/Pride_and_Prejudice.epub"
+          }
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": "flatpak run --filesystem=host com.github.johnfactotum.Foliate /home/user/Documents/Pride_and_Prejudice.epub",
+        "shell": true
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["os"],
+  "evaluator": {
+    "func": "file_contains",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/.config/autostart/foliate.desktop",
+      "dest": "foliate.desktop"
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": "flatpak run com.github.johnfactotum.Foliate"
+      }
+    }
+  }
+}

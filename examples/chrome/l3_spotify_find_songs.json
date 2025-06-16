@@ -1,0 +1,43 @@
+{
+  "id": "l3_spotify_find_songs",
+  "snapshot": "chrome",
+  "instruction": "Hey, I'm looking for a song that sounds familiar. I remember the lyrics include \"I wanna shelter you\" and \"We still are made of greed\". Please help me find this song and play it. If you can't play it without logging in, please ADDITIONALLY open the artist's page for me. If Spotify does not load successfully, please refresh the page.",
+  "source": "",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": ["https://open.spotify.com/"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": "check_include_exclude",
+    "result": {
+      "type": "open_tabs_info"
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "include": [
+          "https://open.spotify.com/track/3LlAyCYU26dvFZBDUIMb7a",
+          "https://open.spotify.com/artist/53XhwfbYqKCa1cC15pYq2q"
+        ]
+      }
+    }
+  }
+}

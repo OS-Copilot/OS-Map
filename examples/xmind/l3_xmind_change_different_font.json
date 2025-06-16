@@ -1,0 +1,87 @@
+{
+  "id": "l3_xmind_change_different_font",
+  "snapshot": "Xmind",
+  "instruction": "To increase the diversity, please set the fonts of the 8 subtopics in this mind map to 8 different fonts. Note that all elements under each subtopic share the same font, but different subtopics have different fonts. You need to modify all 8 subtopics, not just 7.",
+  "source": "",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1_9zQJvOpDOYrwRWgrmjWGVzgY301eg1R&export=download",
+            "path": "/home/user/Documents/Study_Plan.xmind"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Documents/Study_Plan.xmind"
+      }
+    },
+    {
+      "type": "sleep",
+      "parameters": {
+        "seconds": 3
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "xdotool mousemove 283 119 click 1 sleep 0.2 key Up Up sleep 0.2 key Return sleep 0.2 key Down Down Down sleep 0.2 key Return Return"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["Xmind"],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "Xmind"
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 3
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": "unzip -o /home/user/Documents/Study_Plan.xmind -d /home/user/Documents/Study_Plan_unzipped",
+          "shell": true
+        }
+      }
+    ],
+    "func": "check_direct_json_object",
+    "result": {
+      "type": "vm_command_line",
+      "command": "jq \"{per_topic_consistency: ([.[0].rootTopic.children.attached[]? | ([.. | objects | select(has(\\\"style\\\") and .style.properties[\\\"fo:font-family\\\"]?) | .style.properties[\\\"fo:font-family\\\"]] | unique | length == 1)] | all), total_unique_fonts: ([.[0].rootTopic.children.attached[]? | .. | objects | select(has(\\\"style\\\") and .style.properties[\\\"fo:font-family\\\"]?) | .style.properties[\\\"fo:font-family\\\"]] | unique | length)}\" /home/user/Documents/Study_Plan_unzipped/content.json",
+      "shell": "true"
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": {
+          "per_topic_consistency": true,
+          "total_unique_fonts": 8
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "id": "l3_asia_news_in_nytimes",
+  "snapshot": "chrome",
+  "spec_snapshot": "_login_Derek",
+  "instruction": "Navigate to the latest news list of Asia in New York Times and send the link of the first one to Shirley.",
+  "source": "",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["rocketchat-desktop"]
+      }
+    },
+    {
+      "type": "sleep",
+      "parameters": {
+        "seconds": 6
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "google-chrome",
+          "--remote-debugging-port=1337",
+          "--window-position=0,0",
+          "--window-size=1200,900"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": ["is_expected_active_tab", "check_one_of_include"],
+    "result": [
+      {
+        "type": "active_url_from_accessTree",
+        "goto_prefix": "https://www."
+      },
+      {
+        "type": "rocketchat_message_content_in_mongodb",
+        "users": ["Derek", "Shirley"]
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "type": "url",
+          "url": "https://www.nytimes.com/section/world/asia"
+        }
+      },
+      {
+        "type": "active_tab_html_parse",
+        "goto_prefix": "https://www.",
+        "category": "xpath",
+        "xpathObject": {
+          "/html/body/div[1]/div[2]/main/section/div[1]/div/section/div[1]/ol/li[1]/div/article/a": {
+            "name": "expected",
+            "attribute": "href"
+          }
+        }
+      }
+    ]
+  }
+}

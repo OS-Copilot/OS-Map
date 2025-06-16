@@ -1,0 +1,77 @@
+{
+  "id": "l4_notion_pdf",
+  "snapshot": "Notion Desktop",
+  "instruction": "I want to create a PDF file with a cover. There is a PDF and a jpg file on the desktop. Import the PDF into Notion and use the jpg as the cover. Add the four leaf clover as the title icon and translate the document into French. Then export it to the desktop and name it Algorithm1.pdf.",
+  "source": "",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://cscproxy.mpi-magdeburg.mpg.de/mpcsc/lehre/2018_SS_ANLA/handout/Bartels-Stewart.pdf",
+            "path": "/home/user/Desktop/content.pdf"
+          },
+          {
+            "url": "https://cdn.pixabay.com/photo/2015/11/15/07/47/geometry-1044090_1280.jpg",
+            "path": "/home/user/Desktop/cover.jpg"
+          }
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["notion-desktop"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["Chrome", "Notion Desktop", "Files"],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "download",
+        "parameters": {
+          "files": [
+            {
+              "url": "https://drive.google.com/uc?export=download&id=1wXQ_m8wxtQV0xQHLsC9NMTz7M1EPSlk9",
+              "path": "/home/user/Algorithm1_gold.pdf"
+            }
+          ]
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": "cd /home/user/Desktop && pdftoppm -png Algorithm1.pdf result",
+          "shell": true
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": "pdftoppm -png Algorithm1_gold.pdf gt",
+          "shell": true
+        }
+      }
+    ],
+
+    "func": "compare_image_list",
+    "result": {
+      "type": "vm_file",
+      "path": [
+        "/home/user/Desktop/result-1.png",
+        "/home/user/Desktop/result-2.png"
+      ],
+      "dest": ["result-1.png", "result-2.png"],
+      "multi": "true"
+    },
+    "expected": {
+      "type": "vm_file",
+      "path": ["/home/user/gt-1.png", "/home/user/gt-2.png"],
+      "dest": ["gt-1.png", "gt-2.png"],
+      "multi": "true"
+    }
+  }
+}

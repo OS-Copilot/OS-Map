@@ -1,0 +1,133 @@
+{
+  "id": "l4_firefly_cash_shopping",
+  "snapshot": "chrome",
+  "instruction": "I plan to use the money in my wallet to buy something to reward myself. Please check how much money is in my wallet account, and then buy the item of the corresponding amount in the todo list. Please choose the appropriate size and add it to the shopping cart. Then go back to the firefly and add a corresponding expense transaction, named the item name on the todo list (such as \"Apple watch\", \"Running shoes\"), the amount is the price of the item before the discount, and the source account is cash wallet.",
+  "source": "",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1M92SBHHMw5PrXLEOCauhLdTwnuVbsPlr&export=download",
+            "path": "/home/user/.local/share/evolution/tasks/system/tasks.ics"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "pkill -f evolution && pkill -f gnome-todo",
+        "shell": true
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "xdotool mousemove 50 1030 click 1; sleep 0.5; xdotool type \"todo\"; sleep 0.5; xdotool key Return; sleep 1; xdotool mousemove 200 200 click 1",
+        "shell": true
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "cd ~/docker/fireflyiii && docker compose up -d",
+        "shell": true
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "google-chrome",
+          "--remote-debugging-port=1337",
+          "--window-position=400,300",
+          "--window-size=1200,700"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "sleep",
+      "parameters": {
+        "seconds": 3
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": ["http://localhost:8888/"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "chrome_open_tabs",
+        "parameters": {
+          "urls_to_open": [
+            "http://localhost:8888/transactions/withdrawal/all",
+            "https://www.decathlon.sg/cart"
+          ]
+        }
+      }
+    ],
+    "func": ["check_direct_json_object", "check_direct_json_object"],
+    "result": [
+      {
+        "type": "active_tab_html_parse",
+        "goto_prefix": "https://www.",
+        "category": "xpath",
+        "xpathObject": {
+          "//*[@id='baseContainerMainTag']/div/div/div[1]/div[2]/div[2]/div/div/div/div/div[1]/div[2]/div/a": {
+            "name": "link",
+            "attribute": "href"
+          },
+          "//*[@id='baseContainerMainTag']/div/div/div[1]/div[2]/div[2]/div/div/div/div/div[1]/div[2]/div/div[4]/div": "size"
+        }
+      },
+      {
+        "type": "target_tab_html_parse",
+        "target_tab_url": "http://localhost:8888/transactions/withdrawal/all",
+        "category": "xpath",
+        "xpathObject": {
+          "//*[@id='app']/div[1]/section[2]/div/div/div/div[2]/table/tbody/tr[1]/td[2]/a": {
+            "name": "description",
+            "attribute": "title"
+          },
+          "//*[@id='app']/div[1]/section[2]/div/div/div/div[2]/table/tbody/tr[1]/td[3]/span": "amount",
+          "//*[@id='app']/div[1]/section[2]/div/div/div/div[2]/table/tbody/tr[1]/td[5]/a": "source account"
+        }
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "expected": {
+            "link": "https://www.decathlon.sg/p/men-s-trail-running-shoes-tr2-carbon-grey-kiprun-8827180.html",
+            "size": "UK 9.5 - EU 44"
+          }
+        }
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "expected": {
+            "description": "Running shoes",
+            "amount": "-$89.90",
+            "source account": "Cash wallet"
+          }
+        }
+      }
+    ]
+  }
+}

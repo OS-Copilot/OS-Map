@@ -1,0 +1,60 @@
+{
+  "id": "l3_satellite_windspeed_radar",
+  "snapshot": "chrome",
+  "instruction": "Give me the Satellite map of Wind Speed Radar Map of this area.",
+  "source": "",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": [
+          "https://weather.com/weather/radar/interactive/l/65d48fb411056d3afa6e116d9db113f7ded9bf324bfe1432aa91bcdb7270e5cc"
+        ],
+        "wait_until": "commit"
+      }
+    },
+    {
+      "type": "chrome_execute_script",
+      "parameters": {
+        "reload": false,
+        "tab_url": "https://weather.com/weather/radar/interactive/l/65d48fb411056d3afa6e116d9db113f7ded9bf324bfe1432aa91bcdb7270e5cc",
+        "script": "document.querySelector('#btnHideControlPanel').click();"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": "check_direct_json_object",
+    "result": {
+      "type": "active_tab_html_parse",
+      "goto_prefix": "https://",
+      "category": "xpath",
+      "xpathObject": {
+        "//*[@id='RadarLayerMenu-tabpanel_0']/details[1]/summary/div/div/div[2]": "style",
+        "//*[@id='RadarLayerMenu-tabpanel_0']/details[2]/summary/div/div/div[2]": "layer"
+      }
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": {
+          "style": "Satellite",
+          "layer": "Wind Speed"
+        }
+      }
+    }
+  }
+}

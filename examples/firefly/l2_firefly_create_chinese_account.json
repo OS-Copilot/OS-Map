@@ -1,0 +1,77 @@
+{
+  "id": "l3_firefly_create_chinese_account",
+  "snapshot": "chrome",
+  "instruction": "This is Firefly III, my financial management software. Help me create an empty asset account named bike fund which used Chinese yuan without other information. If there is no option for CNY, add it in Currencies first. If the page fails to load, refresh until it succeeds.",
+  "source": "",
+  "config": [
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "cd ~/docker/fireflyiii && docker compose up -d",
+        "shell": true
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "sleep",
+      "parameters": {
+        "seconds": 3
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": ["http://localhost:8888/"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": ["is_expected_active_tab", "check_direct_json_object"],
+    "result": [
+      {
+        "type": "active_url_from_accessTree",
+        "goto_prefix": "http://"
+      },
+      {
+        "type": "active_tab_html_parse",
+        "goto_prefix": "http://",
+        "category": "xpath",
+        "xpathObject": {
+          "//*[@id='sortable-table']/tbody/tr[4]/td[2]/a": "name",
+          "//*[@id='sortable-table']/tbody/tr[4]/td[5]/span/span/span": "amount"
+        }
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "type": "url",
+          "url": "http://localhost:8888/accounts/asset"
+        }
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "expected": {
+            "name": "bike fund",
+            "amount": "¥0.00"
+          }
+        }
+      }
+    ]
+  }
+}

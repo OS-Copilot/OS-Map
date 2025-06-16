@@ -1,0 +1,42 @@
+{
+  "id": "l2_sccl_wifi",
+  "snapshot": "chrome",
+  "instruction": "I am at the Santa Clara City Library. My computer cannot connect to the Wi-Fi, can you help me find instructions for Wi-Fi information?",
+  "source": "",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": ["https://www.sclibrary.org/"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": "is_expected_active_tab",
+    "result": {
+      "type": "active_url_from_accessTree",
+      "goto_prefix": "https://www."
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "type": "url",
+        "url": "https://www.sclibrary.org/services/public-computers-printing/wi-fi-access"
+      }
+    }
+  }
+}

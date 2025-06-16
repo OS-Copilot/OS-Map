@@ -1,0 +1,78 @@
+{
+  "id": "l2_kill_thunderbird",
+  "snapshot": "os",
+  "instruction": "Close the thunderbird application.",
+  "source": "",
+  "trajectory": "trajectories/",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["rocketchat-desktop"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["nautilus", "/home/user/Desktop"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["code", "/home/user"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["gnome-todo"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["thunderbird"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["gimp"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome"]
+      }
+    },
+    {
+      "type": "sleep",
+      "parameters": {
+        "seconds": 3
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["gnome-system-monitor"]
+      }
+    }
+  ],
+  "related_apps": ["os"],
+  "evaluator": {
+    "func": "exact_match",
+    "result": {
+      "type": "vm_command_line",
+      "command": "pgrep -x thunderbird",
+      "shell": true
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": ""
+      }
+    }
+  }
+}

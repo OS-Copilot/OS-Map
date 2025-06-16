@@ -1,0 +1,103 @@
+{
+  "id": "l4_docu_trans",
+  "snapshot": "multi_apps",
+  "instruction": "Check the To Do app to see if there are any unfinished tasks. If so, follow the instructions to complete them and mark them as completed.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "execute",
+      "parameters": {
+        "command": ["mkdir", "/home/user/hows_life_series"]
+      }
+    },
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1dXwJLmUJ-QZlIfzadJdxxTSSq6_6S7sn&export=download",
+            "path": "/home/user/.local/share/evolution/tasks/system/tasks.ics"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "pkill -f evolution && pkill -f gnome-todo",
+        "shell": true
+      }
+    },
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1Lf8qNPs3EvlqTjzHO8E8KEhgtGVJJuro&export=download",
+            "path": "/home/user/thunderbird-profile-draft.tar.gz"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "tar -xzv --recursive-unlink -f /home/user/thunderbird-profile-draft.tar.gz -C /home/user/",
+        "shell": true
+      }
+    },
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1Lf8qNPs3EvlqTjzHO8E8KEhgtGVJJuro&export=download",
+            "path": "/home/user/Maildir.tar.gz"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "echo 'password' | sudo -S tar -xzv --recursive-unlink -f /home/user/Maildir.tar.gz -C /home/anonym/ && rm /home/user/Maildir.tar.gz",
+        "shell": true
+      }
+    }
+  ],
+  "trajectory": "trajectories/415ef462-bed3-493a-ac36-ca8c6d23bf1b",
+  "related_apps": ["os", "chrome", "thunderbird"],
+  "evaluator": {
+    "func": ["compare_mail_content", "file_contains"],
+    "result": [
+      {
+        "type": "vm_first_mail_file_parsed"
+      },
+      {
+        "type": "vm_file",
+        "path": "/home/user/.local/share/evolution/tasks/system/tasks.ics",
+        "dest": "tasks.ics"
+      }
+    ],
+    "expected": [
+      {
+        "type": "mail_attachments",
+        "to": "user@localhost",
+        "body": "The attachment is the latest publication, published in 2024, and has been translated into Chinese. Please check it.",
+        "attachments": [
+          {
+            "path": "https://drive.google.com/uc?id=1qDMYpKDGdvZgg4l1faIaMR2kWCuXgVP8&export=download",
+            "dest": "2024_gt.pdf"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "expected": "PERCENT-COMPLETE:100\nSTATUS:COMPLETED"
+        }
+      }
+    ],
+    "options": [{ "body_type": "contains", "ignore_blanks": true }, {}]
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "id": "l3_meeting_schedule",
+  "snapshot": "multi_apps",
+  "spec_snapshot": "_login_Derek",
+  "instruction": "Did you see the meeting time sent in the DATA group in Rocket.Chat? Add it to the event in Calendar, title it Team Meeting, and make sure you don't make mistakes with the date, time, and location.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "rocket_send_messages",
+      "parameters": {
+        "from_name": "Jean",
+        "to_type": "room",
+        "to_name": "DATA",
+        "message": "@all Attention Please!\n*Team Meeting*\nTime: _Tomorrow 10:30-11:00_\nLocation: _Room 1211_"
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "google-chrome",
+          "https://huggingface.co/Qwen/Qwen3-235B-A22B/blob/main/config.json"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/415ef462-bed3-493a-ac36-ca8c6d23bf1b",
+  "related_apps": ["os", "chrome", "rocket.chat", "calendar"],
+  "evaluator": {
+    "func": "check_one_of_equal",
+    "result": {
+      "type": "calendar_events"
+    },
+    "expected": {
+      "type": "rule_relativeTime",
+      "rules": {
+        "relativeTime": {
+          "from": "tomorrow",
+          "to": "tomorrow"
+        },
+        "expected": {
+          "from": "{Year}{Month0D}{Day0D}T103000",
+          "to": "{Year}{Month0D}{Day0D}T110000",
+          "title": "Team Meeting",
+          "location": "Room 1211"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "id": "l4_macos_appearance",
+  "snapshot": "Xmind",
+  "instruction": "I switched from a Macbook Air M2 to this Ubuntu machine. I am not familiar with Ubuntu's mouse scroll direction and menu bar position and alignment style. Please adjust it to Apple's default style for me, as shown in this picture. Also, please adjust the wallpaper to the one in the picture, which is called \"Sonoma horizon\". 4K resolution required.",
+  "source": "",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1XXphhb1rfQugvvN3yMOcw-Xbxa39n0lr&export=download",
+            "path": "/home/user/Documents/the_old_man_and_the_sea.mobi"
+          },
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1uf9ei_-_HZoDxQyapQyjAafyLoAh-NCV&export=download",
+            "path": "/home/user/Documents/macos.jpg"
+          }
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "google-chrome",
+          "--start-fullscreen",
+          "https://en.wikipedia.org/wiki/The_Old_Man_and_the_Sea"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": "flatpak run --filesystem=host com.github.johnfactotum.Foliate /home/user/Documents/the_old_man_and_the_sea.mobi",
+        "shell": true
+      }
+    },
+    {
+      "type": "sleep",
+      "parameters": {
+        "seconds": 2
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "python",
+          "-c",
+          "import pyautogui, time; pyautogui.press(\"f11\"); [pyautogui.press('right') or time.sleep(0.5) for _ in range(5)]"
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Documents/macos.jpg"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["Xmind"],
+  "evaluator": {
+    "func": ["exact_match", "compare_images"],
+    "result": [
+      {
+        "type": "vm_command_line",
+        "command": "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/1000/bus'\ngsettings get org.gnome.desktop.peripherals.mouse natural-scroll && gsettings get org.gnome.shell.extensions.dash-to-dock dock-position && gsettings get org.gnome.shell.extensions.dash-to-dock extend-height",
+        "shell": "true"
+      },
+      {
+        "type": "vm_wallpaper",
+        "dest": "background.jpg"
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "expected": "true\n'BOTTOM'\nfalse\n"
+        }
+      },
+      {
+        "type": "cloud_file",
+        "path": "https://drive.usercontent.google.com/download?id=1Nu1IuXYfxdHGLVcw7MFa6Yr4hULDMulf&export=download",
+        "dest": "gold_background.jpg"
+      }
+    ],
+    "options": [{}, { "binary": true, "threshold": 0.9 }]
+  }
+}

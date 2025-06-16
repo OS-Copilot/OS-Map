@@ -1,0 +1,72 @@
+{
+  "id": "l1_chrome_bookmark_folder",
+  "snapshot": "chrome",
+  "instruction": "Can you make a new folder for me on the bookmarks bar in my internet browser? Let's call it 'Favorites.' The steps are as follows: 1. Click the vertical ellipsis icon to open more options; 2. Hover over the option \"Bookmarks and lists\"; 3. Select \"Bookmark manager\" in the menu 4. Click the vertical ellipsis icon in the page to organize the bookmark; 5. Select the option \"Add new folder\" to create a new folder; 6. Type \"Favorites\" into the input box to name the new folder; 7. Click the blue button \"Save\" to confirm creation.",
+  "source": "2ad9387a-65d8-4e33-ad5b-7580065a27ca",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": ["is_expected_bookmarks", "check_step_actions"],
+    "result": [
+      {
+        "type": "bookmarks"
+      },
+      { "type": "step_actions" }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "type": "bookmark_bar_folders_names",
+          "names": ["Favorites"]
+        }
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "expected": [
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [1718, 74, 1915, 106] }
+            },
+            {
+              "action_type": "MOVE_TO",
+              "parameters": { "bbox": [1498, 410, 1917, 443] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [1130, 551, 1497, 581] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [1874, 129, 1901, 154] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [1746, 221, 1903, 255] }
+            },
+            { "action_type": "TYPING", "parameters": { "text": "Favorites" } },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [1165, 645, 1234, 680] }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "id": "l3_dlai_speed",
+  "snapshot": "chrome",
+  "instruction": "Play this video at 1.5x speed with subtitles and full screen enabled. Do not close the speed adjustment window, I will see if further adjustments are needed.",
+  "source": "https://learn.deeplearning.ai/",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": [
+          "https://learn.deeplearning.ai/courses/reasoning-with-o1/lesson/h8dkv/introduction?utm_source=home&utm_medium=course-landing-page&utm_campaign=summary-cta-button&_gl=1*1c25ftm*_ga*MTg2NDczMDA5NC4xNzM4NzYyNDMy*_ga_PZF1GBS1R1*MTc0MzA1MTUyMS4yLjEuMTc0MzA1MjE1OS42MC4wLjA."
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": "check_direct_json_object",
+    "result": {
+      "type": "active_tab_html_parse",
+      "goto_prefix": "https://",
+      "category": "xpath",
+      "xpathObject": {
+        "/html/body/div/div/div[1]/main/div/div/div/div/div[2]/div[5]/div[6]/div[5]/div[2]/div[1]/div/section[1]/div[1]/div": "speed",
+        "/html/body/div/div/div[1]/main/div/div/div/div/div[2]/div[5]/div[6]/button[2]": {
+          "name": "subtitle",
+          "attribute": "aria-pressed"
+        },
+        "/html/body/div/div/div[1]/main/div/div/div/div/div[2]/div[5]/div[6]/button[7]": {
+          "name": "full_screen",
+          "attribute": "aria-pressed"
+        }
+      }
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": {
+          "speed": "1.5x",
+          "subtitle": "true",
+          "full_screen": "true"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "id": "l2_minesweeper_create",
+  "snapshot": "chrome",
+  "instruction": "Create a board with 15 bombs in 12x12 area.",
+  "source": "",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": ["https://minesweeper.online/new-game"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": ["check_direct_json_object", "exact_match"],
+    "result": [
+      {
+        "type": "active_tab_html_parse",
+        "goto_prefix": "https://",
+        "category": "input",
+        "inputObject": {
+          "//*[@id='custom_width']": "width",
+          "//*[@id='custom_height']": "height",
+          "//*[@id='custom_mines']": "mines"
+        }
+      },
+      {
+        "type": "active_tab_noe_class",
+        "goto_prefix": "https://",
+        "class_name": "cell"
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "expected": { "width": "12", "height": "12", "mines": "15" }
+        }
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "expected": 144
+        }
+      }
+    ]
+  }
+}

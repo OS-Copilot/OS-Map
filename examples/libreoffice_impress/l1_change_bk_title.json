@@ -1,0 +1,129 @@
+{
+  "id": "l1_change_bk_title",
+  "snapshot": "libreoffice_impress",
+  "instruction": "Set the background color of the two slides with real person pictures as yellow and set the title of slide 2 as \"Let's start\". You need to follow these steps: 1. Click on Slide 3 in the slide panel; 2. In the properties column on the right, click the fourth drop-down box to select a color; 3. Select the yellow color (the first square in the second row); 4. Click on Slide 4 in the slide panel; 5. Repeat steps 2 and 3; 6. Click on Slide 2 in the slide panel; 7. Click on the title \"Introduction\" in the center of the slide; 8. Press ctrl+A to select all; 9. Type \"Let's start\"",
+  "source": "0a211154-fda0-48d0-9274-eaac4ce5486d",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=17yjtAfMQyIHLXLQ_DNb8Ij_pbLlkE9Mw&export=download&authuser=0&confirm=t&uuid=b3354f6f-53da-43c3-85ed-2e01432923ce&at=APZUnTVDparTetrpwnjYrp8rjS5Y:1708521375117",
+            "path": "/home/user/Desktop/13_0.pptx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/13_0.pptx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["libreoffice_impress"],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "13_0.pptx - LibreOffice Impress",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; import time; pyautogui.hotkey('ctrl', 's'); time.sleep(0.5);"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 3
+        }
+      }
+    ],
+    "func": ["compare_pptx_files", "check_step_actions"],
+    "expected": [
+      {
+        "type": "cloud_file",
+        "path": "https://drive.usercontent.google.com/download?id=1ezuWy4OFISmZcfjueCJCzxwDP7ilttM4&export=download&authuser=0&confirm=t&uuid=157e59b1-5b50-48a5-a9bc-aaa1e5d3c5bb&at=APZUnTXLw32ithWfa1jMREjb6Aaa:1720111552480",
+        "dest": "13_0_Gold.pptx"
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "expected": [
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [106, 416, 246, 495] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [1642, 329, 1836, 360] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [1647, 422, 1662, 435] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [107, 515, 246, 593] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [1642, 329, 1836, 360] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [1647, 422, 1662, 435] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [105, 316, 246, 395] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [743, 556, 1023, 601] }
+            },
+            {
+              "action_type": "HOTKEY",
+              "parameters": { "keys": ["ctrl", "a"] }
+            },
+            {
+              "action_type": "TYPING",
+              "parameters": { "text": "Let's start" }
+            }
+          ]
+        }
+      }
+    ],
+    "result": [
+      {
+        "type": "vm_file",
+        "path": "/home/user/Desktop/13_0.pptx",
+        "dest": "13_0.pptx"
+      },
+      { "type": "step_actions" }
+    ],
+    "options": [
+      {
+        "examine_shape": false
+      },
+      {}
+    ]
+  }
+}

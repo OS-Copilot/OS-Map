@@ -1,0 +1,72 @@
+{
+  "id": "l3_send_ssh_key",
+  "spec_snapshot": "_login_Derek",
+  "instruction": "Shirley asked me to generate an ssh key and send her the public key. I have already generated it in the terminal, why can't the file manager see it? Please help me send her the entire public key file. Note: hidden files seem to be unable to be sent, you need to copy (NOT move) the public key file to a non-hidden folder before sending it.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["rocketchat-desktop"]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/1000/bus'\ngsettings set org.gnome.desktop.interface gtk-theme 'Yaru-dark' && gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark' && gsettings set org.gnome.desktop.interface icon-theme 'Yaru-dark'",
+        "shell": true
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "xdotool mousemove 40 1040 click 1 sleep 0.5 mousemove 900 665 click 1 sleep 0.5 type \"ssh-keygen\"; xdotool sleep 1 key Return type \"/home/user/.ssh/id\"; xdotool sleep 1 key Return sleep 1 key Return sleep 1 key Return",
+        "shell": true
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "python3",
+          "-c",
+          "import pyautogui; import time; pyautogui.click(30, 935); time.sleep(1); pyautogui.hotkey([\"ctrl\", \"h\"]);"
+        ]
+      }
+    },
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1HwhWA_iiJ7lqeSh84I6iYzJQQOjGlQEW&export=download",
+            "path": "/home/user/ssh.zip"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "rm -rf .ssh && unzip ssh.zip && rm ssh.zip",
+        "shell": true
+      }
+    }
+  ],
+  "trajectory": "trajectories/415ef462-bed3-493a-ac36-ca8c6d23bf1b",
+  "related_apps": ["nautilus", "rocket.chat"],
+  "evaluator": {
+    "func": "compare_text_file",
+    "result": {
+      "type": "rocketchat_message_file_in_mongodb",
+      "users": ["Derek", "Shirley"],
+      "fname": "id.pub",
+      "dest": "id.pub"
+    },
+    "expected": {
+      "type": "vm_file",
+      "path": "/home/user/.ssh/id.pub",
+      "dest": "id_gt.pub"
+    }
+  }
+}

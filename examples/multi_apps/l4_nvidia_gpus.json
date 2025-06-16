@@ -1,0 +1,73 @@
+{
+  "id": "l4_nvidia_gpus",
+  "snapshot": "thunderbird",
+  "instruction": "Please check the Thunderbird \"Local Folders -> Enterprise\" mailbox for new mail and complete the task assigned by Jean. Note that the file of account information of Rocket.Chat is in the desktop. Simply ignore and close the pop-up login window of Google.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1vkwGQtRnDuczgf3ShNcLfwef_EJo15_q&export=download",
+            "path": "/home/user/thunderbird-profile.tar.gz"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "tar -xzv --recursive-unlink -f /home/user/thunderbird-profile.tar.gz -C /home/user/ && rm -rf /home/user/thunderbird-profile.tar.gz",
+        "shell": true
+      }
+    },
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1OSGzdYsANxLkmYpzLzXfyHwepu0nNNoI&export=download",
+            "path": "/home/user/Desktop/RocketChat_account.txt"
+          }
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/415ef462-bed3-493a-ac36-ca8c6d23bf1b",
+  "related_apps": [
+    "os",
+    "thunderbird",
+    "libreoffice_calc",
+    "web",
+    "rocket.chat"
+  ],
+  "evaluator": {
+    "func": "compare_table",
+    "result": {
+      "type": "rocketchat_message_file_in_mongodb",
+      "users": ["Derek", "Regina"],
+      "fname": "nvidia_gpus.xlsx",
+      "dest": "nvidia_gpus.xlsx"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://drive.google.com/uc?id=1WH5iaCMWgmC2HEguDgkyGNlDXe9NVfq8&export=download",
+      "dest": "nvidia_gpus_gt.xlsx"
+    },
+    "options": {
+      "rules": [
+        {
+          "type": "sheet_data",
+          "sheet_idx0": "RNData Center",
+          "sheet_idx1": "ENData Center"
+        },
+        {
+          "type": "sheet_data",
+          "sheet_idx0": "RNGraphics Cards",
+          "sheet_idx1": "ENGraphics Cards"
+        }
+      ]
+    }
+  }
+}

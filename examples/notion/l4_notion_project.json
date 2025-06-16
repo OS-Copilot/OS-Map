@@ -1,0 +1,61 @@
+{
+  "id": "l4_notion_project",
+  "snapshot": "Notion Desktop",
+  "instruction": "Create a new page called Air Quality on Notion, add three top-level headings in order: Websites, Research, News, then add the three open web pages as hyperlinks under Websites, naming them EU, US, and UK respectively, and change the format to an unordered list. Then export this page as markdown to Documents.",
+  "source": "",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": [
+          "https://www.epa.gov/castnet",
+          "https://aqportal.discomap.eea.europa.eu/",
+          "https://www.gov.uk/government/collections/air-quality-and-emissions-statistics"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["notion-desktop"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["Chrome", "Notion Desktop", "Files"],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "execute",
+        "parameters": {
+          "command": "cd /home/user/Documents && unzip *.zip && mv *.md air_quality.md",
+          "shell": true
+        }
+      }
+    ],
+    "func": "file_contains",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Documents/air_quality.md",
+      "dest": "air_quality.md"
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": "# Air Quality\n\n# Websites\n\n- [EU](https://aqportal.discomap.eea.europa.eu/)\n- [US](https://www.epa.gov/castnet)\n- [UK](https://www.gov.uk/government/collections/air-quality-and-emissions-statistics)\n\n# Research\n\n# News"
+      }
+    }
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "id": "l4_dlai_apply_job",
+  "snapshot": "chrome",
+  "spec_snapshot": "_login_Shirley",
+  "instruction": "My friend Derek admires Andrew Ng and wants to join his DeepLearning.AI as a course contributor in India. He has sent me his personal information and hopes that I can help him submit a job application. Please find a suitable job for him and fill out the application form, but do not submit it. I will do a final check. By the way, do not fill in the current location if any.",
+  "source": "",
+  "config": [
+    {
+      "type": "rocket_send_messages",
+      "parameters": {
+        "from_name": "Derek",
+        "to_type": "user",
+        "to_name": "Shirley",
+        "message": "My personal information: https://drive.google.com/file/d/1e4w7CaWIsAqguI-Sw3cLYolGv5wjMrRF/view?usp=sharing. Thank you!"
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["rocketchat-desktop"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": ["https://www.deeplearning.ai/"]
+      }
+    },
+    {
+      "type": "sleep",
+      "parameters": {
+        "seconds": 3
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": ["is_expected_active_tab", "check_direct_json_object"],
+    "result": [
+      {
+        "type": "active_url_from_accessTree",
+        "goto_prefix": "https://"
+      },
+      {
+        "type": "active_tab_html_parse",
+        "goto_prefix": "https://",
+        "category": "input",
+        "inputObject": {
+          "//*[@id='application-form']/div[1]/ul/li[2]/label/div[2]/input": "name",
+          "//*[@id='application-form']/div[1]/ul/li[3]/label/div[2]/input": "email",
+          "//*[@id='application-form']/div[1]/ul/li[4]/label/div[2]/input": "phone",
+          "//*[@id='additional-information']": "additional"
+        }
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "type": "url",
+          "url": "https://jobs.lever.co/AIFund/70488988-6518-4e3b-953c-3b3161d36373/apply"
+        }
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "expected": {
+            "name": "Carl Derek",
+            "email": "derek@example",
+            "phone": "012-34722",
+            "additional": "My passion for AI education stems from my belief that well-structured learning materials can empower developers and researchers to build more robust AI systems. I have experience in technical writing, instructional design, and explaining complex AI concepts in an intuitive manner. With my combined expertise in AI research and systematic benchmarking, I am eager to contribute to Deeplearning.AI’s mission by developing high-quality, impactful courses that bridge the gap between theoretical advancements and practical AI applications."
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "id": "l3_send_weather",
+  "snapshot": "multi_apps",
+  "spec_snapshot": "_login_Shirley",
+  "instruction": "My friend Derek was planning a trip to Paris. He sent me a message asking me to check the weather there. Help me check the weather for him and answer his question.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "rocket_send_messages",
+      "parameters": {
+        "from_name": "Derek",
+        "to_type": "user",
+        "to_name": "Shirley",
+        "message": "Hi, Shirley! I paln to travel to Paris in three days. Can you help me check the minimum temperature (in °C) for that day? Please send it to me, thank you!"
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["rocketchat-desktop"]
+      }
+    },
+    {
+      "type": "sleep",
+      "parameters": {
+        "seconds": 3
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": [
+          "https://weather.com/en-US/weather/today/l/65d48fb411056d3afa6e116d9db113f7ded9bf324bfe1432aa91bcdb7270e5cc?unit=e"
+        ],
+        "wait_until": "commit"
+      }
+    }
+  ],
+  "trajectory": "trajectories/415ef462-bed3-493a-ac36-ca8c6d23bf1b",
+  "related_apps": ["chrome", "rocket.chat"],
+  "evaluator": {
+    "func": ["is_expected_active_tab", "exact_match", "check_one_of_include"],
+    "result": [
+      {
+        "type": "active_url_from_accessTree",
+        "goto_prefix": "https://"
+      },
+      {
+        "type": "active_tab_html_parse",
+        "goto_prefix": "https://",
+        "category": "xpath",
+        "xpathObject": {
+          "//*[@id='WxuHeaderLargeScreen-header-9944ec87-e4d4-4f18-b23e-ce4a3fd8a3ba']/header/div/div[2]/div[2]/button/div/span[3]": null
+        }
+      },
+      {
+        "type": "rocketchat_message_content_in_mongodb",
+        "users": ["Derek", "Shirley"]
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "type": "url",
+          "url": "https://weather.com/weather/tenday/l/d2a540efb4e9604b3c1d01b7851a1d9d2ab4c7b3ba428e5799936ac54404c035"
+        }
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "expected": "°C"
+        }
+      },
+      {
+        "type": "active_tab_html_parse",
+        "goto_prefix": "https://",
+        "category": "xpath",
+        "xpathObject": {
+          "//*[@id='detailIndex3']/summary/div/div/div[2]/span[2]/span": null
+        }
+      }
+    ]
+  }
+}

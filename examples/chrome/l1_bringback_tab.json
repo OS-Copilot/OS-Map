@@ -1,0 +1,79 @@
+{
+  "id": "l1_bringback_tab",
+  "snapshot": "chrome",
+  "instruction": "Can you make my computer bring back the last tab I shut down? The steps are as follows: 1. Click the vertical ellipsis icon to open more options; 2. Hover on the \"History\" option; 3. Click on the first item named \"Tripadvisor...\" under \"Recent tabs\" to reopen the previously closed tab.",
+  "source": "06fe7178-4491-4589-810f-2e2bc9502122",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": [
+          "https://www.lonelyplanet.com",
+          "https://www.airbnb.com",
+          "https://www.tripadvisor.com"
+        ]
+      }
+    },
+    {
+      "type": "chrome_close_tabs",
+      "parameters": {
+        "urls_to_close": ["https://www.tripadvisor.com"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": ["is_expected_tabs", "check_step_actions"],
+    "result": [
+      {
+        "type": "open_tabs_info"
+      },
+      { "type": "step_actions" }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "type": "url",
+          "urls": [
+            "https://www.lonelyplanet.com",
+            "https://www.airbnb.com",
+            "https://www.tripadvisor.com"
+          ]
+        }
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "expected": [
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [1775, 75, 1918, 105] }
+            },
+            {
+              "action_type": "MOVE_TO",
+              "parameters": { "bbox": [1498, 349, 1918, 380] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [1055, 422, 1496, 456] }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

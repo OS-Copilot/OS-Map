@@ -1,0 +1,43 @@
+{
+  "id": "l3_file_passwd_sum",
+  "snapshot": "libreoffice_calc",
+  "instruction": "Open the file NetIncome.xlsx in the desktop. Compute the sum of \"Revenue\" and \"Total Expenses\" and put the results under two columns named \"Total Revenue\" and \"Total Expenses\" of a new sheet and then save it in place.",
+  "source": "SheetCopilot@122",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1CeIoql38hiBr29drp7vlskJ5HRPGEknx&export=download&authuser=0&confirm=t&uuid=756c8a3d-1778-4c7c-b46f-6f4c9a29a488&at=ALoNOgl29LupBO2qZJ7mvBXlBdTw:1747275945212",
+            "path": "/home/user/Desktop/NetIncome.xlsx"
+          }
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/42e0a640-4f19-4b28-973d-729602b5a4a7",
+  "related_apps": ["libreoffice_calc"],
+  "evaluator": {
+    "func": "compare_table",
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://drive.google.com/uc?id=1gYnzmQWbNzOJPXpfjyqUj36DXn7m9oUE&export=download",
+      "dest": "2_NetIncome_gt1.xlsx"
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/NetIncome.xlsx",
+      "dest": "NetIncome.xlsx"
+    },
+    "options": {
+      "rules": [
+        {
+          "type": "sheet_data",
+          "sheet_idx0": "RNSheet2",
+          "sheet_idx1": "ENSheet2"
+        }
+      ]
+    }
+  }
+}

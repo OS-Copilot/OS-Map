@@ -1,0 +1,31 @@
+{
+  "id": "l3_create_dir_under_root",
+  "level": "l2",
+  "snapshot": "os",
+  "instruction": "Create a dir named 'test' in the this directory.",
+  "source": "https://ubuntu.com/tutorials/command-line-for-beginners#4-creating-folders-and-files",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["nautilus", "/bin"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["os"],
+  "evaluator": {
+    "func": "exact_match",
+    "result": {
+      "type": "vm_command_line",
+      "command": "[ -d '/bin/test' ] && echo 'Directory exists.' || echo 'Directory does not exist.'",
+      "shell": true
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": "Directory exists.\n"
+      }
+    }
+  }
+}

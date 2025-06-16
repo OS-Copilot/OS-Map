@@ -1,0 +1,59 @@
+{
+  "id": "l3_geogra_probability",
+  "snapshot": "chrome",
+  "instruction": "I have a math problem that I have written down in a docx document on my desktop. Please answer this question and attach your result to the document.",
+  "source": "test_task_geogebra",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.google.com/uc?id=1h8HbXPGY9ZM95GQNz8JTK7E_sGz5Muj3&export=download",
+            "path": "/home/user/Desktop/problem.docx"
+          }
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome", "libreoffice_writer"],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "problem.docx - LibreOffice Writer",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; import time; pyautogui.hotkey('ctrl', 's'); time.sleep(0.5); "
+          ]
+        }
+      }
+    ],
+    "func": "compare_docx_files",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/problem.docx",
+      "dest": "problem.docx"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://drive.google.com/uc?id=1LfuCOppn9G0aKG_-b-zLmwwWN3dTNs-3&export=download",
+      "dest": "problem_gt.docx"
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "id": "l2_geogebra_intersection",
+  "snapshot": "chrome",
+  "instruction": "Navigate to GeoGebra Graphing Calculator and plot the functions y = sin(x) and y = 2 - x. Then, use the Intersect tool (in the \"tools\") to mark their point of intersection and label it clearly on the graph.",
+  "source": "test_task_geogebra",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": ["https://www.geogebra.org/graphing"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": "check_direct_json_object",
+    "result": {
+      "type": "active_tab_html_parse",
+      "goto_prefix": "https://www.",
+      "category": "xpath",
+      "xpathObject": {
+        "/html/body/div[2]/main/div[2]/div[2]/div/div[3]/div/div[3]/div[1]/div/div/div[1]/div[4]/div/div/div[3]/div/div[2]/div/div": "intersection"
+      }
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": {
+          "intersection": "(1.1060601577063, 0.8939398422937)"
+        }
+      }
+    }
+  }
+}

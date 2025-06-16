@@ -1,0 +1,85 @@
+{
+  "id": "l1_add_blank_page",
+  "source": "ecc2413d-8a48-416e-a3a2-d30106ca36cb",
+  "instruction": "Please throw in a blank page right after this one.  The steps are as follows: 1. Click any blank space in the document below the last line; 2. Click the \"Insert\" in the toolbar; 3. Select \"Page Break\" in the pop-up menu 4. Pressing Ctrl + S to save the file.",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1sDufDSC4foI379-Jikya9WK7FBUSqgrt&export=download&authuser=0&confirm=t&uuid=0abd82d6-2b2c-49bc-af5e-49bfe1c99278&at=APZUnTURIqTNJcIHBcMP2BxEaGXr:1704174850900",
+            "path": "/home/user/Desktop/Sample_Statutory_Declaration.docx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/Sample_Statutory_Declaration.docx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["libreoffice_writer"],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "Sample_Statutory_Declaration.docx - LibreOffice Writer",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; import time; pyautogui.hotkey('ctrl', 's'); time.sleep(0.5); "
+          ]
+        }
+      }
+    ],
+    "func": ["contains_page_break", "check_step_actions"],
+    "result": [
+      {
+        "type": "vm_file",
+        "path": "/home/user/Desktop/Sample_Statutory_Declaration.docx",
+        "dest": "Sample_Statutory_Declaration.docx"
+      },
+      { "type": "step_actions" }
+    ],
+    "expected": [
+      {},
+      {
+        "type": "rule",
+        "rules": {
+          "expected": [
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [550, 520, 1366, 1056] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [202, 65, 256, 88] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [202, 89, 552, 114] }
+            },
+            { "action_type": "HOTKEY", "parameters": { "keys": ["ctrl", "s"] } }
+          ]
+        }
+      }
+    ]
+  }
+}

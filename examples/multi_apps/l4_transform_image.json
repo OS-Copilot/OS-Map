@@ -1,0 +1,65 @@
+{
+  "id": "l4_transform_image",
+  "snapshot": "chrome",
+  "spec_snapshot": "_login_Derek",
+  "instruction": "Shirley sent me an image. Please use GIMP to add a Gaussian blur to it, then use the two scripts in the Documents directory to increase the contrast and then add a watermark, then name the resulting image \"ours.jpg\" and send it to the DATA group.",
+  "config": [
+    {
+      "type": "rocket_send_messages",
+      "parameters": {
+        "from_name": "Shirley",
+        "to_type": "user",
+        "to_name": "Derek",
+        "message": "Hey! Check this picture: https://drive.google.com/file/d/1Bk8DV0WMxv1BOt7lL-pfDIQnGTIiyME5/view?usp=sharing"
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["rocketchat-desktop"]
+      }
+    },
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1ODREa-SPrdIgPBJFw_a7HBvqLn9ph4nM&export=download",
+            "path": "/home/user/Documents/tools.zip"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "cd Documents && unzip tools.zip && rm tools.zip",
+        "shell": true
+      }
+    },
+    {
+      "type": "sleep",
+      "parameters": {
+        "seconds": 2
+      }
+    }
+  ],
+  "trajectory": "trajectories/415ef462-bed3-493a-ac36-ca8c6d23bf1b",
+  "related_apps": ["chrome", "rocket.chat"],
+  "evaluator": {
+    "func": "compare_images",
+    "result": {
+      "type": "rocketchat_message_file_in_mongodb",
+      "users": ["Derek"],
+      "room": "DATA",
+      "fname": "ours.jpg",
+      "dest": "ours.jpg"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://drive.usercontent.google.com/download?id=1sv3LHt4acy5ZTpS0vAJKK8kw66q9w4v4&export=download",
+      "dest": "ours_gt.jpg"
+    },
+    "options": { "binary": true, "threshold": 0.999 }
+  }
+}

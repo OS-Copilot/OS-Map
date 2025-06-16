@@ -1,0 +1,89 @@
+{
+  "id": "l4_rocketchat_reply",
+  "snapshot": "chrome",
+  "spec_snapshot": "_login_Derek_reply",
+  "instruction": "I have some impression of the question Mark raised in the channel. Please find the daily report containing this question and reply to his message in the channel using the quote function (and @ him). You need to point out who mentioned the question and @ this person too, and send the corresponding daily report file to the channel. The team daily reports are saved in ~/work/reports.",
+  "source": "",
+  "config": [
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/1000/bus'\ngsettings set org.gnome.desktop.interface gtk-theme 'Yaru-dark' && gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark' && gsettings set org.gnome.desktop.interface icon-theme 'Yaru-dark'",
+        "shell": true
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["rocketchat-desktop"]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "mkdir -p working/reports",
+        "shell": true
+      }
+    },
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=128zArMItq3OkX1z-Fu1vM7wleXYbfvPU&export=download",
+            "path": "/home/user/working/reports/reports.zip"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "cd working/reports && unzip reports.zip && rm reports.zip",
+        "shell": true
+      }
+    },
+    {
+      "type": "sleep",
+      "parameters": {
+        "seconds": 5
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": ["check_one_of_include", "compare_files_exactly"],
+    "result": [
+      {
+        "type": "rocketchat_message_content_in_mongodb",
+        "users": ["Derek"],
+        "room": "DATA"
+      },
+      {
+        "type": "rocketchat_message_file_in_mongodb",
+        "users": ["Derek"],
+        "room": "DATA",
+        "fname": "daily-Wednesday.html",
+        "dest": "daily-Wednesday.html"
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "expected": [
+            "[ ](http://localhost:3000/group/DATA?msg=bZHkqsaw449wavHXy)\n",
+            "@Mark",
+            "@Anni"
+          ]
+        }
+      },
+      {
+        "type": "vm_file",
+        "path": "/home/user/working/reports/daily-Wednesday.html",
+        "dest": "report_gt.html"
+      }
+    ]
+  }
+}

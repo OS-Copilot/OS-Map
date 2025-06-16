@@ -1,0 +1,23 @@
+{
+  "id": "l3_resolution",
+  "snapshot": "os",
+  "instruction": "I want you to help me change the display resolution to 1280*720. First, click the applications button in the bottom-left corner to open the application menu, then scroll to the second page to find Settings. Then select the fourth Appearance in the left menu bar, click the resolution drop-down box, select 1280*720, and then click \"Apply\" and \"Keep Changes\" in the top-right corner of the window.",
+  "source": "",
+  "trajectory": "trajectories/",
+  "config": [],
+  "related_apps": ["os"],
+  "evaluator": {
+    "func": "exact_match",
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": "1280x720\n"
+      }
+    },
+    "result": {
+      "type": "vm_command_line",
+      "command": "xrandr | grep '*' | awk '{print $1}'",
+      "shell": true
+    }
+  }
+}

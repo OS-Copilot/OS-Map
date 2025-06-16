@@ -1,0 +1,73 @@
+{
+  "id": "l1_auto_lock",
+  "snapshot": "os",
+  "instruction": "I want to have my computer automatically locked after I leaved. The steps are as follows: 1. Click the \"Show Applications\" icon in the Dock at the bottom left corner; 2. Click the third application \"Settings\" in the third row; 3. Select \"Privacy\" in the tab on the left side of the window; 4. Click \"Screen\" in the tab; 5. Click \"Automatic Screen Lock\" in the option list to enable this feature",
+  "source": "https://help.ubuntu.com/lts/ubuntu-help/privacy-screen-lock.html.en",
+  "trajectory": "trajectories/",
+  "config": [
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/1000/bus'\ngsettings set org.gnome.desktop.screensaver lock-enabled false",
+        "shell": true
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "python",
+          "-c",
+          "import pyautogui; import time; pyautogui.click(960, 540); time.sleep(0.5);"
+        ]
+      }
+    }
+  ],
+  "related_apps": ["os"],
+  "evaluator": {
+    "func": ["exact_match", "check_step_actions"],
+    "result": [
+      {
+        "type": "vm_command_line",
+        "command": "gsettings get org.gnome.desktop.screensaver lock-enabled",
+        "shell": true
+      },
+      { "type": "step_actions" }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "expected": "true\n"
+        }
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "expected": [
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [0, 1010, 70, 1080] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [653, 780, 799, 924] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [506, 552, 743, 601] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [506, 372, 747, 412] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [829, 363, 1404, 418] }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

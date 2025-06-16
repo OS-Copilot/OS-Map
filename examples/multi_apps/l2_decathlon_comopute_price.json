@@ -1,0 +1,44 @@
+{
+  "id": "l2_decathlon_comopute_price",
+  "snapshot": "chrome",
+  "instruction": "I want to buy this swim shorts and an MH300 blue kids hiking backpack for my son. Please calculate the total price for me in US dollars without discount and write the result to the price.txt file on the desktop in the format of \"$15.6\".",
+  "source": "",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": [
+          "https://www.decathlon.sg/p/boys-surfing-swim-shorts-with-pockets-100-stories-dark-blue-olaian-8916321.html"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": "file_contains",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/price.txt",
+      "dest": "price.txt"
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": "$18.3"
+      }
+    }
+  }
+}

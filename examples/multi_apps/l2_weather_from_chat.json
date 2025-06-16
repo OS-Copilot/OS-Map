@@ -1,0 +1,102 @@
+{
+  "id": "l2_weather_from_chat",
+  "snapshot": "multi_apps",
+  "spec_snapshot": "_login_Derek",
+  "instruction": "I invite my friend Shirley to travel together. We talked a lot about our travels. Based on our chat, Check the weather at our destination.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "rocket_send_messages",
+      "parameters": {
+        "from_name": "Derek",
+        "to_type": "user",
+        "to_name": "Shirley",
+        "message": "Hi, Shirley! How about we go to Shanghai for a trip tomorrow? The flowers in Shanghai are blooming beautifully in spring. We can take the high-speed train there in the morning and come back in the evening."
+      }
+    },
+    {
+      "type": "rocket_send_messages",
+      "parameters": {
+        "from_name": "Shirley",
+        "to_type": "user",
+        "to_name": "Derek",
+        "message": "Good idea! I have never been to Shanghai. I have some free time tomorrow. I want to try the local food in Shanghai. I heard that every kind is delicious."
+      }
+    },
+    {
+      "type": "rocket_send_messages",
+      "parameters": {
+        "from_name": "Derek",
+        "to_type": "user",
+        "to_name": "Shirley",
+        "message": "Of Course! I have collected many delicious restaurants in Shanghai, we can try them together. We can also visit many famous attractions, it must be a wonderful trip."
+      }
+    },
+    {
+      "type": "rocket_send_messages",
+      "parameters": {
+        "from_name": "Shirley",
+        "to_type": "user",
+        "to_name": "Derek",
+        "message": "Amazing! I would like to bring my camera, can you take a picture for me? I want to wear a skirt to take nice photos but I don't know if it will be cold in Shanghai tomorrow."
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["rocketchat-desktop"]
+      }
+    },
+    {
+      "type": "sleep",
+      "parameters": {
+        "seconds": 3
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": [
+          "https://www.nytimes.com/2025/04/06/world/europe/trade-trump-tariffs-brexit.html",
+          "https://www.garmin.com/en-US/c/wearables-smartwatches/",
+          "https://weather.com/en-US/weather/today/l/65d48fb411056d3afa6e116d9db113f7ded9bf324bfe1432aa91bcdb7270e5cc?unit=e"
+        ],
+        "wait_until": "commit"
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["nautilus", "/snap/bin"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/415ef462-bed3-493a-ac36-ca8c6d23bf1b",
+  "related_apps": ["chrome", "rocket.chat"],
+  "evaluator": {
+    "func": "is_expected_active_tab",
+    "result": {
+      "type": "active_url_from_accessTree",
+      "goto_prefix": "https://"
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "type": "url",
+        "url": "https://weather.com/weather/tenday/l/4bb49c3c2c97f9382266e4d40650e30ee931d0227e19947ffc456deab0db58d7"
+      }
+    }
+  }
+}

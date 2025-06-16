@@ -1,0 +1,47 @@
+{
+  "id": "l2_geogebra_fitline_intersection",
+  "snapshot": "chrome",
+  "instruction": "Create the points A(-4, -2), B(-2, 0), C(0, 1), D(2, 2), E(4, 3) and their best fit line. Find the point F where this line intersects the x-axis. All points should be marked in order.",
+  "source": "test_task_geogebra",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": ["https://www.geogebra.org/graphing"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": "check_direct_json_object",
+    "result": {
+      "type": "active_tab_html_parse",
+      "goto_prefix": "https://www.",
+      "category": "xpath",
+      "xpathObject": {
+        "/html/body/div[2]/main/div[2]/div[2]/div/div[3]/div/div[3]/div[1]/div/div/div[1]/div[8]/div/div/div[3]/div/div[2]/div/div": "intersection_point"
+      }
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": {
+          "intersection_point": "(-1.3333333333333, 0)"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "id": "l3_use_wallpaper",
+  "snapshot": "chrome",
+  "spec_snapshot": "_login_Shirley",
+  "instruction": "Derek sent me a picture that I think is very nice. Can you please set it as my wallpaper?",
+  "source": "test_task_geogebra",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["rocketchat-desktop"]
+      }
+    },
+    {
+      "type": "rocket_send_messages",
+      "parameters": {
+        "from_name": "Derek",
+        "to_type": "user",
+        "to_name": "Shirley",
+        "message": "Hey! Check this wonderful landscape: https://unsplash.com/photos/mountains-sea-and-clouds-create-a-scenic-view-NZbSLwN7sVE"
+      }
+    },
+    {
+      "type": "sleep",
+      "parameters": {
+        "seconds": 3
+      }
+    }
+  ],
+  "trajectory": "trajectories/415ef462-bed3-493a-ac36-ca8c6d23bf1b",
+  "related_apps": ["chrome", "rocket.chat"],
+  "evaluator": {
+    "func": "compare_images",
+    "result": {
+      "type": "vm_wallpaper",
+      "dest": "background.png"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://drive.usercontent.google.com/download?id=1mNWLl_QpG9dUS-LhHt5-KnOMQjGFaKJ5&export=download",
+      "dest": "gold_background.png"
+    },
+    "options": { "binary": true, "threshold": 0.93 }
+  }
+}

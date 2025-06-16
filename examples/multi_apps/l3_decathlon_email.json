@@ -1,0 +1,64 @@
+{
+  "id": "l3_decathlon_email",
+  "snapshot": "chrome",
+  "instruction": "I have some questions about my product purchase, please help me find the email address of Decathlon's customer service and add it to the contact list in Thunderbird.",
+  "source": "",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": ["https://www.decathlon.sg/"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome", "thunderbird"],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "execute",
+        "parameters": {
+          "command": ["pkill", "thunderbird"]
+        }
+      }
+    ],
+    "func": ["is_expected_active_tab", "exact_match"],
+    "result": [
+      {
+        "type": "active_url_from_accessTree",
+        "goto_prefix": "https://www."
+      },
+      {
+        "type": "vm_command_line",
+        "command": "sqlite3 -readonly /home/user/.thunderbird/b5v763xh.default-release/abook.sqlite \"SELECT EXISTS(SELECT 1 FROM properties WHERE value = 'support.decathlon@decathlon.sg');\""
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "type": "url",
+          "url": "https://www.decathlon.sg/s/contact-us"
+        }
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "expected": "1\n"
+        }
+      }
+    ]
+  }
+}

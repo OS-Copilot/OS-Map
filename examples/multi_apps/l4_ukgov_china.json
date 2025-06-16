@@ -1,0 +1,52 @@
+{
+  "id": "l4_ukgov_china",
+  "snapshot": "chrome",
+  "instruction": "There seems to be a Thunderbird email notification just now. Please check and complete the tasks in the email.",
+  "source": "",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1heiURsAgwDwu9n6gd3kDyssqbsjKSHL-&export=download",
+            "path": "/home/user/mail.txt"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "mail -s 'Official Guidance of Travelling and Living in China' anonym@localhost < /home/user/mail.txt && rm /home/user/mail.txt",
+        "shell": true
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": "compare_mail_content",
+    "result": {
+      "type": "vm_first_mail_file_parsed"
+    },
+    "expected": {
+      "type": "mail_attachments",
+      "to": "user <user@user-virtual-machine>",
+      "attachments": [
+        {
+          "path": "https://drive.google.com/uc?id=13XZdc40-PJW_uZUFfLST2Wyeg6DQ2KM7&export=download",
+          "dest": "List_of_hospitals_in_China_gt.odt"
+        },
+        {
+          "path": "https://drive.google.com/uc?id=1ApbfkX59kHRRAqhsJ1JTN2Vvr0Sk3_65&export=download",
+          "dest": "Living in China - GOV.UK_gt.pdf"
+        },
+        {
+          "path": "https://drive.google.com/uc?id=1gA8y-n9w_RvVQDosbVrzfm6iy0N-29Jg&export=download",
+          "dest": "Print China travel advice_gt.pdf"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "id": "l3_firefly_invoice_recording",
+  "snapshot": "chrome",
+  "instruction": "Based on these four invoices provided, record the transaction into Firefly's transaction expense. Choose Cash wallet as the source account, amazon for the destination account, and Bills for the category field. You should name these four transactions as Amazon Aug, Amazon Sept, ..., respectively depended on the billing period. The amount is the total amount of the invoice.",
+  "source": "",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "path": "/home/user/Documents/aws-invoice-2308.pdf",
+            "url": "https://drive.google.com/uc?id=1azRFXf4A7fvW0S7r9upHvleMEi-92hHM&export=download"
+          },
+          {
+            "path": "/home/user/Documents/aws-invoice-2309.pdf",
+            "url": "https://drive.google.com/uc?id=1x-lpHm8U4U7uRPZ74-9wq9KzW2R55ln1&export=download"
+          },
+          {
+            "path": "/home/user/Documents/aws-invoice-2310.pdf",
+            "url": "https://drive.google.com/uc?id=1pcrgV9G6NO4ekMEQBiupwXtq6mmke7b_&export=download"
+          },
+          {
+            "path": "/home/user/Documents/aws-invoice-2311.pdf",
+            "url": "https://drive.google.com/uc?id=1JzbCK_nIY8X_3QZjnkzTtb-cRoq9zNT-&export=download"
+          }
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": ["http://localhost:8888/"]
+      }
+    },
+    {
+      "type": "sleep",
+      "parameters": {
+        "seconds": 1
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["nautilus", "/home/user/Documents"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "chrome_open_tabs",
+        "parameters": {
+          "urls_to_open": [
+            "http://localhost:8888/transactions/withdrawal/2023-09-01/2023-12-31"
+          ]
+        }
+      }
+    ],
+    "func": ["check_direct_json_object"],
+    "result": [
+      {
+        "type": "active_tab_html_parse",
+        "goto_prefix": "http://",
+        "category": "xpath",
+        "xpathObject": {
+          "//*[@id='app']/div[1]/section[2]/div[3]/div[1]/div/div[2]/table/tbody/tr[1]/td[2]/a": "description1",
+          "//*[@id='app']/div[1]/section[2]/div[3]/div[1]/div/div[2]/table/tbody/tr[1]/td[3]/span": "amount1",
+          "//*[@id='app']/div[1]/section[2]/div[3]/div[1]/div/div[2]/table/tbody/tr[1]/td[4]": "date1",
+          "//*[@id='app']/div[1]/section[2]/div[3]/div[1]/div/div[2]/table/tbody/tr[1]/td[5]/a": "from1",
+          "//*[@id='app']/div[1]/section[2]/div[3]/div[1]/div/div[2]/table/tbody/tr[1]/td[6]/a": "to1",
+          "//*[@id='app']/div[1]/section[2]/div[3]/div[1]/div/div[2]/table/tbody/tr[1]/td[7]/a": "category1",
+          "//*[@id='app']/div[1]/section[2]/div[3]/div[1]/div/div[2]/table/tbody/tr[2]/td[2]/a": "description2",
+          "//*[@id='app']/div[1]/section[2]/div[3]/div[1]/div/div[2]/table/tbody/tr[2]/td[3]/span": "amount2",
+          "//*[@id='app']/div[1]/section[2]/div[3]/div[1]/div/div[2]/table/tbody/tr[2]/td[4]": "date2",
+          "//*[@id='app']/div[1]/section[2]/div[3]/div[1]/div/div[2]/table/tbody/tr[2]/td[5]/a": "from2",
+          "//*[@id='app']/div[1]/section[2]/div[3]/div[1]/div/div[2]/table/tbody/tr[2]/td[6]/a": "to2",
+          "//*[@id='app']/div[1]/section[2]/div[3]/div[1]/div/div[2]/table/tbody/tr[2]/td[7]/a": "category2",
+          "//*[@id='app']/div[1]/section[2]/div[3]/div[1]/div/div[2]/table/tbody/tr[3]/td[2]/a": "description3",
+          "//*[@id='app']/div[1]/section[2]/div[3]/div[1]/div/div[2]/table/tbody/tr[3]/td[3]/span": "amount3",
+          "//*[@id='app']/div[1]/section[2]/div[3]/div[1]/div/div[2]/table/tbody/tr[3]/td[4]": "date3",
+          "//*[@id='app']/div[1]/section[2]/div[3]/div[1]/div/div[2]/table/tbody/tr[3]/td[5]/a": "from3",
+          "//*[@id='app']/div[1]/section[2]/div[3]/div[1]/div/div[2]/table/tbody/tr[3]/td[6]/a": "to3",
+          "//*[@id='app']/div[1]/section[2]/div[3]/div[1]/div/div[2]/table/tbody/tr[3]/td[7]/a": "category3",
+          "//*[@id='app']/div[1]/section[2]/div[3]/div[1]/div/div[2]/table/tbody/tr[4]/td[2]/a": "description4",
+          "//*[@id='app']/div[1]/section[2]/div[3]/div[1]/div/div[2]/table/tbody/tr[4]/td[3]/span": "amount4",
+          "//*[@id='app']/div[1]/section[2]/div[3]/div[1]/div/div[2]/table/tbody/tr[4]/td[4]": "date4",
+          "//*[@id='app']/div[1]/section[2]/div[3]/div[1]/div/div[2]/table/tbody/tr[4]/td[5]/a": "from4",
+          "//*[@id='app']/div[1]/section[2]/div[3]/div[1]/div/div[2]/table/tbody/tr[4]/td[6]/a": "to4",
+          "//*[@id='app']/div[1]/section[2]/div[3]/div[1]/div/div[2]/table/tbody/tr[4]/td[7]/a": "category4"
+        }
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "expected": {
+            "description1": "Amazon Nov",
+            "amount1": "-$0.99",
+            "date1": "December 3rd, 2023",
+            "from1": "Cash wallet",
+            "to1": "amazon",
+            "category1": "Bills",
+            "description2": "Amazon Oct",
+            "amount2": "-$1.02",
+            "date2": "November 2nd, 2023",
+            "from2": "Cash wallet",
+            "to2": "amazon",
+            "category2": "Bills",
+            "description3": "Amazon Sept",
+            "amount3": "-$1.01",
+            "date3": "October 3rd, 2023",
+            "from3": "Cash wallet",
+            "to3": "amazon",
+            "category3": "Bills",
+            "description4": "Amazon Aug",
+            "amount4": "-$1.14",
+            "date4": "September 3rd, 2023",
+            "from4": "Cash wallet",
+            "to4": "amazon",
+            "category4": "Bills"
+          }
+        }
+      }
+    ]
+  }
+}

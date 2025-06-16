@@ -1,0 +1,62 @@
+{
+  "id": "l2_decathlon_filter_bikes",
+  "snapshot": "chrome",
+  "instruction": "I'm interested in road cycling lately. Please navigate me to the road racing bike product list page, filter by carbon fiber frame, 22 speed, and sort by price in ascending order.",
+  "source": "",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": ["https://www.decathlon.sg/c/cycling/road-cycling.html"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": ["is_expected_active_tab", "check_direct_json_object"],
+    "result": [
+      {
+        "type": "active_url_from_accessTree",
+        "goto_prefix": "https://www."
+      },
+      {
+        "type": "active_tab_url_parse",
+        "goto_prefix": "https://www.",
+        "parse_keys": ["NUMBER OF SPEEDS", "BIKE FRAME MATERIAL", "sort"]
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "type": "url",
+          "url": "https://www.decathlon.sg/c/cycling/road-cycling/road-bikes/road-racing-bikes.html"
+        }
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "expected": {
+            "NUMBER OF SPEEDS": "22 speeds",
+            "BIKE FRAME MATERIAL": "carbon frame",
+            "sort": "Price Ascending"
+          }
+        }
+      }
+    ],
+    "options": [{ "prefix": true }, {}]
+  }
+}

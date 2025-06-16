@@ -1,0 +1,80 @@
+{
+  "id": "l4_xmind_todo_list",
+  "snapshot": "multi_apps",
+  "instruction": "I like the look of this mind map. Please use it as a template and re-fill it with the to-do items in my ToDo app, keeping the hierarchy but without indices. Save the mind map as my_todo_list.xmind on your desktop.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1q5ooLTpwRJIfJc-i5VDVMfS6oI5qH457&export=download",
+            "path": "/home/user/.local/share/evolution/tasks/system/tasks.ics"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "pkill -f evolution && pkill -f gnome-todo",
+        "shell": true
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": ["https://xmind.app/", "https://xmind.app/m/umq7/"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/415ef462-bed3-493a-ac36-ca8c6d23bf1b",
+  "related_apps": ["chrome", "xmind", "rocket.chat", "calendar"],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "execute",
+        "parameters": {
+          "command": "unzip -o /home/user/Desktop/my_todo_list.xmind -d /home/user/Desktop/my_todo_list_unzipped",
+          "shell": true
+        }
+      }
+    ],
+    "func": "check_direct_json_object",
+    "result": {
+      "type": "vm_command_line",
+      "command": "jq -c '.[0].rootTopic.children.attached | map({(.title): ((.children.attached // []) | map(.title))}) | add' /home/user/Desktop/my_todo_list_unzipped/content.json",
+      "shell": "true"
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": {
+          "Reading": ["Finish Gone with the Wind", "Borrow Wuthering Heights"],
+          "Writing": [
+            "Newspaper press release",
+            "Recommended words for Jason's novels"
+          ],
+          "Others": [
+            "Get my driver's license",
+            "Send a box of oranges to mom",
+            "Buy some steak"
+          ]
+        }
+      }
+    }
+  }
+}

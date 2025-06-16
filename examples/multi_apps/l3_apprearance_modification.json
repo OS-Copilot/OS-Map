@@ -1,0 +1,53 @@
+{
+  "id": "l3_apprearance_modification",
+  "snapshot": "Xmind",
+  "instruction": "I really hate the current appearance settings. Please adjust the color settings back to the default settings for me and turn off dock auto-hiding.",
+  "source": "",
+  "config": [
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/1000/bus'\ngsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false && gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 24 && gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-purple-dark' && gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark' && gsettings set org.gnome.desktop.interface icon-theme 'Yaru-purple-dark'",
+        "shell": true
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "google-chrome",
+          "--start-fullscreen",
+          "https://www.imdb.com/title/tt0051201"
+        ]
+      }
+    },
+    {
+      "type": "sleep",
+      "parameters": {
+        "seconds": 1
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["nautilus", "/home/user/.local"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["Xmind"],
+  "evaluator": {
+    "func": "exact_match",
+    "result": {
+      "type": "vm_command_line",
+      "command": "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/1000/bus'\ngsettings get org.gnome.shell.extensions.dash-to-dock dock-fixed && gsettings get org.gnome.desktop.interface gtk-theme && gsettings get org.gnome.desktop.interface color-scheme && gsettings get org.gnome.desktop.interface icon-theme",
+      "shell": "true"
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": "true\n'Yaru'\n'prefer-light'\n'Yaru'\n"
+      }
+    }
+  }
+}

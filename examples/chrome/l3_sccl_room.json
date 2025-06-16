@@ -1,0 +1,80 @@
+{
+  "id": "l3_sccl_room",
+  "snapshot": "chrome",
+  "instruction": "I would like to reserve a study room at the Northside Branch Library for tomorrow. Could you please direct me to the website to check for available spaces?",
+  "source": "",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": [
+          "https://www.sclibrary.org/",
+          "https://liquidspace.com/us/ca/santa-clara/mission-branch-library"
+        ]
+      }
+    },
+    {
+      "type": "chrome_click_element",
+      "parameters": {
+        "element_xpath": "//*[@id='xpp']/div[7]/div/div[2]/div/div/button"
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["nautilus", "/home/user"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": ["is_expected_active_tab", "check_direct_json_object"],
+    "result": [
+      {
+        "type": "active_url_from_accessTree",
+        "goto_prefix": "https://"
+      },
+      {
+        "type": "active_tab_html_parse",
+        "goto_prefix": "https://",
+        "category": "input",
+        "inputObject": {
+          "//*[@id='bookingDate']": "time"
+        }
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "type": "url",
+          "url": "https://liquidspace.com/us/ca/santa-clara/northside-library"
+        }
+      },
+      {
+        "type": "rule_relativeTime",
+        "rules": {
+          "relativeTime": {
+            "from": "tomorrow"
+          },
+          "expected": {
+            "time": "{Month} {DayD}, {Year}"
+          }
+        }
+      }
+    ]
+  }
+}

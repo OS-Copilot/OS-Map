@@ -1,0 +1,67 @@
+{
+  "id": "l4_modify_screenshot_key_binding",
+  "snapshot": "os",
+  "instruction": "I need to save the print preview of this document, but I'm not used to the current shortcut keys for screenshots. Please change it to Ctrl+Alt+A for me and then take a full-screenshot named \"print_preview.png\" for the print preview, keeping other windows closed.",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1fIHNzFm8JabWoLKOnxrFM722fQ1d_huK&export=download&authuser=0&confirm=t&uuid=d11a8dda-1e4e-4dc9-b05c-e6b47624dbf0&at=APZUnTVG0ViFnKJa00314wVr3uP9:1704185871014",
+            "path": "/home/user/Desktop/Dublin_Zoo_Intro.docx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/Dublin_Zoo_Intro.docx"
+      }
+    },
+    {
+      "type": "sleep",
+      "parameters": {
+        "seconds": 2
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["nautilus", "/usr/bin"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["os"],
+  "evaluator": {
+    "func": ["exact_match", "compare_images"],
+    "result": [
+      {
+        "type": "vm_command_line",
+        "command": "gsettings get org.gnome.shell.keybindings show-screenshot-ui",
+        "shell": true
+      },
+      {
+        "type": "vm_file",
+        "path": "/home/user/Pictures/Screenshots/print_preview.png",
+        "dest": "print_preview.png"
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "expected": "['<Primary><Alt>a']\n"
+        }
+      },
+      {
+        "type": "cloud_file",
+        "path": "https://drive.google.com/uc?id=1o4LlWdbRgLhX5vQORqePYwCJcQXTOokn&export=download",
+        "dest": "print_preview_gt.png"
+      }
+    ],
+    "options": [{}, { "binary": true, "threshold": 0.95 }]
+  }
+}

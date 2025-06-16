@@ -1,0 +1,105 @@
+{
+  "id": "l4_meeting_and_data",
+  "snapshot": "multi_apps",
+  "spec_snapshot": "_login_Derek",
+  "instruction": "Download the 2000 archived data. While waiting, send a meeting information (tomorrow 3 to 4 pm, room 1503) in the Rocket.Chat department group DATA in the same format as the previous messages. At the same time, add the schedule to the Calendar App with title \"Team Meeting\" and the right location. After downloading, unzip it and use the process_data.py script on the desktop to generate the chart \"weather_2000.png\", and then send it to Regina.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "rocket_send_messages",
+      "parameters": {
+        "from_name": "Jean",
+        "to_type": "room",
+        "to_name": "DATA",
+        "message": "*Team Meeting*\nTime: _Tomorrow 10:30-11:00_\nLocation: _Room 1211_"
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["rocketchat-desktop"]
+      }
+    },
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1ACHu88v4XOjvCk8hupKE2K8TKGmxkMeG&export=download&authuser=0&confirm=t&uuid=6cde7197-e277-4cf3-8951-508c3490b097&at=AIrpjvOpnQofsi5hvjf-GBw5OUjo:1738836832638",
+            "path": "/home/user/Desktop/process_data.py"
+          }
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": [
+          "https://www.ncei.noaa.gov/data/global-summary-of-the-day/archive/"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/415ef462-bed3-493a-ac36-ca8c6d23bf1b",
+  "related_apps": ["os", "chrome", "rocket.chat", "calendar"],
+  "evaluator": {
+    "func": ["check_one_of_equal", "check_one_of_equal", "compare_images"],
+    "result": [
+      {
+        "type": "rocketchat_message_content_in_mongodb",
+        "users": ["Derek"],
+        "room": "DATA"
+      },
+      {
+        "type": "calendar_events"
+      },
+      {
+        "type": "rocketchat_message_file_in_mongodb",
+        "users": ["Derek", "Regina"],
+        "fname": "weather_2000.png",
+        "dest": "weather_2000.png"
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "expected": "*Team Meeting*\nTime: _Tomorrow 15:00-16:00_\nLocation: _Room 1503_"
+        }
+      },
+      {
+        "type": "rule_relativeTime",
+        "rules": {
+          "relativeTime": {
+            "from": "tomorrow",
+            "to": "tomorrow"
+          },
+          "expected": {
+            "from": "{Year}{Month0D}{Day0D}T150000",
+            "to": "{Year}{Month0D}{Day0D}T160000",
+            "title": "Team Meeting",
+            "location": "Room 1503"
+          }
+        }
+      },
+      {
+        "type": "cloud_file",
+        "path": "https://drive.google.com/uc?id=1gh9vz2SBARg18fAz_yQWSuk-UWRfn4Wy&export=download",
+        "dest": "weather_2000_gt.png"
+      }
+    ],
+    "options": [{}, {}, { "binary": true, "threshold": "0.99" }]
+  }
+}

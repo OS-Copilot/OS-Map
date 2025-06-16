@@ -1,0 +1,39 @@
+{
+  "id": "l4_audio2text",
+  "snapshot": "multi_apps",
+  "spec_snapshot": "_audio2text",
+  "instruction": "Log in to Rocket.Chat, convert the three audio clips Mark sent you into one text paragraph in file story.txt on the desktop, and send the file to Mark as response.\n\nTips:\n\tThe Rocket.Chat account and password are recorded in the file on the desktop.\n\tUse https://huggingface.co/spaces/Xenova/whisper-web to perform speech recognition.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1OSGzdYsANxLkmYpzLzXfyHwepu0nNNoI&export=download",
+            "path": "/home/user/Desktop/RocketChat_account.txt"
+          }
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/415ef462-bed3-493a-ac36-ca8c6d23bf1b",
+  "related_apps": ["os", "chrome", "rocket.chat"],
+  "evaluator": {
+    "func": "compare_text_file",
+    "result": {
+      "type": "rocketchat_message_file_in_mongodb",
+      "users": ["Derek", "Mark"],
+      "fname": "story.txt",
+      "dest": "story.txt"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://drive.google.com/uc?id=1UKPlv_d7AFGKMDSON3tHWwAL_WMRI46L&export=download",
+      "dest": "story_gt.xlsx"
+    },
+    "options": {
+      "ignore_blanks": true
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "id": "l3_firefly_check_report",
+  "snapshot": "chrome",
+  "instruction": "This is my accounting management tool. Please find me the audit report of my transaction history in the cash wallet account for March and April 2025. If the page fails to load, refresh until it succeeds.",
+  "source": "",
+  "config": [
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "cd ~/docker/fireflyiii && docker compose up -d",
+        "shell": true
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "sleep",
+      "parameters": {
+        "seconds": 3
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": ["http://localhost:8888/"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": ["is_expected_active_tab"],
+    "result": [
+      {
+        "type": "active_url_from_accessTree",
+        "goto_prefix": "http://"
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "type": "url",
+          "url": "http://localhost:8888/reports/audit/5/20250301/20250430"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "id": "l4_xmind_schedule",
+  "snapshot": "multi_apps",
+  "spec_snapshot": "_login_Derek",
+  "instruction": "Mark wants to know my schedule for next week. Find a template called Weekly Class Schedule from the Xmind Mindmap Gallery, use it as a template, record the existing schedules for today and tomorrow in the my Gnome Calendar as Monday and Tuesday in the template, delete the redundant events and other days, and change the title to \"My Schedule\". Then export the mind map as a \"My Schedule.png\" and send it to Mark.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["rocketchat-desktop"]
+      }
+    },
+    {
+      "type": "sleep",
+      "parameters": {
+        "seconds": 3
+      }
+    },
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1v5ZDuorOwjjPJdHGZ0njhDPKVCAdnw-6&export=download&authuser=0&confirm=t&uuid=6cde7197-e277-4cf3-8951-508c3490b097&at=AEz70l7MJgeCe3Fe7RlnVio-dJo9:1743491482052",
+            "path": "/home/user/create_calendar_events.sh"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": ["bash", "create_calendar_events.sh"]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "xdotool mousemove 50 1030 click 1 sleep 0.2 key Tab Tab Tab Return"
+      }
+    }
+  ],
+  "trajectory": "trajectories/415ef462-bed3-493a-ac36-ca8c6d23bf1b",
+  "related_apps": ["chrome", "xmind", "rocket.chat", "calendar"],
+  "evaluator": {
+    "func": "compare_images",
+    "result": {
+      "type": "rocketchat_message_file_in_mongodb",
+      "users": ["Derek", "Mark"],
+      "fname": "My Schedule.png",
+      "dest": "My Schedule.png"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://drive.google.com/uc?id=1Ya1sC4rs2CVbuuyRW-E0jaDS8oWk5f0y&export=download",
+      "dest": "My Schedule_gt.png"
+    },
+    "options": { "binary": true }
+  }
+}

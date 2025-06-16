@@ -1,0 +1,79 @@
+{
+  "id": "l2_firefly_create_piggy_bank",
+  "snapshot": "chrome",
+  "instruction": "I decided to save money to buy a car from today. This is my account management tool. Please create a small piggy bank for me in my saving account and name it \"My Carrty Dream\". Deposit $1,000 now and $500 every month thereafter. If the page fails to load, refresh until it succeeds.",
+  "source": "",
+  "config": [
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "cd ~/docker/fireflyiii && docker compose up -d",
+        "shell": true
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "sleep",
+      "parameters": {
+        "seconds": 3
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": ["http://localhost:8888/"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": ["is_expected_active_tab", "check_direct_json_object"],
+    "result": [
+      {
+        "type": "active_url_from_accessTree",
+        "goto_prefix": "http://"
+      },
+      {
+        "type": "active_tab_html_parse",
+        "goto_prefix": "http://",
+        "category": "xpath",
+        "xpathObject": {
+          "//*[@id='piggy-sortable']/tbody/tr[2]/td[5]/a": "name",
+          "//*[@id='accountStatus']/tbody/tr/td[1]/a": "account",
+          "//*[@id='accountStatus']/tbody/tr/td[5]/span": "sofar"
+        }
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "type": "url",
+          "url": "http://localhost:8888/piggy-banks"
+        }
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "expected": {
+            "name": "My Carrty Dream",
+            "account": "Enterprise savings account",
+            "sofar": "$1000.00"
+          }
+        }
+      }
+    ]
+  }
+}

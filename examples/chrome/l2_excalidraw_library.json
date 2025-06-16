@@ -1,0 +1,72 @@
+{
+  "id": "l2_excalidraw_library",
+  "snapshot": "chrome",
+  "instruction": "I am going to draw a project architecture diagram. Please use the library I just downloaded, add a database first, then add a browser icon, and do not modify the position of the icon. Then export the current canvas (with two icons) to Desktop/Excalidraw_Design.png.",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": [
+          "https://libraries.excalidraw.com/?target=_excalidraw&referrer=https%3A%2F%2Fexcalidraw.com%2F&useHash=true&token=czc3mIWzo8OopcQ5opJAZ&theme=light&version=2&sort=default"
+        ]
+      }
+    },
+    {
+      "type": "sleep",
+      "parameters": {
+        "seconds": 2
+      }
+    },
+    {
+      "type": "chrome_execute_script",
+      "parameters": {
+        "tab_url": "https://libraries.excalidraw.com/?target=_excalidraw&referrer=https%3A%2F%2Fexcalidraw.com%2F&useHash=true&token=czc3mIWzo8OopcQ5opJAZ&theme=light&version=2&sort=default",
+        "script": "document.querySelector('#youritjang-software-architecture > div.actions > a.btn.primary.install-library').click();"
+      }
+    },
+    {
+      "type": "sleep",
+      "parameters": {
+        "seconds": 2
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "python3",
+          "-c",
+          "import pyautogui; pyautogui.press('enter');"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": "compare_images",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/Excalidraw_Design.png",
+      "dest": "excalidraw_lib.png"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://drive.usercontent.google.com/download?id=1fiYT4dmqrTZO0i_1ioS-Xd2t-j-euLd_&export=download",
+      "dest": "excalidraw_lib_gt.png"
+    },
+    "options": { "binary": true, "threshold": 0.6 }
+  }
+}

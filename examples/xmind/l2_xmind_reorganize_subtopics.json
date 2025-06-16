@@ -1,0 +1,79 @@
+{
+  "id": "l2_xmind_reorganize_subtopics",
+  "snapshot": "Xmind",
+  "instruction": "Reorganize the nodes under the theme of 'Overcoming Mental Block' into two subtopics: 'Physical Methods' and 'Mental Methods'. The original subtopics are logically classified under these two new ones.",
+  "source": "",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1TTCB44BkwkKl1VvsQ2ad9hTXpaHRzkTJ&export=download",
+            "path": "/home/user/Documents/Brainstorm_Alone.xmind"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Documents/Brainstorm_Alone.xmind"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["Xmind"],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "Xmind"
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 2
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": "unzip -o /home/user/Documents/Brainstorm_Alone.xmind -d /home/user/Documents/Brainstorm_Alone_unzipped",
+          "shell": true
+        }
+      }
+    ],
+    "func": "check_direct_json_object",
+    "result": {
+      "type": "vm_command_line",
+      "command": "jq -r '[.[0].rootTopic.children.attached[] | select(.title == \"Getting Over \\nMental Block\") | .children.attached[] | {title: .title, hasGoForAWalk: any(.children?.attached[]?; .title | test(\"Go for a walk\"; \"i\")), hasTakeABreak: any(.children?.attached[]?; .title | test(\"Take a break\"; \"i\")), hasTalkToYourself: any(.children?.attached[]?; .title | test(\"Talk to yourself\"; \"i\")), hasListenToMusic: any(.children?.attached[]?; .title | test(\"Listen to music\"; \"i\"))} | if .title | test(\"Physical Methods\"; \"i\") then {hasPhysicalMethods: \"true\", hasGoForAWalk: .hasGoForAWalk, hasTakeABreak: .hasTakeABreak} elif .title | test(\"Mental Methods\"; \"i\") then {hasMentalMethods: \"true\", hasTalkToYourself: .hasTalkToYourself, hasListenToMusic: .hasListenToMusic} else empty end] | {hasPhysicalMethods: (any(.[]; .hasPhysicalMethods == \"true\") | tostring), hasGoForAWalk: (any(.[]; .hasGoForAWalk) | tostring), hasTakeABreak: (any(.[]; .hasTakeABreak) | tostring), hasMentalMethods: (any(.[]; .hasMentalMethods == \"true\") | tostring), hasTalkToYourself: (any(.[]; .hasTalkToYourself) | tostring), hasListenToMusic: (any(.[]; .hasListenToMusic) | tostring)}' /home/user/Documents/Brainstorm_Alone_unzipped/content.json",
+      "shell": "true"
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": {
+          "hasPhysicalMethods": "true",
+          "hasGoForAWalk": "true",
+          "hasTakeABreak": "true",
+          "hasMentalMethods": "true",
+          "hasTalkToYourself": "true",
+          "hasListenToMusic": "true"
+        }
+      }
+    }
+  }
+}

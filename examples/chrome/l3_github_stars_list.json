@@ -1,0 +1,53 @@
+{
+  "id": "l3_github_stars_list",
+  "snapshot": "chrome",
+  "instruction": "Log in to my github account and open my Stars. Stay in this page and open the recently starred repo in a new tab.",
+  "source": "",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": ["is_expected_url_pattern_match", "include_expected_url"],
+    "result": [
+      {
+        "type": "active_url_from_accessTree",
+        "goto_prefix": "https://"
+      },
+      {
+        "type": "open_tabs_info"
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "expected": ["https://github.com/\\w+\\?tab=stars"]
+        }
+      },
+      {
+        "type": "active_tab_html_parse",
+        "goto_prefix": "https://",
+        "category": "xpath",
+        "xpathObject": {
+          "/html/body/div[1]/div[5]/main/div/div/div[2]/turbo-frame/div/turbo-frame/div/div/div[2]/div[1]/h3/a": {
+            "name": "expected",
+            "attribute": "href"
+          }
+        }
+      }
+    ]
+  }
+}

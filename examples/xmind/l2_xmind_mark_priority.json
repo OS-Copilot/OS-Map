@@ -1,0 +1,76 @@
+{
+  "id": "l2_xmind_mark_priority",
+  "snapshot": "Xmind",
+  "instruction": "I would like to mark the priorities of several important elements in this mind map. I will first mark the following three: Goal Setting is the most important, Time Management is the second, and Active Learning Strategies is the third. Please help me complete this.",
+  "source": "",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1_9zQJvOpDOYrwRWgrmjWGVzgY301eg1R&export=download",
+            "path": "/home/user/Documents/Study_Plan.xmind"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Documents/Study_Plan.xmind"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["Xmind"],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "Xmind"
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 2
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": "unzip -o /home/user/Documents/Study_Plan.xmind -d /home/user/Documents/Study_Plan_unzipped",
+          "shell": true
+        }
+      }
+    ],
+    "func": "check_direct_json_object",
+    "result": {
+      "type": "vm_command_line",
+      "command": "jq '{ \"Goal Setting\": (.[] | .rootTopic.children.attached[] | select(.title == \"Goal Setting\") | .markers[]?.markerId // \"\"), \"Time Management\": (.[] | .rootTopic.children.attached[] | select(.title == \"Time Management\") | .markers[]?.markerId // \"\"), \"Resource Gathering\": (.[] | .rootTopic.children.attached[] | select(.title == \"Resource Gathering\") | .markers[]?.markerId // \"\") }' /home/user/Documents/Study_Plan_unzipped/content.json",
+      "shell": "true"
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": {
+          "Goal Setting": "priority-1",
+          "Time Management": "priority-2",
+          "Resource Gathering": "priority-3"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "id": "l4_titanic_visualization",
+  "snapshot": "multi_apps",
+  "instruction": "Complete this script to visualize the joint distribution of age and fare from the Titanic dataset, separated by pclass. 1. Ensure the density for each pclass reflects its own sample distribution. 2. Overlay a scatter plot of survivors with label \"Survived\" and α=0.4. 3. You only need to write the drawing code as required above, do not modify other options not mentioned. 4. The reference document is already opened. After the visualization is completed, add the image to the corresponding slide of the pptx file on the desktop.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1fUONDNGTBt6uinzGefEmF81n6qP3rVMY&export=download",
+            "path": "/home/user/Desktop/titanic_visualization.pptx"
+          },
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1FpScVqqhTiZ3Ce6oW6ngYtj5tS0G5ZjU&export=download&authuser=0&uuid=62205097-ed46-4d2b-80c2-31dbf418193c&at=APcmpow5JuOe2c1clwMqThFxobP5:1744095368960&confirm=t",
+            "path": "/home/user/Desktop/titanic_visualization.py"
+          }
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": [
+          "https://seaborn.pydata.org/generated/seaborn.set_theme.html",
+          "https://seaborn.pydata.org/generated/seaborn.kdeplot.html",
+          "https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html",
+          "https://matplotlib.org/stable/plot_types/index.html"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["code", "/home/user/Desktop/titanic_visualization.py"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/415ef462-bed3-493a-ac36-ca8c6d23bf1b",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": "compare_images",
+    "result": {
+      "type": "image_in_slide",
+      "ppt_file_path": "/home/user/Desktop/titanic_visualization.pptx",
+      "slide_index": 3,
+      "dest": "titanic_visualization.png"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://drive.google.com/uc?id=1eTO6X1UOG9G-NbSCq0Wdn_MqCJrrOvN6&export=download",
+      "dest": "titanic_visualization_gt.png"
+    },
+    "options": { "binary": true }
+  }
+}

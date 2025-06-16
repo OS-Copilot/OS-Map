@@ -1,0 +1,78 @@
+{
+  "id": "l1_change_font",
+  "source": "0e763496-b6bb-4508-a427-fad0b6c3e195",
+  "snapshot": "libreoffice_writer",
+  "instruction": "Change the font to \"Times New Roman\" throughout the text. The steps are as follows: 1. Select all text by pressing Ctrl + A; 2. Click the font dropdown menu in the toolbar; 3. Type \"Times New Roman\" in the search bar and press the Enter key; 4. Press the \"Save\" buttom to save the change; 4. Close this file.",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://drive.usercontent.google.com/download?id=1fIHNzFm8JabWoLKOnxrFM722fQ1d_huK&export=download&authuser=0&confirm=t&uuid=d11a8dda-1e4e-4dc9-b05c-e6b47624dbf0&at=APZUnTVG0ViFnKJa00314wVr3uP9:1704185871014",
+            "path": "/home/user/Desktop/Dublin_Zoo_Intro.docx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/Dublin_Zoo_Intro.docx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["libreoffice_writer"],
+  "evaluator": {
+    "func": ["compare_font_names", "check_step_actions"],
+    "conj": "and",
+    "result": [
+      {
+        "type": "vm_file",
+        "path": "/home/user/Desktop/Dublin_Zoo_Intro.docx",
+        "dest": "Dublin_Zoo_Intro.docx"
+      },
+      { "type": "step_actions" }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "font_name": "Times New Roman"
+        }
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "expected": [
+            {
+              "action_type": "HOTKEY",
+              "parameters": { "keys": ["ctrl", "a"] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [350, 132, 535, 162] }
+            },
+            {
+              "action_type": "TYPING",
+              "parameters": { "text": "Times New Roman" }
+            },
+            {
+              "action_type": "PRESS",
+              "parameters": { "key": "enter" }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [162, 98, 193, 119] }
+            },
+            {
+              "action_type": "CLICK",
+              "parameters": { "bbox": [1890, 32, 1911, 53] }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

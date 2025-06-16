@@ -1,0 +1,56 @@
+{
+  "id": "l3_w3schools_color_rgb",
+  "snapshot": "chrome",
+  "instruction": "I am working on color synthesis. Please help me select a color whose R, G, B components are hexadecimal d3, aa, 79 respectively, and copy its rgb(x, x, x) format representation to the clipboard.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": ["https://www.w3schools.com/colors/colors_rgb.asp"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/415ef462-bed3-493a-ac36-ca8c6d23bf1b",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": ["is_in_vm_clickboard", "webpage_contains"],
+    "result": [
+      {
+        "type": "vm_command_line",
+        "command": "xsel --clipboard --output",
+        "shell": "true"
+      },
+      {
+        "type": "active_tab_info",
+        "goto_prefix": "https://www."
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "expected": "rgb(211, 170, 121)"
+        }
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "expected": "rgb(211, 170, 121)"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "id": "l3_kaggle_download_dataset",
+  "snapshot": "chrome",
+  "instruction": "I am learning data analysis and machine learning and would like to find a related competition on kaggle to practice. I heard that Daily Stock Yahoo Finance Data is very suitable for practice. Please find a Yahoo Finance Dataset from 2018 to 2023 for me. Download it to ~/projects/machine_learning/yahoo_finance and rename it to dataset.xlsx.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "google-chrome",
+          "--window-position=800,300",
+          "--window-size=1024,720"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["code", "/home/user"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["nautilus", "/home/user/Desktop"]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": "compare_table",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/projects/machine_learning/yahoo_finance/dataset.xlsx",
+      "dest": "dataset.xlsx"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://drive.google.com/uc?id=1vukl6WU8wzjdJ4triuT6Qe0fzrsGhbCZ&export=download",
+      "dest": "dataset_gt.xlsx"
+    },
+    "options": {
+      "rules": [
+        {
+          "type": "sheet_data",
+          "sheet_idx0": 0,
+          "sheet_idx1": "EI0"
+        }
+      ]
+    }
+  }
+}

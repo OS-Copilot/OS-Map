@@ -1,0 +1,55 @@
+{
+  "id": "l3_littlealchemy2_wall",
+  "snapshot": "chrome",
+  "instruction": "I'm playing this fun game called Little Alchemy. Can you make a 'wall' using the starting materials on the right? Hint: Water + Earth + Fire.",
+  "source": "",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["google-chrome", "--remote-debugging-port=1337"]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": ["socat", "tcp-listen:9222,fork", "tcp:localhost:1337"]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": ["https://littlealchemy2.com/"]
+      }
+    },
+    {
+      "type": "chrome_execute_script",
+      "parameters": {
+        "tab_url": "https://littlealchemy2.com/",
+        "script": "document.querySelector('#loading-screen > div > div').click();"
+      }
+    },
+    {
+      "type": "chrome_check_inited",
+      "parameters": {
+        "tab_url": "https://littlealchemy2.com/",
+        "script": "document.querySelector('#library > div:nth-child(1) > div').textContent === ' air '"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": ["chrome"],
+  "evaluator": {
+    "func": "webpage_contains",
+    "result": {
+      "type": "active_tab_info",
+      "goto_prefix": "https://"
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": "wall"
+      }
+    }
+  }
+}
