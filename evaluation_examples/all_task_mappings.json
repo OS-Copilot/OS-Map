@@ -1,0 +1,1088 @@
+{
+  "chrome": {
+    "0d8b7de3-e8de-4d86-b9fd-dd2dce58a217": [
+      "l2_natural_product_db",
+      "Data Retrieval"
+    ],
+    "2ae9ba84-3a0d-4d4c-8338-3a1478dc5fe3": [
+      "l2_change_chrome_username",
+      "Profile"
+    ],
+    "6c4c23a1-42a4-43cc-9db1-2f86ff3738cc": ["l2_find_flights_delta", "Ticket"],
+    "7a5a7856-f1b6-42a4-ade9-1ca81ca0f263": [
+      "l2_add_bookmark",
+      "Information Organization"
+    ],
+    "7b6c7e24-c58a-49fc-a5bb-d57b80e5b4c3": [
+      "l2_clean_cookie",
+      "App Configuration"
+    ],
+    "7f52cab9-535c-4835-ac8c-391ee64dc930": [
+      "l2_search_coffee_maker",
+      "Searching"
+    ],
+    "9f3f70fc-5afc-4958-a7b7-3bb4fcb01805": ["l2_search_nike", "Searching"],
+    "030eeff7-b492-4218-b312-701ec99ee0cc": [
+      "l2_do_not_track",
+      "App Configuration"
+    ],
+    "44ee5668-ecd5-4366-a6ce-c1c9b8d4e938": [
+      "l2_remove_youtube_history",
+      "App Configuration"
+    ],
+    "82bc8d6a-36eb-4d2d-8801-ef714fb1e55a": ["l3_find_filght_qatar", "Ticket"],
+    "121ba48f-9e17-48ce-9bc6-a4fb17a7ebba": [
+      "l2_find_dota2_dlc",
+      "Game Information"
+    ],
+    "368d9ba4-203c-40c1-9fa3-da2f1430ce63": [
+      "l2_monthly_weather_accuweather",
+      "Weather"
+    ],
+    "480bcfea-d68f-4aaa-a0a9-2589ef319381": [
+      "l2_disable_chrome_2023_UI",
+      "Appearance"
+    ],
+    "1704f00f-79e6-43a7-961b-cedd3724d5fd": ["l2_rent_cars", "Cars"],
+    "2888b4e6-5b47-4b57-8bf5-c73827890774": ["l2_find_tshirts", "Searching"],
+    "9656a811-9b5b-4ddf-99c7-5117bcef0626": [
+      "l2_enable_chrome_safety",
+      "App Configuration"
+    ],
+    "35253b65-1c19-4304-8aa4-6884b8218fc0": [
+      "l2_add_shortcut_on_desktop",
+      "Information Organization"
+    ],
+    "82279c77-8fc6-46f6-9622-3ba96f61b477": ["l2_find_ecars", "Cars"],
+    "99146c54-4f37-4ab8-9327-5f3291665e1e": [
+      "l2_chrome_auto_delete_cookies",
+      "App Configuration"
+    ],
+    "3299584d-8f11-4457-bf4c-ce98f7600250": [
+      "l2_change_default_tab",
+      "App Configuration"
+    ],
+    "47543840-672a-467d-80df-8f7c3b9788c9": ["l2_find_car_budget", "Cars"],
+    "59155008-fe71-45ec-8a8f-dc35497b6aa8": ["l2_baby_names", "Data Retrieval"],
+    "a728a36e-8bf1-4bb6-9a03-ef039a5233f0": [
+      "l2_driver_license_reqs",
+      "Data Retrieval"
+    ],
+    "af630914-714e-4a24-a7bb-f9af687d3b91": [
+      "l2_change_chrome_fontsize",
+      "Appearance"
+    ],
+    "b4f95342-463e-4179-8c3f-193cd7241fb2": [
+      "l3_find_available_day",
+      "Accommodation"
+    ],
+    "b7895e80-f4d1-4648-bee0-4eb45a6f1fa8": [
+      "l3_find_hotel_tripadvisor",
+      "Accommodation"
+    ],
+    "b070486d-e161-459b-aa2b-ef442d973b92": [
+      "l2_drug_side_effect",
+      "Data Retrieval"
+    ],
+    "c1fa57f3-c3db-4596-8f09-020701085416": [
+      "l3_baggage_fee_calculator",
+      "Ticket"
+    ],
+    "cabb3bae-cccb-41bd-9f5d-0f3a9fecd825": [
+      "l2_search_spider_man_toys",
+      "Searching"
+    ],
+    "da46d875-6b82-4681-9284-653b0c7ae241": [
+      "l3_transportation_access_pass",
+      "Citizen Service"
+    ],
+    "e1e75309-3ddb-4d09-92ec-de869c928143": ["l2_print_to_pdf", "Files"],
+    "f0b971a1-6831-4b9b-a50e-22a6e47f45ba": [
+      "l3_super_bowl_scores",
+      "Searching"
+    ],
+    "f3b19d1e-2d48-44e9-b4e1-defcae1a0197": ["l2_seatgeek_help", "Ticket"],
+    "f5d96daf-83a8-4c86-9686-bada31fc66ab": ["l2_compare_iphones", "Searching"],
+    "f79439ad-3ee8-4f99-a518-0eb60e5652b0": [
+      "l3_find_flight_ryanair",
+      "Ticket"
+    ],
+    "fc6d8143-9452-4171-9459-7f515143419a": ["l2_find_flight_status", "Ticket"],
+    "l1_bringback_tab": ["l1_bringback_tab", "Information Organization"],
+    "l1_browser_password_store": ["l1_chrome_password_store", "Data Retrieval"],
+    "l1_chrome_bookmark_folder": [
+      "l1_chrome_bookmark_folder",
+      "Information Organization"
+    ],
+    "l1_use_bing_as_default": ["l1_use_bing_as_default", "App Configuration"],
+    "l2_beijing_weather": ["l2_beijing_weather", "Weather"],
+    "l2_decathlon_add_to_cart": ["l2_decathlon_add_to_cart", "Ordering"],
+    "l2_decathlon_filter_bikes": ["l2_decathlon_filter_bikes", "Searching"],
+    "l2_duolingo": ["l2_duolingo", "Languages"],
+    "l2_eea_paris": ["l2_eea_paris", "Map Navigation"],
+    "l2_excalidraw_bgcolor": ["l2_excalidraw_bgcolor", "Diagram Drawing"],
+    "l2_excalidraw_font": ["l2_excalidraw_font", "Diagram Drawing"],
+    "l2_excalidraw_library": ["l2_excalidraw_library", "Diagram Drawing"],
+    "l2_geogebra_fitline_intersection": [
+      "l2_geogebra_fitline_intersection",
+      "Math"
+    ],
+    "l2_geogebra_intersection": ["l2_geogebra_intersection", "Math"],
+    "l2_google_map_route_planning": [
+      "l2_google_map_route_planning",
+      "Map Navigation"
+    ],
+    "l2_kaggle_find_user_notebook": [
+      "l2_kaggle_find_user_notebook",
+      "Community"
+    ],
+    "l2_littlealchemy2_hint": ["l2_littlealchemy2_hint", "Minigames Playing"],
+    "l2_minesweeper_create": ["l2_minesweeper_create", "Minigames Playing"],
+    "l2_minesweeper_toy": ["l2_minesweeper_toy", "Minigames Playing"],
+    "l2_sccl_wifi": ["l2_sccl_wifi", "Public Space"],
+    "l2_spotify_paste_embed": ["l2_spotify_paste_embed", "Music"],
+    "l2_steam_filter_games": ["l2_steam_filter_games", "Game Information"],
+    "l2_ukgov_stuvisa": ["l2_ukgov_stuvisa", "Citizen Service"],
+    "l2_w3schools_code_game": ["l2_w3schools_code_game", "Minigames Playing"],
+    "l2_w3schools_r_code": ["l2_w3schools_r_code", "Coding"],
+    "l2_weather_Kyoto": ["l2_weather_Kyoto", "Weather"],
+    "l3_2048_16": ["l3_2048_16", "Minigames Playing"],
+    "l3_airbnb": ["l3_airbnb", "Accommodation"],
+    "l3_bing_firefox": ["l3_bing_firefox", "App Configuration"],
+    "l3_chrome_print_to_pdf": ["l3_chrome_print_to_pdf", "Files"],
+    "l3_decathlon_modify_size": ["l3_decathlon_modify_size", "Ordering"],
+    "l3_dlai_o1": ["l3_dlai_o1", "Online Courses"],
+    "l3_dlai_speed": ["l3_dlai_speed", "Online Courses"],
+    "l3_excalidraw_earse": ["l3_excalidraw_earse", "Diagram Drawing"],
+    "l3_github_stars_list": ["l3_github_stars_list", "Community"],
+    "l3_khan_comments": ["l3_khan_comments", "Online Courses"],
+    "l3_khan_geom": ["l3_khan_geom", "Online Courses"],
+    "l3_khan_quiz": ["l3_khan_quiz", "Online Courses"],
+    "l3_littlealchemy2_ocean": ["l3_littlealchemy2_ocean", "Minigames Playing"],
+    "l3_littlealchemy2_wall": ["l3_littlealchemy2_wall", "Minigames Playing"],
+    "l3_llama2c_network_off": ["l3_llama2c_network_off", "Community"],
+    "l3_macbookair": ["l3_macbookair", "Ordering"],
+    "l3_minesweeper_display": ["l3_minesweeper_display", "Minigames Playing"],
+    "l3_satellite_windspeed_radar": ["l3_satellite_windspeed_radar", "Weather"],
+    "l3_sccl_room": ["l3_sccl_room", "Public Space"],
+    "l3_spotify_find_albums": ["l3_spotify_find_albums", "Music"],
+    "l3_spotify_find_songs": ["l3_spotify_find_songs", "Music"],
+    "l3_steam_developer": ["l3_steam_developer", "Game Information"],
+    "l3_steam_topreleases": ["l3_steam_topreleases", "Game Information"],
+    "l3_w3schools_color_rgb": ["l3_w3schools_color_rgb", "Coding"],
+    "l3_w3schools_find_scipy": [
+      "l3_w3schools_find_scipy",
+      "Technical Tutorials"
+    ],
+    "l3_w3schools_java": ["l3_w3schools_java", "Technical Tutorials"],
+    "l4_create_meeting": ["l4_create_meeting", "Meeting"]
+  },
+  "firefly": {
+    "l2_create_debt": ["l2_create_debt", "Transaction Management"],
+    "l2_firefly_create_budget": [
+      "l2_firefly_create_budget",
+      "Transaction Management"
+    ],
+    "l2_firefly_create_chinese_account": [
+      "l2_firefly_create_chinese_account",
+      "Transaction Management"
+    ],
+    "l2_firefly_create_piggy_bank": [
+      "l2_firefly_create_piggy_bank",
+      "Transaction Management"
+    ],
+    "l3_firefly_check_report": [
+      "l3_firefly_check_report",
+      "Transaction Management"
+    ]
+  },
+  "foliate": {
+    "l2_foliate_bgcolor": ["l2_foliate_bgcolor", "Appearance"],
+    "l2_foliate_bookmark_jump": ["l2_foliate_bookmark_jump", "E-book"],
+    "l2_foliate_font": ["l2_foliate_font", "Appearance"],
+    "l2_foliate_progress": ["l2_foliate_progress", "E-book"],
+    "l2_foliate_remove_shakespeare": [
+      "l2_foliate_remove_shakespeare",
+      "E-book"
+    ],
+    "l3_foliate_continue_reading": ["l3_foliate_continue_reading", "E-book"]
+  },
+  "gimp": {
+    "2a729ded-3296-423d-aec4-7dd55ed5fbb3": [
+      "l2_gimp_image_transp_bg",
+      "Image Editing"
+    ],
+    "7a4deb26-d57d-4ea9-9a73-630f66a7b568": [
+      "l2_gimp_turn_down_brightness",
+      "Image Editing"
+    ],
+    "72f83cdc-bf76-4531-9a1b-eb893a13f8aa": [
+      "l2_gimp_mirror_image",
+      "Image Editing"
+    ],
+    "77b8ab4d-994f-43ac-8930-8ca087d7c4b4": [
+      "l2_gimp_export_and_rename",
+      "Files"
+    ],
+    "734d6579-c07d-47a8-9ae2-13339795476b": [
+      "l2_gimp_set_green_background",
+      "Image Editing"
+    ],
+    "7767eef2-56a3-4cea-8c9f-48c070c7d65b": [
+      "l2_gimp_light_theme",
+      "Appearance"
+    ],
+    "a746add2-cab0-4740-ac36-c3769d9bfb46": [
+      "l2_gimp_open_vignette_filter",
+      "Image Editing"
+    ],
+    "b148e375-fe0b-4bec-90e7-38632b0d73c2": [
+      "l2_gimp_add_layer",
+      "Image Editing"
+    ],
+    "d16c99dc-2a1e-46f2-b350-d97c86c85c15": [
+      "l2_gimp_resize_image",
+      "Image Editing"
+    ],
+    "d52d6308-ec58-42b7-a2c9-de80e4837b2b": [
+      "l2_remove_dock",
+      "System Settings"
+    ],
+    "f4aec372-4fb0-4df5-a52b-79e0e2a5d6ce": [
+      "l2_gimp_place_triangel",
+      "Image Editing"
+    ],
+    "f723c744-e62c-4ae6-98d1-750d3cd7d79d": [
+      "l2_gimp_boost_contrast",
+      "Image Editing"
+    ],
+    "l1_increase_sat": ["l1_gimp_increase_sat", "Image Editing"]
+  },
+  "libreoffice_calc": {
+    "0bf05a7d-b28b-44d2-955a-50b41e24012a": ["l2_calc_fill_zeros", "Tabling"],
+    "0cecd4f3-74de-457b-ba94-29ad6b5dafb6": [
+      "l2_calc_rename_and_copy_sheets",
+      "Tabling"
+    ],
+    "3a7c8185-25c1-4941-bd7b-96e823c9f21f": [
+      "l2_calc_sort_and_vis",
+      "Visualization"
+    ],
+    "4e6fcf72-daf3-439f-a232-c434ce416af6": ["l2_calc_ages", "Tabling"],
+    "4f07fbe9-70de-4927-a4d5-bb28bc12c52c": [
+      "l2_calc_use_numeric_values",
+      "Tabling"
+    ],
+    "5d353deb-c4b0-4126-a99e-5490817b48cb": [
+      "l2_calc_indicator_summary",
+      "Visualization"
+    ],
+    "6e99a1ad-07d2-4b66-a1ce-ece6d99c20a5": [
+      "l2_calc_keep_two_decimals",
+      "Tabling"
+    ],
+    "7a4e4bc8-922c-4c84-865c-25ba34136be1": [
+      "l2_calc_reorder_columns",
+      "Tabling"
+    ],
+    "7e429b8d-a3f0-4ed0-9b58-08957d00b127": ["l2_calc_lookup_table", "Tabling"],
+    "8fa9072b-ea9b-4679-84c6-420f3fe4c697": [
+      "l2_calc_summer_sales",
+      "Visualization"
+    ],
+    "82a95e94-6344-415d-b212-37241610c7fd": [
+      "l2_calc_sumup_and_pie_chart",
+      "Visualization"
+    ],
+    "97dd78c1-4ba3-4bfd-bbd4-c938532dbcc6": [
+      "l2_calc_employee_sales",
+      "Tabling"
+    ],
+    "0326d92d-d218-48a8-9ca1-981cd6d064c7": [
+      "l2_calc_revenue_vis",
+      "Visualization"
+    ],
+    "347ef137-7eeb-4c80-a3bb-0951f26a8aff": [
+      "l2_calc_bar_chart",
+      "Visualization"
+    ],
+    "4188d3a4-077d-46b7-9c86-23e1a036f6c1": [
+      "l2_calc_freeze_headers",
+      "Tabling"
+    ],
+    "6054afcb-5bab-4702-90a0-b259b5d3217c": ["l2_calc_hide_na", "Tabling"],
+    "12382c62-0cd1-4bf2-bdc8-1d20bf9b2371": [
+      "l2_calc_sales_and_COGS",
+      "Visualization"
+    ],
+    "163789f0-c895-4a50-8207-17cbdd56ec38": [
+      "l2_calc_product_revenue",
+      "Visualization"
+    ],
+    "37608790-6147-45d0-9f20-1137bb35703d": [
+      "l2_calc_separate_fields",
+      "Tabling"
+    ],
+    "a01fbce3-2793-461f-ab86-43680ccbae25": [
+      "l2_calc_comma_decimal",
+      "Tabling"
+    ],
+    "aa3a8974-2e85-438b-b29e-a64df44deb4b": [
+      "l3_calc_as_onepage_pdf",
+      "Tabling"
+    ],
+    "abed40dc-063f-4598-8ba5-9fe749c0615d": ["l2_calc_unique_names", "Tabling"],
+    "b6e9778c-11b3-455f-b720-655048787484": [
+      "l2_calc_pie_chart_revenue",
+      "Visualization"
+    ],
+    "d681960f-7bc3-4286-9913-a8812ba3261a": [
+      "l2_calc_grade_students",
+      "Tabling"
+    ],
+    "eb03d19a-b88d-4de4-8a64-ca0ac66f426b": [
+      "l2_calc_transpose_table",
+      "Tabling"
+    ],
+    "ecb0df7a-4e8d-4a03-b162-053391d3afaf": [
+      "l2_calc_as_drop_down_list",
+      "Tabling"
+    ],
+    "f654bf9a-dea2-472d-a877-edeeb12d7462": [
+      "l2_calc_week_revenue_line_chart",
+      "Visualization"
+    ],
+    "l1_convert_csv": ["l1_calc_ods_to_csv", "Files"],
+    "l3_file_passwd_sum": ["l3_calc_file_passwd_sum", "Tabling"]
+  },
+  "libreoffice_impress": {
+    "0f84bef9-9790-432e-92b7-eece357603fb": [
+      "l2_impress_disable_presenter",
+      "Presentation"
+    ],
+    "2b94c692-6abb-48ae-ab0b-b3e8a19cb340": [
+      "l2_impress_move_image",
+      "Presentation"
+    ],
+    "2cd43775-7085-45d8-89fa-9e35c0a915cf": [
+      "l2_impress_auto_save",
+      "Presentation"
+    ],
+    "5d901039-a89c-4bfb-967b-bf66f4df075e": [
+      "l2_impress_stretch_image",
+      "Presentation"
+    ],
+    "9ec204e4-f0a3-42f8-8458-b772a6797cab": [
+      "l2_impress_duplicate_slides",
+      "Presentation"
+    ],
+    "358aa0a7-6677-453f-ae35-e440f004c31e": [
+      "l2_impress_batch_change_fonts",
+      "Presentation"
+    ],
+    "455d3c66-7dc6-4537-a39a-36d3e9119df7": ["l2_impress_save_as_png", "Files"],
+    "21760ecb-8f62-40d2-8d85-0cee5725cb72": [
+      "l2_impress_slide_transition",
+      "Presentation"
+    ],
+    "a097acff-6266-4291-9fbd-137af7ecd439": [
+      "l2_impress_save_on_desktop",
+      "Files"
+    ],
+    "a669ef01-ded5-4099-9ea9-25e99b569840": [
+      "l3_impress_change_indent",
+      "Presentation"
+    ],
+    "ac9bb6cb-1888-43ab-81e4-a98a547918cd": [
+      "l2_impress_slide_number_color",
+      "Presentation"
+    ],
+    "af23762e-2bfd-4a1d-aada-20fa8de9ce07": [
+      "l2_impress_summary_slide",
+      "Presentation"
+    ],
+    "c59742c0-4323-4b9d-8a02-723c251deaa0": [
+      "l2_impress_insert_audio",
+      "Presentation"
+    ],
+    "ce88f674-ab7a-43da-9201-468d38539e4a": [
+      "l2_impress_upright_slides",
+      "Presentation"
+    ],
+    "ef9d12bd-bcee-4ba0-a40e-918400f43ddf": [
+      "l2_impress_slide_panel",
+      "Presentation"
+    ],
+    "l1_add_content": ["l1_impress_add_content", "Presentation"],
+    "l1_add_note_bold_title": [
+      "l1_impress_add_note_bold_title",
+      "Presentation"
+    ],
+    "l1_add_right_aligned_title": [
+      "l1_impress_add_right_aligned_title",
+      "Presentation"
+    ],
+    "l1_change_background": ["l1_impress_change_background", "Presentation"],
+    "l1_change_bk_title": ["l1_impress_change_bk_title", "Presentation"],
+    "l1_insert_table": ["l1_impress_insert_table", "Presentation"]
+  },
+  "libreoffice_writer": {
+    "0b17a146-2934-46c7-8727-73ff6b6483e8": ["l2_writer_subscript", "Writing"],
+    "0e47de2a-32e0-456c-a366-8c607ef7a9d2": [
+      "l2_writer_add_page_number",
+      "Writing"
+    ],
+    "6a33f9b9-0a56-4844-9c3f-96ec3ffb3ba2": [
+      "l2_writer_remove_highlights",
+      "Writing"
+    ],
+    "6ada715d-3aae-4a32-a6a7-429b2e43fb93": [
+      "l2_writer_copy_images",
+      "Writing"
+    ],
+    "41c621f7-3544-49e1-af8d-dafd0f834f75": [
+      "l2_writer_highlight_annos",
+      "Writing"
+    ],
+    "88fe4b2d-3040-4c70-9a70-546a47764b48": [
+      "l2_writer_add_new_lines",
+      "Writing"
+    ],
+    "663876c7-3471-43db-ba51-f410b13d9d7d": [
+      "l2_writer_insert_equation",
+      "Writing"
+    ],
+    "0810415c-bde4-4443-9047-d5f70165a697": [
+      "l2_writer_double_line_spacing",
+      "Writing"
+    ],
+    "adf5e2c3-64c7-4644-b7b6-d2f0167927e7": [
+      "l2_writer_add_reference",
+      "Writing"
+    ],
+    "b21acd93-60fd-4127-8a43-2f5178f4a830": [
+      "l2_writer_space_and_fonsize",
+      "Writing"
+    ],
+    "d53ff5ee-3b1a-431e-b2be-30ed2673079b": ["l2_writer_lowercase", "Writing"],
+    "f178a4a9-d090-4b56-bc4c-4b72a61a035d": [
+      "l2_writer_default_font",
+      "Writing"
+    ],
+    "l1_add_blank_page": ["l1_writer_add_blank_page", "Writing"],
+    "l1_change_font": ["l1_writer_change_font", "Writing"],
+    "l1_export_pdf": ["l1_writer_export_pdf", "Writing"],
+    "l1_force_quit": ["l1_writer_force_quit", "System Resources"],
+    "l1_italic_to_14pt": ["l1_writer_italic_to_14pt", "Writing"],
+    "l3_readonly_file": ["l3_writer_align_heading_readonly", "Writing"],
+    "l4_formatting": ["l4_writer_formatting", "Writing"]
+  },
+  "multi_apps": {
+    "0c825995-5b70-4526-b663-113f4c999dd2": [
+      "l4_envir_policy_report",
+      "Information Organization"
+    ],
+    "0e5303d4-8820-42f6-b18d-daf7e633de21": [
+      "l3_download_slides",
+      "Technical Tutorials"
+    ],
+    "00fa164e-2612-4439-992e-157d019a8436": [
+      "l3_extract_exp_results",
+      "Writing"
+    ],
+    "1f18aa87-af6f-41ef-9853-cdb8f32ebdea": ["l3_write_answers", "Writing"],
+    "2c1ebcd7-9c6d-4c9a-afad-900e381ecd5e": ["l3_check_apa_format", "Writing"],
+    "2c9fc0de-3ee7-45e1-a5df-c86206ad78b5": ["l2_push_commit", "Coding"],
+    "02ce9a50-7af2-47ed-8596-af0c230501f8": ["l2_ls_and_screenshot", "Writing"],
+    "2fe4b718-3bd7-46ec-bdce-b184f5653624": ["l4_create_gif", "Video Editing"],
+    "3a93cae4-ad3e-403e-8c12-65303b271818": ["l2_lecture_schedule", "Calendar"],
+    "3c8f201a-009d-4bbe-8b65-a6f8b35bb57f": [
+      "l3_download_and_compress",
+      "Image Editing"
+    ],
+    "3e3fc409-bff3-4905-bf16-c968eee3f807": [
+      "l3_unseen_movies",
+      "Data Retrieval"
+    ],
+    "3eb2a122-a5e3-4f89-9820-f7fa1a582969": [
+      "l3_search_iclr_info",
+      "Data Retrieval"
+    ],
+    "3f05f3b9-29ba-4b6b-95aa-2204697ffc06": ["l4_fix_mp3_metadata", "Music"],
+    "4c26e3f3-3a14-4d86-b44a-d3cedebbb487": [
+      "l2_enhance_brightness_in_ppt",
+      "Image Editing"
+    ],
+    "4e9f0faf-2ecc-4ae8-a804-28c9a75d1ddc": [
+      "l2_extract_data_from_invoice",
+      "Transaction Management"
+    ],
+    "5df7b33a-9f77-4101-823e-02f863e1c1ae": [
+      "l3_divide_book_to_many_pdfs",
+      "E-book"
+    ],
+    "6f4073b8-d8ea-4ade-8a18-c5d1d5d5aa9a": [
+      "l3_conferences_cities",
+      "Data Retrieval"
+    ],
+    "7e287123-70ca-47b9-8521-47db09b69b14": [
+      "l3_fund_applications",
+      "Data Retrieval"
+    ],
+    "7f35355e-02a6-45b5-b140-f0be698bcf85": [
+      "l3_coding_for_medium_price",
+      "Coding"
+    ],
+    "7ff48d5b-2df2-49da-b500-a5150ffc7f18": [
+      "l2_find_self_checkin_machines",
+      "Citizen Service"
+    ],
+    "8df7e444-8e06-4f93-8a1a-c5c974269d82": [
+      "l3_organize_submissions",
+      "Writing"
+    ],
+    "8e116af7-7db7-4e35-a68b-b0939c066c78": [
+      "l2_update_transaction_table",
+      "Transaction Management"
+    ],
+    "09a37c51-e625-49f4-a514-20a773797a8a": [
+      "l3_edit_image_accord_reqs",
+      "Image Editing"
+    ],
+    "9f3bb592-209d-43bc-bb47-d77d9df56504": [
+      "l2_remove_subtitles",
+      "Video Editing"
+    ],
+    "42d25c08-fb87-4927-8b65-93631280a26f": ["l3_txt_to_equb", "E-book"],
+    "42f4d1c7-4521-4161-b646-0a8934e36081": [
+      "l2_coding_to_resize",
+      "Image Editing"
+    ],
+    "47f7c0ce-a5fb-4100-a5e6-65cd0e7429e5": [
+      "l2_extract_frame_as_slide_bg",
+      "Presentation"
+    ],
+    "48c46dc7-fe04-4505-ade7-723cba1aa6f6": ["l3_open_workspace", "Coding"],
+    "48d05431-6cd5-4e76-82eb-12b60d823f7d": [
+      "l2_install_conda",
+      "App Installation"
+    ],
+    "51f5801c-18b3-4f25-b0c3-02f85507a078": [
+      "l2_extract_notes_to_docx",
+      "Presentation"
+    ],
+    "65e62ec6-4603-4c67-b4d2-07830deb285b": [
+      "l3_extract_gpt4_responses",
+      "Writing"
+    ],
+    "68a25bd4-59c7-4f4d-975e-da0c8509c848": [
+      "l3_download_paper_and_citations",
+      "Literature"
+    ],
+    "69acbb55-d945-4927-a87b-8480e1a5bb7e": ["l4_config_environmet", "Coding"],
+    "74d5859f-ed66-4d3e-aa0e-93d7a592ce41": [
+      "l3_create_web_extention",
+      "Coding"
+    ],
+    "78aed49a-a710-4321-a793-b611a7c5b56b": ["l3_move_emails", "Emailing"],
+    "82e3c869-49f6-4305-a7ce-f3e64a0618e7": [
+      "l3_filter_photos_of_presenter",
+      "Files"
+    ],
+    "98e8e339-5f91-4ed2-b2b2-12647cb134f4": [
+      "l2_merge_txts_to_docx",
+      "Writing"
+    ],
+    "337d318b-aa07-4f4f-b763-89d9a2dd013f": [
+      "l3_find_diff_in_invoices",
+      "Transaction Management"
+    ],
+    "415ef462-bed3-493a-ac36-ca8c6d23bf1b": [
+      "l4_extract_and_updata_invoice",
+      "Transaction Management"
+    ],
+    "510f64c8-9bcc-4be1-8d30-638705850618": [
+      "l2_start_vscode_from_terminal",
+      "Coding"
+    ],
+    "716a6079-22da-47f1-ba73-c9d58f986a38": ["l3_find_file_by_name", "Files"],
+    "778efd0a-153f-4842-9214-f05fc176b877": [
+      "l2_extract_bgm_to_slides",
+      "Presentation"
+    ],
+    "788b3701-3ec9-4b67-b679-418bfa726c22": [
+      "l3_download_next_chapter",
+      "E-book"
+    ],
+    "869de13e-bef9-4b91-ba51-f6708c40b096": ["l3_organize_desktop", "Files"],
+    "873cafdd-a581-47f6-8b33-b9696ddb7b05": [
+      "l2_install_chrome_exts",
+      "App Installation"
+    ],
+    "881deb30-9549-4583-a841-8270c65f2a17": ["l3_comp_pass_rate", "Tabling"],
+    "897e3b53-5d4d-444b-85cb-2cdc8a97d903": [
+      "l2_docx_to_pdf_and_upload",
+      "Writing"
+    ],
+    "2373b66a-092d-44cb-bfd7-82e86e7a3b4d": [
+      "l2_moniter_resource_usage",
+      "System Resources"
+    ],
+    "3680a5ee-6870-426a-a997-eba929a0d25c": ["l2_merge_two_columns", "Tabling"],
+    "26660ad1-6ebb-4f59-8cba-a8432dfe8d38": [
+      "l3_test_network",
+      "System Resources"
+    ],
+    "67890eb6-6ce5-4c00-9e3d-fb4972699b06": [
+      "l3_find_acl_best_papers",
+      "Data Retrieval"
+    ],
+    "236833a3-5704-47fc-888c-4f298f09f799": [
+      "l3_paper_meta_info",
+      "Data Retrieval"
+    ],
+    "937087b6-f668-4ba6-9110-60682ee33441": [
+      "l2_use_vlc_as_default",
+      "System Settings"
+    ],
+    "5990457f-2adb-467b-a4af-5c857c92d762": ["l3_add_one_entry", "Tabling"],
+    "9219480b-3aed-47fc-8bac-d2cffc5849f7": ["l3_debug_tetris_game", "Coding"],
+    "20236825-b5df-46e7-89bf-62e1d640a897": [
+      "l2_implement_bubbleSrt",
+      "Coding"
+    ],
+    "26150609-0da3-4a7d-8868-0faf9c5f01bb": ["l3_debug_snake_game", "Coding"],
+    "36037439-2044-4b50-b9d1-875b5a332143": [
+      "l2_corr_author_page",
+      "Data Retrieval"
+    ],
+    "46407397-a7d5-4c6b-92c6-dbe038b1457b": [
+      "l4_extract_images_to_drive",
+      "Information Organization"
+    ],
+    "58565672-7bfe-48ab-b828-db349231de6b": [
+      "l2_open_link_in_email",
+      "Emailing"
+    ],
+    "a0b9dc9c-fc07-4a88-8c5d-5e3ecad91bcb": ["l2_backup_emails", "Emailing"],
+    "a82b78bb-7fde-4cb3-94a4-035baf10bcf0": [
+      "l2_find_author_pages",
+      "Data Retrieval"
+    ],
+    "a503b07f-9119-456b-b75d-f5146737d24f": ["l3_png2pdf", "Image Editing"],
+    "aad10cd7-9337-4b62-b704-a857848cedf2": [
+      "l3_blog_local_version",
+      "Writing"
+    ],
+    "acb0f96b-e27c-44d8-b55f-7cb76609dfcd": ["l2_clone_repo", "Coding"],
+    "aceb0368-56b8-4073-b70e-3dc9aee184e0": [
+      "l2_grading_exams",
+      "Information Organization"
+    ],
+    "b52b40a5-ad70-4c53-b5b0-5650a8387052": [
+      "l4_merge_pdfs",
+      "Information Organization"
+    ],
+    "b337d106-053f-4d37-8da0-7f9c4043a66b": [
+      "l3_vim_display_line_number",
+      "App Configuration"
+    ],
+    "b5062e3e-641c-4e3a-907b-ac864d2e7652": [
+      "l2_extract_author_info",
+      "Information Organization"
+    ],
+    "bb7db4c2-30b5-4be7-8dd7-b8c4ec7d3108": [
+      "l4_enhace_sharpness_as_bg",
+      "Image Editing"
+    ],
+    "bb83cab4-e5c7-42c7-a67b-e46068032b86": [
+      "l2_extract_text_to_docx",
+      "Writing"
+    ],
+    "bc2b57f3-686d-4ec9-87ce-edf850b7e442": [
+      "l3_modify_assignmenta",
+      "Writing"
+    ],
+    "c7c1e4c3-9e92-4eba-a4b8-689953975ea4": [
+      "l2_prof_contact",
+      "Data Retrieval"
+    ],
+    "c867c42d-a52d-4a24-8ae3-f75d256b5618": [
+      "l2_export_contacts_to_xlsx",
+      "Information Organization"
+    ],
+    "c2751594-0cd5-4088-be1b-b5f2f9ec97c4": [
+      "l2_export_img_as_wallpaper",
+      "Appearance"
+    ],
+    "ce2b64a2-ddc1-4f91-8c7d-a88be7121aac": [
+      "l3_search_mountain_names",
+      "Data Retrieval"
+    ],
+    "d1acdb87-bb67-4f30-84aa-990e56a09c92": [
+      "l4_find_restaurants_info",
+      "Map Navigation"
+    ],
+    "d9b7c649-c975-4f53-88f5-940b29c47247": [
+      "l3_summarize_daily_emails",
+      "Information Organization"
+    ],
+    "d68204bf-11c1-4b13-b48b-d303c73d4bf6": [
+      "l3_divide_and_rearragne_image",
+      "Image Editing"
+    ],
+    "da52d699-e8d2-4dc5-9191-a2199e0b6a9b": [
+      "l3_find_slowest_reading_book",
+      "Tabling"
+    ],
+    "da922383-bfa4-4cd3-bbad-6bebab3d7742": ["l2_download_blogs", "Literature"],
+    "dd60633f-2c72-42ba-8547-6f2c8cb0fdb0": [
+      "l2_extract_code_to_py_file",
+      "Coding"
+    ],
+    "deec51c9-3b1e-4b9e-993c-4776f20e8bb2": [
+      "l2_organize_paper_list",
+      "Data Retrieval"
+    ],
+    "df67aebb-fb3a-44fd-b75b-51b6012df509": ["l3_export_ref_to_bib", "Writing"],
+    "e1fc0df3-c8b9-4ee7-864c-d0b590d3aa56": [
+      "l2_install_languagetool_ext",
+      "App Installation"
+    ],
+    "e135df7c-7687-4ac0-a5f0-76b74438b53e": [
+      "l2_xlsx_to_html",
+      "Information Organization"
+    ],
+    "e2392362-125e-4f76-a2ee-524b183a3412": ["l3_personal_homepage", "Profile"],
+    "e8172110-ec08-421b-a6f5-842e6451911f": [
+      "l4_extract_art_char_from_png",
+      "Image Editing"
+    ],
+    "f5c13cdd-205c-4719-a562-348ae5cd1d91": [
+      "l3_find_emails_not_paid",
+      "Emailing"
+    ],
+    "f7dfbef3-7697-431c-883a-db8583a4e4f9": [
+      "l3_batch_doc_to_pdf",
+      "Information Organization"
+    ],
+    "f8cfa149-d1c1-4215-8dac-4a0932bad3c2": [
+      "l2_search_b6_cell",
+      "Data Retrieval"
+    ],
+    "f918266a-b3e0-4914-865d-4faa564f1aef": [
+      "l3_complete_script_and_record_log",
+      "Coding"
+    ],
+    "f8369178-fafe-40c2-adc4-b9b08a125456": [
+      "l2_install_Orchis_theme",
+      "Appearance"
+    ],
+    "l1_load_chrome_ext": ["l1_load_chrome_ext", "App Installation"],
+    "l2_change_avatar": ["l2_change_rocketchat_avatar", "Profile"],
+    "l2_decathlon_comopute_price": ["l2_decathlon_comopute_price", "Searching"],
+    "l2_dlai_agents": ["l2_find_dlai_agents_courses", "Online Courses"],
+    "l2_download_csapp_labs": ["l2_download_csapp_labs", "Technical Tutorials"],
+    "l2_foliate_annotation": ["l2_foliate_annotation", "E-book"],
+    "l2_foliate_copy_with_citation": [
+      "l2_foliate_copy_with_citation",
+      "E-book"
+    ],
+    "l2_foliate_make_bookmark_and_exit": [
+      "l2_foliate_make_bookmark_and_exit",
+      "E-book"
+    ],
+    "l2_sccl_email": ["l2_sccl_librarian_email", "Public Space"],
+    "l2_weather_from_chat": ["l2_weather_from_chat", "Messaging"],
+    "l3_apprearance_modification": [
+      "l3_apprearance_modification",
+      "Appearance"
+    ],
+    "l3_apps_dark_mode": ["l3_apps_dark_mode", "Appearance"],
+    "l3_asia_news_in_nytimes": ["l3_asia_news_in_nytimes", "News"],
+    "l3_compare_llms": ["l3_compare_llms", "Data Retrieval"],
+    "l3_decathlon_email": ["l3_decathlon_cs_email", "Emailing"],
+    "l3_female_novelists": ["l3_female_novelists", "Notes and Mindmaps"],
+    "l3_firefly_invoice_recording": [
+      "l3_firefly_invoice_recording",
+      "Transaction Management"
+    ],
+    "l3_geogra_probability": ["l3_geogebra_probability", "Math"],
+    "l3_jupyter_lr_modeling": ["l3_jupyter_lr_modeling", "Coding"],
+    "l3_kaggle_download_dataset": ["l3_kaggle_download_dataset", "Coding"],
+    "l3_meeting_schedule": ["l3_meeting_schedule", "Meeting"],
+    "l3_new_employee": ["l3_new_employee", "Messaging"],
+    "l3_send_ssh_key": ["l3_send_ssh_key", "Messaging"],
+    "l3_send_weather": ["l3_send_weather", "Messaging"],
+    "l3_steam_compare_games": ["l3_steam_compare_games", "Game Information"],
+    "l3_steam_wukong_guide": ["l3_steam_wukong_guide", "Community"],
+    "l3_talk_note_slides": ["l3_insert_note_to_pptx", "Presentation"],
+    "l3_use_wallpaper": ["l3_use_wallpaper", "Appearance"],
+    "l3_xmind_modify_according_to_another": [
+      "l3_xmind_modify_according_to_another",
+      "Notes and Mindmaps"
+    ],
+    "l3_zotero_file_import": ["l3_zotero_file_import", "Literature"],
+    "l4_air_quality": ["l4_air_quality", "Visualization"],
+    "l4_aria2_resnet": ["l3_install_aria2", "App Installation"],
+    "l4_audio2text": ["l4_audio2text", "Messaging"],
+    "l4_bing_wallpaper": ["l4_bing_wallpaper", "Appearance"],
+    "l4_clean_my_computer": ["l4_clean_my_computer", "App Installation"],
+    "l4_course_parse_tables": ["l4_course_parse_tables", "Tabling"],
+    "l4_data_analysis": ["l4_data_analysis", "ToDo"],
+    "l4_decathlon_fill_table": ["l4_decathlon_fill_table", "Data Retrieval"],
+    "l4_dlai_ai4e": ["l4_dlai_ai4e", "Online Courses"],
+    "l4_dlai_apply_job": ["l4_dlai_apply_job", "Information Organization"],
+    "l4_docu_trans": ["l4_todo_docu_trans", "ToDo"],
+    "l4_firefly_cash_shopping": ["l4_firefly_cash_shopping", "Ordering"],
+    "l4_firefly_check_account_and_transactions": [
+      "l4_firefly_check_account_and_transactions",
+      "Transaction Management"
+    ],
+    "l4_geogebra_problem": ["l4_geogebra_problem", "Math"],
+    "l4_llama2c_inference": ["l4_llama2c_inference", "Coding"],
+    "l4_macos_appearance": ["l4_macos_appearance", "Appearance"],
+    "l4_meeting_and_data": ["l4_meeting_and_data", "Messaging"],
+    "l4_modify_screenshot_key_binding": [
+      "l4_modify_screenshot_key_binding",
+      "System Settings"
+    ],
+    "l4_NBA_stats": ["l4_NBA_stats", "Visualization"],
+    "l4_notion_NBA_chart": ["l4_notion_NBA_chart", "Visualization"],
+    "l4_notion_pdf": ["l4_notion_create_pdf", "Writing"],
+    "l4_nvidia_gpus": ["l4_nvidia_gpus", "Data Retrieval"],
+    "l4_rocketchat_reply": ["l4_rocketchat_reply", "Messaging"],
+    "l4_titanic_visualization": ["l4_titanic_visualization", "Visualization"],
+    "l4_transform_image": ["l4_transform_image", "Image Editing"],
+    "l4_ukgov_china": ["l4_ukgov_china", "Data Retrieval"],
+    "l4_xmind_schedule": ["l4_xmind_schedule", "Calendar"],
+    "l4_xmind_todo_list": ["l4_xmind_todo_list", "ToDo"],
+    "l4_zotero_citation": ["l4_zotero_citation", "Literature"],
+    "l4_zotero_download_and_categorization": [
+      "l4_zotero_download_and_categorization",
+      "Literature"
+    ]
+  },
+  "notion": { "l4_notion_project": ["l4_notion_create_project", "Writing"] },
+  "os": {
+    "3ce045a0-877b-42aa-8d2c-b4a863336ab8": ["l2_enlarge_text", "Appearance"],
+    "4d117223-a354-47fb-8b45-62ab1390a95f": ["l2_set_file_permission", "Files"],
+    "5ced85fc-fa1a-4217-95fd-0fb530545ce2": ["l2_add_<br>", "Files"],
+    "5ea617a3-0e86-4ba6-aab2-dac9aa2e8d57": ["l2_recover_from_trash", "Files"],
+    "6ebbfb01-ea72-4226-a2a6-dc428e111ed2": [
+      "l2_set_bash_as_default",
+      "System Settings"
+    ],
+    "6f56bf42-85b8-4fbb-8e06-6c44960184ba": [
+      "l2_copy_file_to_folders",
+      "Files"
+    ],
+    "28cc3b7e-b194-4bc9-8353-d04c0f4d56d2": [
+      "l2_max_system_volumn",
+      "System Settings"
+    ],
+    "43c2d64c-bab5-4dcb-a30c-b888321c319a": [
+      "l2_create_dir_under_root",
+      "Files"
+    ],
+    "94d95f96-9699-4208-98ba-3c3119edf9c2": [
+      "l3_install_spotify",
+      "App Installation"
+    ],
+    "5812b315-e7bd-4265-b51f-863c02174c28": [
+      "l2_create_user",
+      "System Settings"
+    ],
+    "7688b85f-87a4-4e4a-b2f8-f3d6c3f29b82": ["l2_move_file", "Files"],
+    "37887e8c-da15-4192-923c-08fa390a176d": ["l2_compress_files", "Files"],
+    "4127319a-8b79-4410-b58a-7a151e15f3d7": ["l2_count_file_lines", "Files"],
+    "13584542-872b-42d8-b299-866967b5c3ef": [
+      "l2_set_terminal_size",
+      "System Settings"
+    ],
+    "23393935-50c7-4a86-aeea-2b78fd089c5c": ["l2_copy_images", "Files"],
+    "b6781586-6346-41cd-935a-a6b1487918fc": [
+      "l2_set_time_zone",
+      "System Settings"
+    ],
+    "bedcedc4-4d72-425e-ad62-21960b11fe0d": [
+      "l2_disable_screen_dim",
+      "Appearance"
+    ],
+    "c56de254-a3ec-414e-81a6-83d2ce8c41fa": [
+      "l2_install_lxml",
+      "App Installation"
+    ],
+    "cc9d4f34-1ca0-4a1b-8ff2-09302696acb9": [
+      "l2_kill_process",
+      "System Resources"
+    ],
+    "ddc75b62-7311-4af8-bfb3-859558542b36": [
+      "l2_uninstall_mahjongg",
+      "App Installation"
+    ],
+    "e0df059f-28a6-4169-924f-b9623e7184cc": ["l2_change_dir_name", "Files"],
+    "ec4e3f68-9ea4-4c18-a5c9-69f89d1178b3": [
+      "l2_remove_app_from_favorites",
+      "System Settings"
+    ],
+    "f9be0997-4b7c-45c5-b05c-4612b44a6118": [
+      "l2_no_disturb_mode",
+      "System Settings"
+    ],
+    "l1_auto_lock": ["l1_auto_lock", "System Settings"],
+    "l1_change_password": ["l1_change_password", "Profile"],
+    "l1_default_browser": ["l1_default_browser", "System Settings"],
+    "l2_kill_thunderbird": ["l2_kill_thunderbird", "System Resources"],
+    "l2_modify_favorites_apps": ["l2_modify_favorites_apps", "System Settings"],
+    "l3_create_dir_under_root": ["l3_create_dir_under_root", "Files"],
+    "l3_edit_startup": ["l3_edit_startup", "System Settings"],
+    "l3_resolution": ["l3_resolution", "Appearance"]
+  },
+  "thunderbird": {
+    "3d1682a7-0fb0-49ae-a4dc-a73afd2d06d5": [
+      "l2_thunderbird_add_star",
+      "Emailing"
+    ],
+    "06fe7178-4491-4589-810f-2e2bc9502122": [
+      "l2_thunderbird_backup_emails",
+      "Emailing"
+    ],
+    "7b6c7e24-c58a-49fc-a5bb-d57b80e5b4c3": [
+      "l2_thunderbird_login",
+      "Emailing"
+    ],
+    "480bcfea-d68f-4aaa-a0a9-2589ef319381": [
+      "l2_thunderbird_unified_inbox",
+      "Emailing"
+    ],
+    "6766f2b8-8a72-417f-a9e5-56fcaa735837": [
+      "l2_thunderbird_signature",
+      "Emailing"
+    ],
+    "35253b65-1c19-4304-8aa4-6884b8218fc0": [
+      "l2_thunderbird_email_forward",
+      "Emailing"
+    ],
+    "94760984-3ff5-41ee-8347-cf1af709fea0": [
+      "l2_thunderbird_dark_mode",
+      "Appearance"
+    ],
+    "bb5e4c0d-f964-439c-97b6-bdb9747de3f4": [
+      "l2_thunderbird_remove_account",
+      "Emailing"
+    ],
+    "c9e7eaf2-b1a1-4efc-a982-721972fa9f02": [
+      "l2_thunderbird_filters",
+      "Emailing"
+    ],
+    "d088f539-cab4-4f9a-ac92-9999fc3a656e": [
+      "l2_thunderbird_add_attachments",
+      "Emailing"
+    ],
+    "l1_thunderbird_local_folder": ["l1_thunderbird_local_folder", "Emailing"]
+  },
+  "vlc": {
+    "8ba5ae7a-5ae5-4eab-9fcc-5dd4fe3abf89": [
+      "l2_vlc_store_on_desktop",
+      "App Configuration"
+    ],
+    "8d9fd4e2-6fdb-46b0-b9b9-02f06495c62f": ["l2_vlc_full_screen", "Video"],
+    "8f080098-ddb1-424c-b438-4e96e5e4786e": ["l2_vlc_download_audio", "Video"],
+    "59f21cfb-0120-4326-b255-a5b827b38967": ["l2_vlc_play_video", "Video"],
+    "215dfd39-f493-4bc3-a027-8a97d72c61bf": [
+      "l3_vlc_disable_cone_icon",
+      "Video"
+    ],
+    "386dbd0e-0241-4a0a-b6a2-6704fba26b1c": [
+      "l2_vlc_control_with_keyborad",
+      "Video"
+    ],
+    "9195653c-f4aa-453d-aa95-787f6ccfaae9": ["l2_vlc_max_volumn", "Video"],
+    "a5bbbcd5-b398-4c91-83d4-55e1e31bbb81": ["l2_vlc_hide_toolbar", "Video"],
+    "aa4b5023-aef6-4ed9-bdc9-705f59ab9ad6": ["l2_vlc_rotate_video", "Video"],
+    "bba3381f-b5eb-4439-bd9e-80c22218d5a7": ["l2_vlc_streaming", "Video"],
+    "d06f0d4d-2cd5-4ede-8de9-598629438c6e": [
+      "l2_vlc_dark_slider",
+      "App Configuration"
+    ],
+    "efcf0d81-0835-4880-b2fd-d866e8bc2294": [
+      "l2_vlc_as_wallpaper",
+      "Appearance"
+    ],
+    "f3977615-2b45-4ac5-8bba-80c17dbe2a37": [
+      "l3_vlc_multiple_instances",
+      "Video"
+    ],
+    "fba2c100-79e8-42df-ae74-b592418d54f4": ["l2_vlc_save_as_picture", "Files"]
+  },
+  "vs_code": {
+    "0ed39f63-6049-43d4-ba4d-5fa2fe04a951": ["l2_code_replace_text", "Writing"],
+    "5e2d93d8-8ad0-4435-b150-1692aacaa994": ["l2_code_save_project", "Coding"],
+    "6ed0a554-cbee-4b44-84ea-fd6c042f4fe1": ["l2_code_add_workspace", "Coding"],
+    "9d425400-e9b2-4424-9a4b-d4c7abac4140": [
+      "l2_code_tab_new_line",
+      "App Configuration"
+    ],
+    "276cc624-87ea-4f08-ab93-f770e3790175": [
+      "l2_code_extend_line_length",
+      "App Configuration"
+    ],
+    "0512bb38-d531-4acf-9e7e-0add90816068": [
+      "l2_code_install_ext_from_file",
+      "App Installation"
+    ],
+    "930fdb3b-11a8-46fe-9bac-577332e2640e": [
+      "l2_code_shortcut",
+      "App Configuration"
+    ],
+    "30167b0c-976b-491b-a9e5-7747607c6a3c": ["l2_code_find_file", "Coding"],
+    "57242fad-77ca-454f-b71b-f187181a9f23": ["l2_code_create_file", "Coding"],
+    "70745df8-f2f5-42bd-8074-fbc10334fcc5": [
+      "l2_code_enable_autosave",
+      "App Configuration"
+    ],
+    "c6bf789c-ba3a-4209-971d-b63abf0ab733": [
+      "l2_code_hide_pycache",
+      "App Configuration"
+    ],
+    "e2b5e914-ffe1-44d2-8e92-58f8c5d92bb2": [
+      "l2_code_disable_error_report",
+      "App Configuration"
+    ],
+    "ea98c5d7-3cf9-4f9b-8ad3-366b58e0fcae": [
+      "l2_code_remove_shortcut",
+      "App Configuration"
+    ],
+    "l1_code_install_python_ext": [
+      "l1_code_install_python_ext",
+      "App Installation"
+    ],
+    "l1_open_project_folder": ["l1_code_open_project_folder", "Coding"],
+    "l1_vscode_dark_theme": ["l1_code_dark_theme", "Appearance"],
+    "l3_permission_hello": ["l3_code_hello_world", "Coding"]
+  },
+  "xmind": {
+    "l2_xmind_create_logic_chart": [
+      "l2_xmind_create_logic_chart",
+      "Notes and Mindmaps"
+    ],
+    "l2_xmind_mark_priority": ["l2_xmind_mark_priority", "Notes and Mindmaps"],
+    "l2_xmind_modify_fonts": ["l2_xmind_modify_fonts", "Notes and Mindmaps"],
+    "l2_xmind_reorganize_subtopics": [
+      "l2_xmind_reorganize_subtopics",
+      "Notes and Mindmaps"
+    ],
+    "l3_xmind_change_different_font": [
+      "l3_xmind_change_different_font",
+      "Notes and Mindmaps"
+    ],
+    "l3_xmind_modify_according_to_another": [
+      "l3_xmind_modify_acd_to_another",
+      "Notes and Mindmaps"
+    ]
+  },
+  "zotero": {
+    "l3_zotero_categorization": ["l3_zotero_categorization", "Literature"]
+  }
+}

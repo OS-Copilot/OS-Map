@@ -1,0 +1,46 @@
+{
+  "Office": {
+    "Communication": ["Emailing", "Messaging", "Meeting"],
+    "Schedule": ["Calendar", "ToDo"],
+    "Documentation": ["Writing", "Presentation"],
+    "Data": ["Tabling", "Visualization"]
+  },
+  "Knowledge": {
+    "Reading and Learning": ["E-book", "Online Courses", "Technical Tutorials"],
+    "Knowledge": [
+      "Data Retrieval",
+      "Information Organization",
+      "Literature",
+      "Notes and Mindmaps"
+    ],
+    "Skills Practice": ["Coding", "Math", "Languages"]
+  },
+  "Life": {
+    "Shopping": ["Searching", "Ordering"],
+    "Traveling": ["Ticket", "Cars", "Accommodation", "Map Navigation"],
+    "Public Services": ["Citizen Service", "Public Space"],
+    "Finance": ["Transaction Management"],
+    "Infomation": ["News", "Weather"]
+  },
+  "Entertainment": {
+    "Video and Music": ["Video", "Music"],
+    "Network Platform": ["Community"],
+    "Gaming": ["Minigames Playing", "Game Information"]
+  },
+  "Creativity": {
+    "Digital Content Creation": [
+      "Image Editing",
+      "Video Editing",
+      "Diagram Drawing"
+    ]
+  },
+  "System": {
+    "Files and Applications": [
+      "Files",
+      "App Installation",
+      "App Configuration",
+      "System Resources"
+    ],
+    "Personalization": ["Appearance", "Profile", "System Settings"]
+  }
+}
