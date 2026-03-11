@@ -143,3 +143,17 @@ Each JSON file includes the following fields:
   - `result`: The actual outputs or states extracted from the virtual machine
 
   - `expected`: The reference values used for comparison
+
+
+## Citation 📖
+
+🫶 If you are interested in our work or find this repository / our data helpful, please consider using the following citation format when referencing our paper:
+
+```bibtex
+@article{chen2025map,
+  title={OS-MAP: How Far Can Computer-Using Agents Go in Breadth and Depth?},
+  author={Chen, Xuetian and Chen, Yinghao and Yuan, Xinfeng and Peng, Zhuo and Chen, Lu and Li, Yuekeng and Zhang, Zhoujia and Huang, Yingqian and Huang, Leyan and Liang, Jiaqing and others},
+  journal={arXiv preprint arXiv:2507.19132},
+  year={2025}
+}
+```
