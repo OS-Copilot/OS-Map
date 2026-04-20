@@ -27,7 +27,7 @@ To set up _**OS-Map**_, follow these steps:
 git clone https://anonymous.4open.science/r/OSMap-C2F5
 
 # Change directory into the cloned repository
-cd OSWorld
+cd OS-Map
 
 # Optional: Create a Conda environment for OSWorld
 # conda create -n osmap python=3.9
